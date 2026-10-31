@@ -1,10 +1,18 @@
-# On your forehead!
+# On your forehead! · ¡En la frente!
+
+**English** · [Español](README.es.md)
 
 A team guessing game for the classroom, or for any group. One player holds the phone to their forehead without looking at it, and their team describes the word on the screen without saying it. The phone's motion sensors detect whether the player got it right.
 
 **Play it:** https://lorenagmad.github.io/En-la-frente/
 
 It works for any subject or topic, and for social events too: you write your own list of words, or load it from a file or a Google Sheet.
+
+## Languages
+
+The game is in **English** and **Spanish**. Choose the language with the **Español / English** buttons at the top of the home screen. The first time, the game uses the device's language; after that, it remembers your choice.
+
+Switching language also translates the default team names, the default game name and the example list. Names and concepts you have typed yourself are kept as they are.
 
 ## How to play
 
@@ -43,7 +51,7 @@ The sensors only work when the game is opened from its own address over HTTPS, s
 - **Type or paste** them into the list, one per line. Duplicates are removed.
 - **Import a file:** text (`.txt`), CSV, or spreadsheets (`.xlsx`, `.xls`, `.ods`). The first column is used, and a header such as "Concepts", "Words" or "Terms" is skipped.
 - **From a Google Sheet:** share the sheet as "Anyone with the link" and paste its address. The first column is used.
-- **Use the example:** a ready-made list of 20 digital imaging concepts, to try the game quickly.
+- **Use the example:** a ready-made list of 20 digital imaging concepts, in the language you have chosen, to try the game quickly.
 
 ## Activity log (xAPI)
 
@@ -53,6 +61,7 @@ For classroom use, the game can keep an activity log in [xAPI](https://xapi.com/
 - **Identification:** the player's name is always asked for. The email and an ID number can each be "Don't ask", "Optional" or "Required".
 - **Consent:** when the log is on, the game asks you to confirm that the players know their activity is being recorded before you can start.
 - **Download:** the log is downloaded as a `.json` file from the final screen, ready to import into a Learning Record Store (LRS) or to analyse.
+- **Format:** the field names and response values are the same in both languages, so logs from Spanish and English games can be analysed together. The verb and activity names are written in the game's language and tagged with it (`es-ES` or `en-US`).
 
 To use the game outside the classroom, ask only for the name and leave the log off.
 
