@@ -1,12 +1,12 @@
-# On your forehead! · ¡En la frente!
+# Guess My What?!
 
 **English** · [Español](README.es.md)
 
 A team guessing game for the classroom, or for any group. One player holds the phone to their forehead without looking at it, and their team describes the word on the screen without saying it. The phone's motion sensors detect whether the player got it right.
 
-**Play it:** https://lorenagmad.github.io/En-la-frente/
+**Play it:** https://lorenagmad.github.io/Guess-My-What/
 
-It works for any subject or topic, and for social events too: you write your own list of words, or load it from a file or a Google Sheet.
+It works for any subject or topic, and for social events too: you write your own list of concepts, or load it from a Google Sheet.
 
 ## Languages
 
@@ -16,29 +16,48 @@ Switching language also translates the default team names, the default game name
 
 ## How to play
 
-1. **Set up a game.** Give it a name, write the concepts (one per line) and choose the options. The concepts are shared out at random between the two teams, with no repeats.
+1. **Set up a game.** Give it a name, write the concepts and choose the mode and options.
 2. **Add the players** and put each one in a team. Every team needs at least one player.
 3. **Toss the coin** to decide which team starts.
-4. **Play.** The player shown on screen puts the phone on their forehead, screen facing the team, held sideways. A teammate taps the screen to start the turn, and the team describes the concept until the player guesses it or the time runs out.
-5. **See the result.** The final screen shows the winner, the score for each team and every concept played, with who played it and how long it took.
+4. **Play.** The player shown on screen puts the phone on their forehead, screen facing the team, held sideways. A teammate taps the screen to start, and the team describes the concept until the player guesses it or the time runs out.
+5. **See the result.** The final screen shows the winner, each team's score and every concept played, with who played it and how long it took.
 
 A game in progress is saved on the device, so you can leave it and continue later from the home screen.
 
-## Game modes
+## Modes
 
-| Mode | How a turn works | Scoring |
+| Mode | How it works | Scoring |
 | --- | --- | --- |
-| **One turn, one concept** | Each turn is a single concept with its own time limit (30 seconds to 2 minutes). | +1 for a correct guess, −1 for a miss. You choose whether a team that guesses right keeps playing or hands over to the other team; after a miss, the other team always plays. |
+| **Turns** | Each turn is a single concept with its own time limit (30 seconds to 2 minutes). | +1 for a correct guess, −1 for a miss. You choose whether a team that guesses right keeps playing or hands over to the other team; after a miss, the other team always plays. |
 | **Time attack** | Each team gets a timed round to guess as many concepts as it can, then the other team plays. You choose 1 to 5 rounds per team. | +1 for each correct guess. Passing a concept can cost nothing or 1 point. |
+| **Three rounds** | The same concepts are played three times: **1.** describe them freely, **2.** with one word only, **3.** with mime only. Teams take timed turns; a passed concept goes back to the end of the pile. When a round's concepts run out, the next round starts. | +1 for each correct guess. Passing a concept can cost nothing or 1 point. |
 
-You can also limit how many concepts each team gets (5, 8, 10, 15, 20 or all of them).
+You can also limit how many concepts are used (5, 8, 10, 15, 20 per team, or all of them).
+
+## Concepts
+
+Write one concept per line. Each line can also carry **forbidden words** and a **definition**, separated by asterisks:
+
+```
+Umbrella * rain, wet, open * Object you open to keep the rain off
+```
+
+- **Forbidden words** appear under the concept during the game, so the team knows what not to say. If someone says one, the concept counts as missed or is passed. You can hide them in the setup. In **Three rounds** they are shown only in the first round.
+- **The definition** is saved with each concept in the activity log.
+- Duplicates are removed. The counter under the list shows how many concepts have forbidden words or a definition.
+
+Other ways to fill the list:
+
+- **From a Google Sheet:** share the sheet as "Anyone with the link" and paste its address. Column A is the concept, column B the forbidden words (separated by commas) and column C the definition. A header such as "Concepts" is skipped.
+- **Use the example:** 20 everyday concepts, with forbidden words and definitions, in the language you have chosen.
+- **Clear the list:** removes every concept. Tap it twice to confirm.
 
 ## Phone movement
 
 | Mode | Correct | Missed or pass |
 | --- | --- | --- |
-| One turn, one concept | Put the phone face down on the table | Put the phone face up on the table |
-| Time attack | Tilt the phone down | Tilt the phone up |
+| Turns | Put the phone face down on the table | Put the phone face up on the table |
+| Time attack and Three rounds | Tilt the phone down | Tilt the phone up |
 
 Use **Test the movement** on the setup screen before playing. On iPhone, the browser asks for permission to use the motion sensors when you toss the coin.
 
@@ -46,18 +65,11 @@ If a phone has no motion sensors, or they don't respond, the game shows **Correc
 
 The sensors only work when the game is opened from its own address over HTTPS, such as the GitHub Pages link above. They don't work inside previews or embedded frames.
 
-## Loading the concepts
-
-- **Type or paste** them into the list, one per line. Duplicates are removed.
-- **Import a file:** text (`.txt`), CSV, or spreadsheets (`.xlsx`, `.xls`, `.ods`). The first column is used, and a header such as "Concepts", "Words" or "Terms" is skipped.
-- **From a Google Sheet:** share the sheet as "Anyone with the link" and paste its address. The first column is used.
-- **Use the example:** a ready-made list of 20 digital imaging concepts, in the language you have chosen, to try the game quickly.
-
 ## Activity log (xAPI)
 
 For classroom use, the game can keep an activity log in [xAPI](https://xapi.com/) format. It is off by default.
 
-- **What it records:** the start and end of the game, and every concept played: who played it, which team, whether it was guessed, how long it took and the final score.
+- **What it records:** the start of the game (mode, teams and their players, number of concepts, time limit, whether forbidden words are shown), every concept played (who, which team, whether it was guessed, how long it took, how it was marked: sensor, button or time, the round, and its forbidden words and definition) and the final score.
 - **Identification:** the player's name is always asked for. The email and an ID number can each be "Don't ask", "Optional" or "Required".
 - **Consent:** when the log is on, the game asks you to confirm that the players know their activity is being recorded before you can start.
 - **Download:** the log is downloaded as a `.json` file from the final screen, ready to import into a Learning Record Store (LRS) or to analyse.
@@ -69,13 +81,12 @@ To use the game outside the classroom, ask only for the name and leave the log o
 
 Everything stays on the device. The settings, the players, the game in progress and the activity log are stored in the browser (`localStorage`) and are never sent to a server. The game only connects to the internet to:
 
-- load its fonts from Google Fonts,
-- load a spreadsheet library from cdnjs, only when you import an `.xlsx`, `.xls` or `.ods` file,
+- load its typeface (Nunito) from Google Fonts,
 - read a Google Sheet, only when you load one.
 
-## Accessibility
+## Design and accessibility
 
-- Large text designed to be read from a distance.
+- Colours from the TELA UCA logo and a single typeface, Nunito, chosen to be read from a distance.
 - Buttons and form fields work with the keyboard and show a visible focus.
 - If the device has "reduce motion" turned on, the animations and confetti are switched off.
 - Light and dark modes follow the device's setting.

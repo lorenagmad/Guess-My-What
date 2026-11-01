@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>On your forehead!</title>
+<title>Guess My What?!</title>
 <meta name="theme-color" content="#FDB022">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%94%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('anim')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--sun:#FDB022;--ink:#054C6B;--paper:#FFF8EC;--card:#FFFFFF;--a:#E0601A;--b:#2B78A8;--ok:#18A86B;--muted:#4E6676;--line:#F0DDBA;--edge:#054C6B;--spring:cubic-bezier(.34,1.56,.64,1);--out:cubic-bezier(.2,.8,.2,1);
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -17,12 +17,12 @@
 :root[data-theme="dark"]{--sun:#F9A826;--ink:#EEF5FA;--paper:#06263A;--card:#0D3B55;--muted:#A9C3D3;--line:#1E5472;--edge:rgba(0,0,0,.5)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}*,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
-h1,h2,h3,.disp{font-family:"Fredoka","Arial Rounded MT Bold",system-ui,sans-serif;line-height:1.05;margin:0}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+h1,h2,h3,.disp{font-family:var(--font);line-height:1.05;margin:0}
 .hidden{display:none!important}
 .wrap{max-width:640px;margin:0 auto;padding:18px 18px 40px}
 button{font:inherit}
-.btn{font-family:"Fredoka",system-ui,sans-serif;font-weight:600;font-size:20px;border:3px solid #054C6B;background:var(--sun);color:#054C6B;border-radius:16px;padding:12px 20px;cursor:pointer;box-shadow:0 5px 0 #054C6B;transition:transform .08s,box-shadow .08s}
+.btn{font-family:var(--font);font-weight:600;font-size:20px;border:3px solid #054C6B;background:var(--sun);color:#054C6B;border-radius:16px;padding:12px 20px;cursor:pointer;box-shadow:0 5px 0 #054C6B;transition:transform .08s,box-shadow .08s}
 .btn:active{transform:translateY(4px);box-shadow:0 1px 0 #054C6B}
 .btn.sec{background:var(--card);color:var(--ink);border-color:var(--ink);box-shadow:0 5px 0 var(--ink)}
 .btn.big{font-size:24px;padding:16px 26px;width:100%}
@@ -31,8 +31,8 @@ button{font:inherit}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .stack{display:grid;gap:14px}
 .panel{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:16px}
-label.f{display:grid;gap:6px;font-weight:700}
-label.f small{font-weight:400;color:var(--muted)}
+.f{display:grid;gap:6px;font-weight:700}
+.f small{font-weight:400;color:var(--muted)}
 input[type=text],input[type=email],select,textarea{font:inherit;font-size:17px;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);width:100%}
 textarea{min-height:170px;resize:vertical;line-height:1.4}
 .seg{display:flex;border:2px solid var(--ink);border-radius:12px;overflow:hidden}
@@ -44,9 +44,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.4}
 /* home */
 #home{min-height:100%;display:grid;align-content:center;background:var(--sun);color:#054C6B}
 #home .wrap{display:grid;gap:22px}
-.logo{font-size:clamp(64px,18vw,120px);font-weight:700;letter-spacing:-.02em;line-height:.9}
-.logo span{display:inline-block;background:#054C6B;color:var(--sun);border-radius:18px;padding:0 .14em;transform:rotate(-3deg)}
-.forehead{width:min(78vw,360px);aspect-ratio:2/1;border:4px solid #054C6B;border-radius:26px;background:#FFFFFF;display:grid;place-items:center;font-family:Fredoka,sans-serif;font-weight:700;font-size:clamp(28px,8vw,44px);transform:rotate(2deg);box-shadow:8px 8px 0 #054C6B;animation:wob 3.2s ease-in-out infinite}
+.forehead{width:min(78vw,360px);aspect-ratio:2/1;border:4px solid #054C6B;border-radius:26px;background:#FFFFFF;display:grid;place-items:center;font-family:var(--font);font-weight:700;font-size:clamp(28px,8vw,44px);transform:rotate(2deg);box-shadow:8px 8px 0 #054C6B;animation:wob 3.2s ease-in-out infinite}
 @keyframes wob{50%{transform:rotate(-2deg) translateY(-4px)}}
 #home p{margin:0;font-size:19px;max-width:30em}
 /* teams */
@@ -62,25 +60,29 @@ textarea{min-height:170px;resize:vertical;line-height:1.4}
 #toss .wrap{text-align:center;display:grid;gap:20px;justify-items:center}
 .coinbox{perspective:900px;width:220px;height:220px}
 .coin{width:100%;height:100%;position:relative;transform-style:preserve-3d}
-.face{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:8px solid rgba(0,0,0,.18);font-family:Fredoka,sans-serif;font-weight:700;color:#fff;text-align:center;padding:20px;font-size:26px;line-height:1.1}
+.face{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:8px solid rgba(0,0,0,.18);font-family:var(--font);font-weight:700;color:#fff;text-align:center;padding:20px;font-size:26px;line-height:1.1}
 .face b{display:block;font-size:44px}
 .face.back{transform:rotateY(180deg)}
 /* game */
 #play{position:fixed;inset:0;display:grid;place-items:center;text-align:center;color:#fff;user-select:none;-webkit-user-select:none;overflow:hidden;background:var(--ink)}
 #play.ta{background:var(--a)}#play.tb{background:var(--b)}
 .pv{position:absolute;inset:0;display:grid;place-items:center;padding:clamp(14px,4vw,40px)}
-.concept{font-family:Fredoka,sans-serif;font-weight:700;line-height:1;letter-spacing:-.01em;word-break:break-word;text-shadow:0 4px 0 rgba(0,0,0,.18)}
+.concept{font-family:var(--font);font-weight:700;line-height:1;letter-spacing:-.01em;word-break:break-word;text-shadow:0 4px 0 rgba(0,0,0,.18)}
+.cwrap{display:grid;gap:clamp(10px,2.4vh,22px);justify-items:center}
+.forb{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;font-weight:700;font-size:max(15px,min(3.2vw,5vh,30px))}
+.forb span{background:rgba(0,0,0,.28);border-radius:10px;padding:2px 12px}
+.phase{position:absolute;left:50%;transform:translateX(-50%);top:24px;font-weight:700;font-size:max(14px,min(2.6vw,4vh,22px));background:rgba(0,0,0,.25);border-radius:999px;padding:4px 16px;white-space:nowrap}
 .timer{position:absolute;left:0;right:0;top:0;height:14px;background:rgba(0,0,0,.2)}
 .timer i{display:block;height:100%;background:#fff;transform-origin:0 50%}
-.secs{position:absolute;right:max(16px,env(safe-area-inset-right));top:22px;font-family:Fredoka,sans-serif;font-weight:700;font-size:clamp(28px,6vw,48px)}
+.secs{position:absolute;right:max(16px,env(safe-area-inset-right));top:22px;font-family:var(--font);font-weight:700;font-size:clamp(28px,6vw,48px)}
 .mini{position:absolute;left:max(16px,env(safe-area-inset-left));top:22px;font-weight:700;font-size:16px;opacity:.9;text-align:left}
 .fb{position:absolute;bottom:max(14px,env(safe-area-inset-bottom));display:flex;gap:10px;left:50%;transform:translateX(-50%)}
 .fb button{border:3px solid #fff;background:rgba(255,255,255,.18);color:#fff;border-radius:14px;padding:8px 14px;font-weight:700;font-size:15px;cursor:pointer}
 .msg{display:grid;gap:min(2.2vh,20px);justify-items:center;max-width:900px}
 .msg h2{font-size:max(26px,min(7vw,10vh,68px))}
 .msg p{margin:0;font-size:max(16px,min(3.4vw,5.2vh,30px));font-weight:700;line-height:1.25}
-.msg .who{font-family:Fredoka,sans-serif;font-size:max(26px,min(6vw,10vh,56px));background:#fff;color:var(--ink);border-radius:18px;padding:6px 22px}
-.msg .tap{font-family:Fredoka,sans-serif;font-size:max(16px,min(3.6vw,5.4vh,30px));border:3px dashed rgba(255,255,255,.8);border-radius:16px;padding:min(1.6vh,10px) 20px;animation:pulse 1.6s ease-in-out infinite}
+.msg .who{font-family:var(--font);font-size:max(26px,min(6vw,10vh,56px));background:#fff;color:var(--ink);border-radius:18px;padding:6px 22px}
+.msg .tap{font-family:var(--font);font-size:max(16px,min(3.6vw,5.4vh,30px));border:3px dashed rgba(255,255,255,.8);border-radius:16px;padding:min(1.6vh,10px) 20px;animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.55}}
 .score{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;font-weight:700}
 .score span{background:rgba(0,0,0,.22);border-radius:999px;padding:4px 14px}
@@ -91,10 +93,10 @@ textarea{min-height:170px;resize:vertical;line-height:1.4}
 .final h2{font-size:clamp(40px,10vw,64px)}
 .board{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .board .t{border:3px solid var(--ink);border-radius:18px;padding:14px;color:#fff}
-.board .t b{font-family:Fredoka,sans-serif;font-size:56px;display:block;line-height:1}
+.board .t b{font-family:var(--font);font-size:56px;display:block;line-height:1}
 .hist{font-size:15px}
 .hist li{margin:2px 0}
-.sens{font-family:Fredoka,sans-serif;font-size:19px;line-height:1.25;max-width:100%;font-weight:600;padding:10px 14px;border-radius:12px;background:var(--paper);border:2px solid var(--line)}
+.sens{font-family:var(--font);font-size:19px;line-height:1.25;max-width:100%;font-weight:600;padding:10px 14px;border-radius:12px;background:var(--paper);border:2px solid var(--line)}
 .ov{position:fixed;inset:0;background:rgba(10,24,40,.62);display:grid;place-items:center;padding:16px;z-index:10}
 .ov .panel{max-width:460px;width:100%;color:var(--ink)}
 
@@ -120,14 +122,15 @@ input[type=text]:focus,input[type=email]:focus,select:focus,textarea:focus{borde
 
 /* home */
 #home{min-height:100vh;min-height:100dvh;overflow:hidden}
+/* logotipo «Guess My What?!»: letras con contorno blanco y sombra azul, signos grandes que ocupan las dos líneas */
+.gmw{margin:0;display:flex;align-items:center;justify-content:center;font-family:var(--font);font-weight:700;line-height:.9;letter-spacing:.01em;color:#FF4F12;font-size:clamp(38px,min(12.5vw,9.5vh),96px);transform:rotate(-6deg);padding:.15em 0 .3em;
+  --o:.06em;--d:.045em;text-shadow:var(--o) 0 #fff,calc(-1*var(--o)) 0 #fff,0 var(--o) #fff,0 calc(-1*var(--o)) #fff,var(--d) var(--d) #fff,calc(-1*var(--d)) var(--d) #fff,var(--d) calc(-1*var(--d)) #fff,calc(-1*var(--d)) calc(-1*var(--d)) #fff,.11em .11em 0 #2C5BE0,.09em .13em 0 #2C5BE0}
+.gmw .gl{display:flex;flex-direction:column;align-items:center;white-space:nowrap}
+.gmw .g2{font-size:.84em;margin-top:.04em}
+.gmw .gq{font-size:2.2em;line-height:.8;letter-spacing:-.1em;margin-left:.06em;padding-right:.1em;transform:rotate(10deg);transform-origin:40% 70%}
 .forehead{position:relative;border-width:5px;border-radius:30px;padding:0 36px;overflow:hidden;color:#054C6B;text-align:center;line-height:1.05}
 /* home screen with larger text */
 #home .wrap{gap:clamp(16px,2.8vh,26px);padding-bottom:24px}
-.logo{font-size:clamp(72px,min(20vw,14vh),136px)}
-/* "forehead!" is longer than "frente!": a little smaller in English */
-html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
-/* only the second half of the title gets the badge */
-.logo .l1,.anim .logo .l1{display:inline;background:none;color:inherit;padding:0;border-radius:0;transform:none;animation:none}
 /* language picker on the home screen */
 #home{position:relative}
 @media (max-width:700px){#home .wrap{padding-top:76px}}
@@ -135,7 +138,7 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
 .seg.lang button{padding:6px 14px;font-size:15px;color:#054C6B}
 .seg.lang button+button{border-left:2px solid #054C6B}
 .seg.lang button[aria-pressed="true"]{background:#054C6B;color:#FFF8EC}
-.forehead{width:min(86vw,400px);font-size:clamp(34px,10vw,52px)}
+.forehead{width:min(90vw,460px);font-size:clamp(42px,12vw,64px)}
 #home p{font-size:clamp(20px,5.4vw,24px);line-height:1.45}
 #home .btn.big{font-size:clamp(24px,6.6vw,28px);padding:18px 26px}
 .forehead::before{content:"";position:absolute;left:12px;top:50%;width:8px;height:34%;border-radius:8px;background:#054C6B;transform:translateY(-50%);opacity:.85}
@@ -145,8 +148,10 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
 #fhWord{display:inline-block}
 .anim #fhWord.swap{animation:flip .45s var(--out) both}
 @keyframes flip{from{opacity:0;transform:translateY(60%) rotateX(-70deg)}to{opacity:1;transform:none}}
-.anim .logo span{animation:stamp .6s var(--spring) .2s both}
-@keyframes stamp{from{opacity:0;transform:rotate(-16deg) scale(1.7)}to{opacity:1;transform:rotate(-3deg)}}
+.anim .gmw{animation:gstamp .6s var(--spring) .1s both}
+.anim .gmw .gq{animation:gwig 2.6s ease-in-out .8s infinite}
+@keyframes gstamp{from{opacity:0;transform:rotate(-16deg) scale(1.5)}to{opacity:1;transform:rotate(-6deg)}}
+@keyframes gwig{0%,100%{transform:rotate(10deg)}50%{transform:rotate(16deg) translateY(-.04em)}}
 
 /* staggered entrance on each screen */
 .anim .in{animation:rise .5s var(--out) both;animation-delay:calc(var(--i,0) * 60ms)}
@@ -200,6 +205,86 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
 .anim .final h2.win{animation:cheer .6s var(--spring) both}
 .board .t b{font-variant-numeric:tabular-nums}
 @media (max-width:560px){.fb{left:max(14px,env(safe-area-inset-left));transform:none}}
+
+/* ---------- TELA UCA design system ----------
+   Colours from the TELA UCA logo, one typeface (Nunito), one radius scale.
+   Cards are flat with a light border; only the main button keeps a raised edge. */
+:root{--tela-blue:#054C6B;--tela-sky:#4A91BC;--tela-orange:#FA8034;--tela-yellow:#FDBE0B;
+  --r:18px;--r-s:12px;--font:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif}
+body{font-family:var(--font);font-weight:600}
+h1,h2,h3,.disp,.btn,.concept,.face,.secs,.msg .who,.msg .tap,.board .t b,.sens,.forehead,.gmw{font-family:var(--font)}
+h1,h2,h3,.disp{font-weight:900;letter-spacing:-.01em}
+.title{font-size:clamp(32px,8.5vw,42px)}
+h3{font-size:22px}
+.wrap.stack{gap:16px}
+
+/* cards */
+.panel,.team{border:2px solid var(--line);border-radius:var(--r);box-shadow:none}
+.panel{padding:18px;gap:16px}
+.team{padding:14px}
+.team h3{font-size:20px}
+.team li{border-radius:var(--r-s);font-weight:700}
+
+/* buttons: the main one is raised, the rest are flat */
+.btn{font-weight:800;font-size:19px;border:2px solid var(--tela-blue);border-radius:var(--r-s);box-shadow:0 4px 0 var(--tela-blue);padding:12px 20px}
+.btn:active{box-shadow:0 1px 0 var(--tela-blue)}
+.btn.sec{background:var(--card);color:var(--ink);border-color:var(--ink);box-shadow:none}
+.btn.sec:active{transform:scale(.98);box-shadow:none}
+.btn.big{font-size:22px;padding:15px 24px}
+@media (hover:hover){
+  .btn:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--tela-blue)}
+  .btn.sec:not(:disabled):hover{transform:none;box-shadow:none;background:var(--paper)}
+  .btn:not(:disabled):active{transform:translateY(3px);box-shadow:0 1px 0 var(--tela-blue)}
+}
+
+/* fields and segmented controls */
+.f{font-weight:800;gap:8px}
+.f small,.note{font-weight:600;font-size:15px;line-height:1.4}
+input[type=text],input[type=email],select,textarea{font-family:var(--font);font-weight:700;border:2px solid var(--line);border-radius:var(--r-s)}
+input[type=text]:focus,input[type=email]:focus,select:focus,textarea:focus{border-color:var(--tela-sky);outline:none}
+/* one concept per line: long lines scroll sideways instead of wrapping */
+textarea{font-weight:600;font-size:16px;line-height:1.6;white-space:pre;overflow-wrap:normal;overflow-x:auto}
+.seg{border-width:2px;border-radius:var(--r-s)}
+.seg button{font-weight:800;padding:10px 8px;line-height:1.2}
+.seg button{flex:1 1 0;min-width:0}
+#cMode button{white-space:nowrap;font-size:clamp(14px,4.1vw,17px);padding:11px 4px}
+@media (max-width:360px){#cMode button{white-space:normal}}
+.sens{font-weight:800;border-radius:var(--r-s);border-width:2px}
+.err{font-weight:800}
+
+/* home */
+#home p{font-weight:700}
+.forehead{border-width:4px;box-shadow:6px 6px 0 var(--tela-blue)}
+#fhWord{font-weight:900}
+.seg.lang button{font-weight:800}
+
+/* logo: TELA orange letters, white outline, TELA blue shadow */
+.gmw{font-weight:900;color:var(--tela-orange);letter-spacing:0;
+  text-shadow:var(--o) 0 #fff,calc(-1*var(--o)) 0 #fff,0 var(--o) #fff,0 calc(-1*var(--o)) #fff,var(--d) var(--d) #fff,calc(-1*var(--d)) var(--d) #fff,var(--d) calc(-1*var(--d)) #fff,calc(-1*var(--d)) calc(-1*var(--d)) #fff,.1em .1em 0 var(--tela-blue),.08em .12em 0 var(--tela-blue)}
+
+/* coin */
+.face{border:6px solid rgba(0,0,0,.14);font-weight:900}
+.face b{font-weight:900}
+
+/* game screen */
+.concept{font-weight:900;letter-spacing:-.02em;line-height:1.02;text-shadow:0 3px 0 rgba(0,0,0,.16)}
+.secs{font-weight:900}
+.mini{font-weight:800}
+.phase,.score span,.forb span{border-radius:999px}
+/* the round label sits between the team and the seconds; on narrow screens it moves below them */
+@media (max-width:700px){.phase{top:86px;white-space:normal;text-align:center;width:max-content;max-width:calc(100% - 32px)}}
+.forb span{padding:3px 14px}
+.fb button{border-width:2px;border-radius:999px;padding:9px 18px;font-weight:800;font-family:var(--font)}
+.pause{border-width:2px;border-radius:999px;padding:7px 16px;font-weight:800;font-family:var(--font)}
+.msg .who{font-weight:900;border-radius:var(--r-s)}
+.msg .tap{font-weight:800;border-width:2px;border-radius:var(--r-s)}
+.msg h2{font-weight:900}
+
+/* final */
+.board .t{border:0;border-radius:var(--r);box-shadow:none}
+.board .t b{font-weight:900}
+.hist{font-size:16px}
+.ov .panel{border-color:transparent;box-shadow:0 18px 40px rgba(0,0,0,.25)}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.confeti{display:none}}
 </style>
 </head>
@@ -208,7 +293,7 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
 <section id="home">
   <div class="wrap">
     <div class="seg lang" role="group" id="cLang" aria-label="Idioma / Language"><button data-v="es" aria-pressed="true" lang="es">Español</button><button data-v="en" aria-pressed="false" lang="en">English</button></div>
-    <h1 class="logo"><span id="logo1" class="l1">¡En la </span><span id="logo2" class="l2">frente!</span></h1>
+    <h1 class="gmw" aria-label="Guess My What?!"><span class="gl" aria-hidden="true"><span class="g1">GUESS</span><span class="g2">MY WHAT</span></span><span class="gq" aria-hidden="true">?!</span></h1>
     <div class="forehead" aria-hidden="true"><span id="fhPos"><span id="fhWord">¿?¿?</span></span></div>
     <p data-i18n="homeIntro">Un juego por equipos para adivinar. Un jugador se pone el móvil en la frente y su equipo le explica la palabra sin decirla.</p>
     <div class="stack">
@@ -220,14 +305,12 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
 
 <section id="setup" class="hidden">
   <div class="wrap stack">
-    <h2 style="font-size:40px" data-i18n="goSetup">Preparar partida</h2>
+    <h2 class="title" data-i18n="goSetup">Preparar partida</h2>
     <div class="panel stack">
       <label class="f"><span data-i18n="lblTitle">Nombre de la partida</span><small data-i18n="smTitle">Por ejemplo, la asignatura o el tema.</small><input type="text" id="cTitle" maxlength="80"></label>
       <label class="f"><span data-i18n="lblConcepts">Conceptos</span><small data-i18n="smConcepts">Uno por línea. Se reparten al azar entre los dos equipos, sin repetirse.</small><textarea id="cConcepts" spellcheck="false"></textarea></label>
-      <div class="row"><label class="btn sec" for="cFile" id="cImport" tabindex="0" role="button" data-i18n="cImport">Importar archivo</label><button class="btn sec" id="cSample" data-i18n="cSample">Usar ejemplo</button><span class="note" id="cCount"></span></div>
-      <input type="file" id="cFile" accept=".txt,.csv,.xlsx,.xls,.ods,text/plain,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.oasis.opendocument.spreadsheet" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">
-      <p class="note" style="margin:0" data-i18n="notFormats">Admite texto (.txt), CSV y hojas de cálculo (.xlsx, .xls, .ods). Se usa la primera columna.</p>
-      <label class="f"><span data-i18n="lblSheet">Desde una hoja de Google</span><small data-i18n="smSheet">Comparte la hoja como «Cualquier persona con el enlace» y pega aquí su dirección. Se usa la primera columna.</small>
+      <div class="row"><button class="btn sec" id="cSample" data-i18n="cSample">Usar ejemplo</button><button class="btn sec" id="cClear" data-i18n="cClear">Borrar la lista</button><span class="note" id="cCount"></span></div>
+      <label class="f"><span data-i18n="lblSheet">Desde una hoja de Google</span><small data-i18n="smSheet">Comparte la hoja como «Cualquier persona con el enlace» y pega aquí su dirección. Columna A: concepto · B: palabras prohibidas, separadas por comas · C: definición.</small>
         <div class="row" style="flex-wrap:nowrap"><input type="text" id="cSheet" inputmode="url" placeholder="https://docs.google.com/spreadsheets/d/…" style="flex:1"><button class="btn sec" id="cSheetGo" data-i18n="cSheetGo">Cargar</button></div></label>
       <p class="err" id="cImpErr"></p>
     </div>
@@ -237,7 +320,7 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
         <label class="f"><span data-i18n="lblTeamB">Nombre del equipo 2</span><input type="text" id="cTeamB" maxlength="24"></label>
       </div>
       <div class="f"><span data-i18n="lblMode">Modalidad</span>
-        <div class="seg" role="group" id="cMode"><button data-v="concept" aria-pressed="true" data-i18n="modeConcept">Un turno, un concepto</button><button data-v="timed" aria-pressed="false" data-i18n="modeTimed">Contrarreloj</button></div>
+        <div class="seg" role="group" id="cMode"><button data-v="concept" aria-pressed="true" data-i18n="modeConcept">Turnos</button><button data-v="timed" aria-pressed="false" data-i18n="modeTimed">Contrarreloj</button><button data-v="three" aria-pressed="false" data-i18n="modeThree">Tres rondas</button></div>
         <small id="cModeHelp"></small></div>
       <label class="f"><span id="cTimeL">Tiempo para adivinar cada concepto</span>
         <select id="cTime"><option value="30" data-i18n="opt30">30 segundos</option><option value="45" data-i18n="opt45">45 segundos</option><option value="60" data-i18n="opt60">60 segundos</option><option value="90" data-i18n="opt90">90 segundos</option><option value="120" data-i18n="opt120">2 minutos</option></select></label>
@@ -245,13 +328,16 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
         <select id="cRounds"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></label>
       <div class="f" id="rowPass"><span data-i18n="lblPass">Al pasar un concepto…</span>
         <div class="seg" role="group" id="cPass"><button data-v="no" aria-pressed="true" data-i18n="passNo">No resta</button><button data-v="si" aria-pressed="false" data-i18n="passYes">Resta 1 punto</button></div></div>
+      <div class="f"><span data-i18n="lblForb">Palabras prohibidas</span>
+        <div class="seg" role="group" id="cForb"><button data-v="on" aria-pressed="true" data-i18n="forbOn">Mostrar</button><button data-v="off" aria-pressed="false" data-i18n="forbOff">No mostrar</button></div>
+        <small data-i18n="smForb">Aparecen debajo del concepto (si las has escrito). Si alguien dice una, el concepto cuenta como no acertado o se pasa.</small></div>
       <div class="f" id="rowAfter"><span data-i18n="lblAfter">Cuando un equipo acierta…</span>
         <div class="seg" role="group" id="cAfter"><button data-v="same" aria-pressed="true" data-i18n="afterSame">Sigue jugando</button><button data-v="switch" aria-pressed="false" data-i18n="afterSwitch">Pasa al otro equipo</button></div></div>
       <label class="f"><span data-i18n="lblPer">Conceptos por equipo</span><small data-i18n="smPer">Déjalo en «Todos» para usar la lista completa.</small>
         <select id="cPer"><option value="0" data-i18n="perAll">Todos</option><option value="5">5</option><option value="8">8</option><option value="10">10</option><option value="15">15</option><option value="20">20</option></select></label>
     </div>
     <div class="panel stack">
-      <h3 style="font-size:24px" data-i18n="idTitle">Identificación y registro</h3>
+      <h3 data-i18n="idTitle">Identificación y registro</h3>
       <p class="note" style="margin:0" data-i18n="idNote">El nombre siempre se pide. Para usarlo fuera del aula, deja solo el nombre y desactiva el registro.</p>
       <div class="f"><span data-i18n="lblEmail">Correo electrónico</span><div class="seg" role="group" id="cEmail"><button data-v="no" aria-pressed="true" data-i18n="askNo">No pedir</button><button data-v="opt" aria-pressed="false" data-i18n="askOpt">Opcional</button><button data-v="req" aria-pressed="false" data-i18n="askReq">Obligatorio</button></div></div>
       <div class="f"><span data-i18n="dni">DNI o documento</span><div class="seg" role="group" id="cDni"><button data-v="no" aria-pressed="true" data-i18n="askNo">No pedir</button><button data-v="opt" aria-pressed="false" data-i18n="askOpt">Opcional</button><button data-v="req" aria-pressed="false" data-i18n="askReq">Obligatorio</button></div></div>
@@ -259,7 +345,7 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
         <div class="seg" role="group" id="cXapi"><button data-v="off" aria-pressed="true" data-i18n="xapiOff">Sin registro</button><button data-v="on" aria-pressed="false" data-i18n="xapiOn">Con registro</button></div></div>
     </div>
     <div class="panel stack">
-      <h3 style="font-size:24px" data-i18n="moveTitle">Movimiento del móvil</h3>
+      <h3 data-i18n="moveTitle">Movimiento del móvil</h3>
       <p class="note" style="margin:0" id="sHelp"></p>
       <div class="row"><button class="btn sec" id="sTest" data-i18n="sTest">Probar el movimiento</button><span class="sens" id="sState" data-i18n="notTested">Sin probar</span></div>
       <div class="f"><span data-i18n="lblFb">Botones de respaldo durante el turno</span><small data-i18n="smFb">Por si algún móvil no tiene sensores.</small>
@@ -272,7 +358,7 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
 
 <section id="players" class="hidden">
   <div class="wrap stack">
-    <h2 style="font-size:40px" data-i18n="playersTitle">Participantes</h2>
+    <h2 class="title" data-i18n="playersTitle">Participantes</h2>
     <div class="panel stack" id="addForm">
       <label class="f"><span data-i18n="lblName">Nombre</span><input type="text" id="pName" maxlength="40" autocomplete="off"></label>
       <label class="f" id="pEmailL"><span id="pEmailT">Correo</span><input type="email" id="pEmail" maxlength="80" autocomplete="off"></label>
@@ -290,7 +376,7 @@ html[lang="en"] .logo{font-size:clamp(56px,min(16vw,13vh),124px)}
 
 <section id="toss" class="hidden">
   <div class="wrap">
-    <h2 style="font-size:40px" data-i18n="tossTitle">¿Quién empieza?</h2>
+    <h2 class="title" data-i18n="tossTitle">¿Quién empieza?</h2>
     <p style="margin:0" id="tossLine"></p>
     <div class="coinbox"><div class="coin" id="coin"><div class="face" id="fA"><div><b data-i18n="heads">Cara</b><span></span></div></div><div class="face back" id="fB"><div><b data-i18n="tails">Cruz</b><span></span></div></div></div></div>
     <p class="disp" id="tossRes" style="font-size:30px;min-height:1.2em;margin:0"></p>
@@ -316,13 +402,13 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v)
 
 /* ---------- idiomas / languages ---------- */
 const I18N={
-es:{docTitle:'¡En la frente!',logo1:'¡En la ',logo2:'frente!',
+es:{docTitle:'Guess My What?!',
   homeIntro:'Un juego por equipos para adivinar. Un jugador se pone el móvil en la frente y su equipo le explica la palabra sin decirla.',
   goSetup:'Preparar partida',goResume:'Continuar la partida guardada',
-  lblTitle:'Nombre de la partida',smTitle:'Por ejemplo, la asignatura o el tema.',lblConcepts:'Conceptos',smConcepts:'Uno por línea. Se reparten al azar entre los dos equipos, sin repetirse.',
-  cImport:'Importar archivo',cSample:'Usar ejemplo',notFormats:'Admite texto (.txt), CSV y hojas de cálculo (.xlsx, .xls, .ods). Se usa la primera columna.',
-  lblSheet:'Desde una hoja de Google',smSheet:'Comparte la hoja como «Cualquier persona con el enlace» y pega aquí su dirección. Se usa la primera columna.',cSheetGo:'Cargar',
-  lblTeamA:'Nombre del equipo 1',lblTeamB:'Nombre del equipo 2',lblMode:'Modalidad',modeConcept:'Un turno, un concepto',modeTimed:'Contrarreloj',
+  lblTitle:'Nombre de la partida',smTitle:'Por ejemplo, la asignatura o el tema.',lblConcepts:'Conceptos',smConcepts:'Uno por línea. Si quieres, añade las palabras prohibidas y la definición separadas por un asterisco (*). Ejemplo: Paraguas * lluvia, mojarse, abrir * Objeto que se abre para protegerse de la lluvia.',
+  cSample:'Usar ejemplo',cClear:'Borrar la lista',cClearSure:'¿Seguro? Toca otra vez',cCleared:'Lista borrada',
+  lblSheet:'Desde una hoja de Google',smSheet:'Comparte la hoja como «Cualquier persona con el enlace» y pega aquí su dirección. Columna A: concepto · B: palabras prohibidas, separadas por comas · C: definición.',cSheetGo:'Cargar',
+  lblTeamA:'Nombre del equipo 1',lblTeamB:'Nombre del equipo 2',lblMode:'Modalidad',modeConcept:'Turnos',modeTimed:'Contrarreloj',
   modeHelpTimed:'Cada equipo tiene una ronda con tiempo para adivinar todos los conceptos que pueda. Luego juega el otro equipo.',modeHelpConcept:'Cada turno es un concepto con su propio tiempo.',
   timeRound:'Tiempo de cada ronda',timeConcept:'Tiempo para adivinar cada concepto',opt30:'30 segundos',opt45:'45 segundos',opt60:'60 segundos',opt90:'90 segundos',opt120:'2 minutos',
   lblRounds:'Rondas por equipo',lblPass:'Al pasar un concepto…',passNo:'No resta',passYes:'Resta 1 punto',lblAfter:'Cuando un equipo acierta…',afterSame:'Sigue jugando',afterSwitch:'Pasa al otro equipo',
@@ -335,11 +421,16 @@ es:{docTitle:'¡En la frente!',logo1:'¡En la ',logo2:'frente!',
   back:'Volver',toPlayers:'Siguiente: participantes',playersTitle:'Participantes',lblName:'Nombre',email:'Correo',emailOpt:'Correo (opcional)',dni:'DNI o documento',dniOpt:'DNI o documento (opcional)',
   lblTeam:'Equipo',pAdd:'Añadir participante',consent:'Los participantes saben que su actividad en el juego se guarda en un archivo de registro junto a los datos que han indicado.',toToss:'Ir al sorteo',
   tossTitle:'¿Quién empieza?',tossLine:'Cara empieza <b>{a}</b>. Cruz empieza <b>{b}</b>.',heads:'Cara',tails:'Cruz',flip:'Lanzar la moneda',startGame:'Empezar a jugar',tossRes:'¡{side}! Empieza {team}.',pause:'Pausa',
-  count:'{n} conceptos ({m} por equipo)',sampleTitle:'Imagen digital',defTitle:'Repaso de la asignatura',gameFallback:'Partida',team:'Equipo {n}',
+modeThree:'Tres rondas',modeHelpThree:'Los mismos conceptos se juegan tres veces: primero se explican libremente, luego con una sola palabra y al final solo con mímica. Los equipos se turnan con tiempo hasta acabar los conceptos de cada ronda.',timeTurn:'Tiempo de cada turno',
+  lblForb:'Palabras prohibidas',forbOn:'Mostrar',forbOff:'No mostrar',smForb:'Aparecen debajo del concepto (si las has escrito). Si alguien dice una, el concepto cuenta como no acertado o se pasa.',noSay:'No digas:',
+  phases:['Explícalo con todas las palabras que quieras','Una sola palabra','Solo mímica, sin hablar'],phaseLbl:'Ronda {n} · {p}',readyThree:'Ronda {n}: {p}. Turnos de {s} s: inclina hacia abajo si aciertas y hacia arriba para pasar.',
+  phaseEnd:'¡Fin de la ronda {n}! Empieza la ronda {m}: {p}.',phaseGo:'Sigue la ronda {n} ({p}). Quedan {k} conceptos.',roundOutH:'¡Conceptos terminados! {refCap} ha acertado {n}',
+  countThree:'{n} conceptos (los mismos en las tres rondas)',countForb:' · {f} con palabras prohibidas',countDef:' · {d} con definición',
+  count:'{n} conceptos ({m} por equipo)',sampleTitle:'Conceptos generales',defTitle:'Repaso de la asignatura',gameFallback:'Partida',team:'Equipo {n}',
   poseDown:'Boca abajo: acertado',poseUp:'Boca arriba: no acertado',poseFore:'En la frente',poseMove:'Moviéndose…',tiltDown:'Inclinado abajo: acertado',tiltUp:'Inclinado arriba: pasar',
   sensPreview:'Esta vista previa no deja usar los sensores. Funcionarán al abrir el juego desde su propia dirección (por ejemplo, GitHub Pages).',
   sensNoData:'No llegan datos de movimiento. En Chrome, revisa Configuración › Configuración de sitios › Sensores de movimiento. Mientras, usa los botones de respaldo.',sensWaiting:'Esperando datos…',
-  noConcepts:'No he encontrado conceptos en la primera columna de {src}.',srcSheet:'la hoja',srcFile:'el archivo',reading:'Leyendo «{f}»…',readErr:'No he podido leer el archivo. Prueba a guardarlo como .xlsx o .csv.',
+  noConcepts:'No he encontrado conceptos en la columna A de {src}.',srcSheet:'la hoja',
   sheetBadUrl:'Pega la dirección completa de la hoja de Google (empieza por https://docs.google.com/spreadsheets/…).',sheetLoading:'Cargando la hoja…',
   sheetPreview:'Desde esta vista previa no se puede acceder a Google. Funcionará cuando el juego esté publicado en su propia dirección (por ejemplo, GitHub Pages). Mientras, copia la columna de la hoja y pégala en la lista.',
   sheetErr:'No he podido abrir la hoja. Comprueba que está compartida como «Cualquier persona con el enlace».',errTwo:'Escribe al menos dos conceptos, uno por línea.',
@@ -352,17 +443,17 @@ es:{docTitle:'¡En la frente!',logo1:'¡En la ',logo2:'frente!',
   roundEndH:'¡Tiempo! {refCap} ha acertado {n}',noConceptsPlayed:'Ningún concepto',nowPlays:'Ahora juega {ref}. Se pone el móvil en la frente:',tapNextRound:'Haz clic para la siguiente partida',faceUp:'Pon el móvil boca arriba en la mesa.',
   paused:'Pausa',leftN:'Quedan {a} y {b} conceptos.',resume:'Seguir jugando',endNow:'Terminar la partida ahora',toHome:'Salir a la portada',
   tie:'¡Empate!',wins:'¡Gana {team}!',statLine:'{c} aciertos · {m} {kind}',passedW:'pasados',failsW:'fallos',played:'Conceptos jugados',none:'Ninguno',
-  dlX:'Descargar el registro (xAPI)',dlNote:'Se guarda en este dispositivo hasta que empieces otra partida.',again:'Revancha con los mismos equipos',backHome:'Volver a la portada',fileBase:'en-la-frente',
+  dlX:'Descargar el registro (xAPI)',dlNote:'Se guarda en este dispositivo hasta que empieces otra partida.',again:'Revancha con los mismos equipos',backHome:'Volver a la portada',fileBase:'guess-my-what',
   vInit:'empezó',vAns:'respondió',vComp:'completó',xLang:'es-ES',
-  words:['¿?¿?','juego','¿?','adivinar','equipos','¿?¿?'],
-  sample:['Píxel','Resolución','Profundidad de color','Histograma','Interpolación','Imagen vectorial','Mapa de bits','Modelo RGB','Modelo CMYK','Compresión','Formato JPEG','Formato PNG','Bit','Byte','Sistema binario','Hexadecimal','Saturación','Luminosidad','Contraste','Remuestreo']},
-en:{docTitle:'On your forehead!',logo1:'On your ',logo2:'forehead!',
+  words:['¿?¿?','juego','adivinar','equipos','turnos','rondas','mímica','¿?'],
+  sample:['Playa * arena, mar, verano * Orilla del mar cubierta de arena donde la gente se baña y toma el sol', 'Bicicleta * pedales, ruedas, montar * Vehículo de dos ruedas que se mueve pedaleando', 'Cumpleaños * tarta, velas, fiesta * Día en que se celebra que alguien cumple un año más', 'Paraguas * lluvia, mojarse, abrir * Objeto que se abre para protegerse de la lluvia', 'Pizza * Italia, queso, horno * Masa redonda con tomate, queso y otros ingredientes, cocinada al horno', 'Volcán * lava, montaña, erupción * Montaña por la que puede salir lava del interior de la Tierra', 'Guitarra * cuerdas, tocar, música * Instrumento musical de seis cuerdas que se toca con los dedos', 'Biblioteca * libros, leer, silencio * Lugar donde se guardan libros para leerlos o llevarlos prestados', 'Astronauta * espacio, cohete, Luna * Persona que viaja al espacio', 'Arcoíris * colores, lluvia, cielo * Arco de colores que aparece en el cielo cuando sale el sol tras la lluvia', 'Fútbol * balón, gol, portería * Deporte en el que dos equipos intentan meter un balón en la portería contraria con los pies', 'Reloj * hora, minutos, muñeca * Objeto que sirve para saber la hora', 'Dinosaurio * extinto, reptil, fósil * Reptil gigante que vivió hace millones de años', 'Elefante * trompa, grande, colmillos * Animal terrestre muy grande con trompa y grandes orejas', 'Helado * frío, cucurucho, verano * Postre dulce y congelado', 'Avión * volar, alas, aeropuerto * Vehículo con alas que vuela y transporta personas', 'Médico * hospital, enfermo, receta * Persona que cura a los enfermos', 'Nieve * frío, blanco, invierno * Agua helada que cae del cielo en copos blancos', 'Cine * película, pantalla, palomitas * Sala donde se proyectan películas', 'Hormiga * pequeña, insecto, hormiguero * Insecto muy pequeño que vive en colonias y trabaja en equipo']},
+en:{docTitle:'Guess My What?!',
   homeIntro:'A team guessing game. One player holds the phone to their forehead and their team describes the word without saying it.',
   goSetup:'Set up a game',goResume:'Continue the saved game',
-  lblTitle:'Game name',smTitle:'For example, the subject or topic.',lblConcepts:'Concepts',smConcepts:'One per line. They are shared out at random between the two teams, with no repeats.',
-  cImport:'Import a file',cSample:'Use the example',notFormats:'Accepts text (.txt), CSV and spreadsheets (.xlsx, .xls, .ods). The first column is used.',
-  lblSheet:'From a Google Sheet',smSheet:'Share the sheet as “Anyone with the link” and paste its address here. The first column is used.',cSheetGo:'Load',
-  lblTeamA:'Team 1 name',lblTeamB:'Team 2 name',lblMode:'Mode',modeConcept:'One turn, one concept',modeTimed:'Time attack',
+  lblTitle:'Game name',smTitle:'For example, the subject or topic.',lblConcepts:'Concepts',smConcepts:'One per line. Optionally add the forbidden words and the definition separated by an asterisk (*). Example: Umbrella * rain, wet, open * Object you open to keep the rain off.',
+  cSample:'Use the example',cClear:'Clear the list',cClearSure:'Sure? Tap again',cCleared:'List cleared',
+  lblSheet:'From a Google Sheet',smSheet:'Share the sheet as “Anyone with the link” and paste its address here. Column A: concept · B: forbidden words, separated by commas · C: definition.',cSheetGo:'Load',
+  lblTeamA:'Team 1 name',lblTeamB:'Team 2 name',lblMode:'Mode',modeConcept:'Turns',modeTimed:'Time attack',
   modeHelpTimed:'Each team gets a timed round to guess as many concepts as it can. Then the other team plays.',modeHelpConcept:'Each turn is one concept with its own time limit.',
   timeRound:'Time per round',timeConcept:'Time to guess each concept',opt30:'30 seconds',opt45:'45 seconds',opt60:'60 seconds',opt90:'90 seconds',opt120:'2 minutes',
   lblRounds:'Rounds per team',lblPass:'When a concept is passed…',passNo:'No penalty',passYes:'Minus 1 point',lblAfter:'When a team guesses right…',afterSame:'It keeps playing',afterSwitch:'The other team plays',
@@ -375,11 +466,16 @@ en:{docTitle:'On your forehead!',logo1:'On your ',logo2:'forehead!',
   back:'Back',toPlayers:'Next: players',playersTitle:'Players',lblName:'Name',email:'Email',emailOpt:'Email (optional)',dni:'ID number',dniOpt:'ID number (optional)',
   lblTeam:'Team',pAdd:'Add player',consent:'The players know that their activity in the game is saved in a log file together with the details they have entered.',toToss:'Go to the coin toss',
   tossTitle:'Who starts?',tossLine:'Heads: <b>{a}</b> starts. Tails: <b>{b}</b> starts.',heads:'Heads',tails:'Tails',flip:'Toss the coin',startGame:'Start playing',tossRes:'{side}! {team} starts.',pause:'Pause',
-  count:'{n} concepts ({m} per team)',sampleTitle:'Digital imaging',defTitle:'Course review',gameFallback:'Game',team:'Team {n}',
+modeThree:'Three rounds',modeHelpThree:'The same concepts are played three times: first described freely, then with one word only and finally with mime only. Teams take timed turns until each round’s concepts run out.',timeTurn:'Time per turn',
+  lblForb:'Forbidden words',forbOn:'Show',forbOff:'Hide',smForb:'They appear under the concept (if you wrote them). If someone says one, the concept counts as missed or is passed.',noSay:'Don’t say:',
+  phases:['Describe it freely','One word only','Mime only, no talking'],phaseLbl:'Round {n} · {p}',readyThree:'Round {n}: {p}. {s}-second turns: tilt down when you get it, tilt up to pass.',
+  phaseEnd:'End of round {n}! Round {m} starts: {p}.',phaseGo:'Round {n} continues ({p}). {k} concepts left.',roundOutH:'Concepts finished! {refCap} got {n} right',
+  countThree:'{n} concepts (the same in all three rounds)',countForb:' · {f} with forbidden words',countDef:' · {d} with a definition',
+  count:'{n} concepts ({m} per team)',sampleTitle:'General concepts',defTitle:'Course review',gameFallback:'Game',team:'Team {n}',
   poseDown:'Face down: correct',poseUp:'Face up: missed',poseFore:'On the forehead',poseMove:'Moving…',tiltDown:'Tilted down: correct',tiltUp:'Tilted up: pass',
   sensPreview:'This preview cannot use the motion sensors. They will work when you open the game from its own address (for example, GitHub Pages).',
   sensNoData:'No motion data is arriving. In Chrome, check Settings › Site settings › Motion sensors. Meanwhile, use the backup buttons.',sensWaiting:'Waiting for data…',
-  noConcepts:'No concepts found in the first column of {src}.',srcSheet:'the sheet',srcFile:'the file',reading:'Reading “{f}”…',readErr:'The file could not be read. Try saving it as .xlsx or .csv.',
+  noConcepts:'No concepts found in column A of {src}.',srcSheet:'the sheet',
   sheetBadUrl:'Paste the full address of the Google Sheet (it starts with https://docs.google.com/spreadsheets/…).',sheetLoading:'Loading the sheet…',
   sheetPreview:'This preview cannot reach Google. It will work once the game is published at its own address (for example, GitHub Pages). Meanwhile, copy the column from the sheet and paste it into the list.',
   sheetErr:'The sheet could not be opened. Check that it is shared as “Anyone with the link”.',errTwo:'Write at least two concepts, one per line.',
@@ -392,10 +488,10 @@ en:{docTitle:'On your forehead!',logo1:'On your ',logo2:'forehead!',
   roundEndH:'Time! {refCap} got {n} right',noConceptsPlayed:'No concepts',nowPlays:'Now {ref} plays. Phone on the forehead:',tapNextRound:'Tap for the next round',faceUp:'Put the phone face up on the table.',
   paused:'Paused',leftN:'{a} and {b} concepts left.',resume:'Keep playing',endNow:'End the game now',toHome:'Back to the home screen',
   tie:'It’s a tie!',wins:'{team} wins!',statLine:'{c} correct · {m} {kind}',passedW:'passed',failsW:'missed',played:'Concepts played',none:'None',
-  dlX:'Download the log (xAPI)',dlNote:'It stays on this device until you start another game.',again:'Rematch with the same teams',backHome:'Back to the home screen',fileBase:'on-your-forehead',
+  dlX:'Download the log (xAPI)',dlNote:'It stays on this device until you start another game.',again:'Rematch with the same teams',backHome:'Back to the home screen',fileBase:'guess-my-what',
   vInit:'initialized',vAns:'answered',vComp:'completed',xLang:'en-US',
-  words:['???','game','?!','guess','teams','???'],
-  sample:['Pixel','Resolution','Colour depth','Histogram','Interpolation','Vector image','Bitmap','RGB model','CMYK model','Compression','JPEG format','PNG format','Bit','Byte','Binary system','Hexadecimal','Saturation','Brightness','Contrast','Resampling']}};
+  words:['???','game','guess','teams','turns','rounds','mime','?!'],
+  sample:['Beach * sand, sea, summer * Strip of sand by the sea where people swim and sunbathe', 'Bicycle * pedals, wheels, ride * Two-wheeled vehicle you move by pedalling', 'Birthday * cake, candles, party * Day when someone celebrates being one year older', 'Umbrella * rain, wet, open * Object you open to keep the rain off', 'Pizza * Italy, cheese, oven * Round dough with tomato, cheese and toppings, baked in an oven', 'Volcano * lava, mountain, eruption * Mountain from which lava can come out of the Earth', 'Guitar * strings, play, music * Six-stringed musical instrument played with the fingers', 'Library * books, read, quiet * Place where books are kept to read or borrow', 'Astronaut * space, rocket, Moon * Person who travels into space', 'Rainbow * colours, rain, sky * Arc of colours in the sky when the sun comes out after rain', 'Football * ball, goal, team * Sport where two teams try to kick a ball into the other team’s goal', 'Watch * time, minutes, wrist * Object used to tell the time', 'Dinosaur * extinct, reptile, fossil * Giant reptile that lived millions of years ago', 'Elephant * trunk, big, tusks * Very large land animal with a trunk and big ears', 'Ice cream * cold, cone, summer * Sweet frozen dessert', 'Aeroplane * fly, wings, airport * Vehicle with wings that flies and carries people', 'Doctor * hospital, ill, prescription * Person who treats sick people', 'Snow * cold, white, winter * Frozen water that falls from the sky in white flakes', 'Cinema * film, screen, popcorn * Place where films are shown', 'Ant * small, insect, anthill * Tiny insect that lives in colonies and works as a team']}};
 let lang=store.get('frente_lang',null);if(!I18N[lang])lang=/^es\b/i.test(navigator.language||'')?'es':'en';
 const t=(k,v)=>String(I18N[lang][k]??I18N.es[k]??k).replace(/\{(\w+)\}/g,(m,x)=>v&&x in v?v[x]:m);
 // los nombres por defecto cambian con el idioma; los que escribe el profesor se respetan
@@ -412,8 +508,7 @@ const tn=i=>cfg.teams[i]||t('team',{n:i+1});
 // «el equipo Rojo» en español; el nombre tal cual en inglés
 const ref=(i,cap)=>{const n=tn(i);if(lang!=='es'||/^equipo\b/i.test(n))return n;return (cap?'El equipo ':'el equipo ')+n};
 function applyLang(){document.documentElement.lang=lang;document.title=t('docTitle');$$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
-  $('#logo1').textContent=t('logo1');$('#logo2').textContent=t('logo2');
-  $$('#cLang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===lang))}
+    $$('#cLang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===lang))}
 function setLang(l){if(!I18N[l]||l===lang)return;lang=l;store.set('frente_lang',l);
   cfg.teams=cfg.teams.map((n,i)=>isDefTeam(n,i)?t('team',{n:i+1}):n);if(isDefTitle(cfg.title))cfg.title=t('defTitle');else if(isSampleTitle(cfg.title))cfg.title=t('sampleTitle');
   if(isSample(cfg.concepts))cfg.concepts=I18N[lang].sample.join('\n');store.set('frente_cfg',cfg);
@@ -425,7 +520,10 @@ function show(id){['home','setup','players','toss','play','final'].forEach(s=>$(
 $$('[data-go]').forEach(b=>b.onclick=()=>show(b.dataset.go));
 function seg(id,val,on){const el=$('#'+id);el.querySelectorAll('button').forEach(b=>{b.setAttribute('aria-pressed',b.dataset.v===String(val));b.onclick=()=>{el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));on&&on(b.dataset.v)}})}
 const segVal=id=>($('#'+id+' [aria-pressed="true"]')||{}).dataset.v;
-const conceptList=()=>[...new Set($('#cConcepts').value.split(/\r?\n/).map(s=>s.replace(/^[\s,;"]+|[\s,;"]+$/g,'')).filter(Boolean))];
+function parseConcepts(tx){const seen=new Set(),out=[];String(tx||'').split(/\r?\n/).forEach(l=>{const parts=l.split(/\s*\*\s*/);const c=(parts[0]||'').replace(/^[\s,;"]+|[\s,;"]+$/g,'');if(!c||seen.has(c.toLowerCase()))return;seen.add(c.toLowerCase());out.push({c,f:(parts[1]||'').split(/[,;]/).map(x=>x.trim()).filter(Boolean),d:parts.slice(2).join(' | ').trim()})});return out}
+const conceptList=()=>parseConcepts($('#cConcepts').value);
+const PH=i=>(I18N[lang].phases||I18N.es.phases)[i];
+const MODE_X={concept:'one-concept',timed:'time-attack',three:'three-rounds'};
 
 
 /* ---------- movimiento / motion ---------- */
@@ -439,7 +537,7 @@ function countUp(el,to){if(RM()||!el||to===0){if(el)el.textContent=to;return}con
   (function f(t){const k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(f)})(t0)}
 let fhTimer=null;
 // Palabras de la portada: cada una con su tamaño (em), posición (% del móvil) y giro
-const HOME_POS=[{s:1.3,x:0,y:0,r:0},{s:1.05,x:-14,y:-10,r:-5},{s:1.7,x:20,y:2,r:9},{s:1,x:3,y:12,r:-3},{s:.9,x:-10,y:-12,r:4},{s:.9,x:16,y:-14,r:-8}];
+const HOME_POS=[{s:1.35,x:0,y:0,r:0},{s:1.25,x:-8,y:-6,r:-5},{s:1.05,x:4,y:4,r:4},{s:1.15,x:-4,y:6,r:-3},{s:1.2,x:7,y:-5,r:5},{s:1.2,x:-6,y:3,r:-4},{s:1.2,x:5,y:5,r:3},{s:1.5,x:0,y:-2,r:-6}];
 function homeWords(on){clearInterval(fhTimer);const w=$('#fhWord'),pos=$('#fhPos'),box=$('.forehead');if(!w)return;const place=k=>{const v=HOME_POS[k];w.textContent=I18N[lang].words[k];const bw=box.clientWidth,bh=box.clientHeight;pos.style.fontSize=v.s+'em';pos.style.transform=`translate(${v.x/100*bw|0}px,${v.y/100*bh|0}px) rotate(${v.r}deg)`};
   place(0);if(!on||RM())return;let k=0;
   fhTimer=setInterval(()=>{k=(k+1)%HOME_POS.length;place(k);w.classList.remove('swap');void w.offsetWidth;w.classList.add('swap')},1700)}
@@ -458,12 +556,12 @@ function loosePose(b,g){const ab=Math.abs(b),ag=Math.abs(g);if(ab>115&&ag<65)ret
 window.addEventListener('deviceorientation',e=>{if(e.beta==null)return;sensorOk=true;const p=readPose(e.beta,e.gamma);if(p!==pose){pose=p;poseSince=performance.now()}const q=loosePose(e.beta,e.gamma);if(q!==lpose){lpose=q;lposeSince=performance.now()}});
 async function askSensors(){if(sensorAsked)return;sensorAsked=true;try{if(window.DeviceOrientationEvent&&typeof DeviceOrientationEvent.requestPermission==='function'){await DeviceOrientationEvent.requestPermission()}}catch(e){}}
 let testTimer=null;
-$('#sTest').onclick=async()=>{await askSensors();sensorAsked=false;clearInterval(testTimer);const t0=performance.now();testTimer=setInterval(()=>{const timed=segVal('cMode')==='timed';
+$('#sTest').onclick=async()=>{await askSensors();sensorAsked=false;clearInterval(testTimer);const t0=performance.now();testTimer=setInterval(()=>{const timed=segVal('cMode')!=='concept';
   $('#sState').textContent=sensorOk?(timed?{down:t('tiltDown'),up:t('tiltUp'),forehead:t('poseFore'),'?':t('poseMove')}[lpose]:{down:t('poseDown'),up:t('poseUp'),forehead:t('poseFore'),'?':t('poseMove')}[pose]):(performance.now()-t0>2500?(inFrame()?t('sensPreview'):t('sensNoData')):t('sensWaiting'));
   if(performance.now()-t0>60000)clearInterval(testTimer)},200)};
 
 /* ---------- registro xAPI ---------- */
-const XB='https://enlafrente.app/xapi';
+const XB='https://guessmywhat.app/xapi';
 function uuid(){return crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16)})}
 function actor(p){const a={objectType:'Agent',name:p.name};if(p.email)a.mbox='mailto:'+p.email.toLowerCase();else a.account={homePage:XB,name:p.dni||p.name};return a}
 function xlog(verb,label,p,objId,objName,result,ext){if(cfg.xapi!=='on'||!G)return;const L=t('xLang');G.log.push({id:uuid(),actor:p?actor(p):{objectType:'Group',name:cfg.title,member:players.map(actor)},verb:{id:'http://adlnet.gov/expapi/verbs/'+verb,display:{[L]:label}},object:{objectType:'Activity',id:XB+'/'+objId,definition:{name:{[L]:objName}}},timestamp:new Date().toISOString(),context:{registration:G.reg,platform:t('docTitle'),language:L,extensions:Object.assign({[XB+'/ext/game']:cfg.title},p&&p.dni?{[XB+'/ext/id']:p.dni}:{},ext||{})},...(result?{result}:{})})}
@@ -475,24 +573,19 @@ $('#goResume').onclick=()=>{show('play');render()};
 
 /* ---------- preparar ---------- */
 function fillSetup(){$('#cTitle').value=cfg.title;$('#cConcepts').value=cfg.concepts;$('#cTeamA').value=cfg.teams[0];$('#cTeamB').value=cfg.teams[1];$('#cTime').value=String(cfg.time);$('#cPer').value=String(cfg.per);
-  seg('cMode',cfg.mode||'concept',updMode);$('#cRounds').value=String(cfg.rounds||3);seg('cPass',cfg.pass||'no');updMode(cfg.mode||'concept');
+  seg('cMode',cfg.mode||'concept',updMode);seg('cForb',cfg.forb||'on');$('#cRounds').value=String(cfg.rounds||3);seg('cPass',cfg.pass||'no');updMode(cfg.mode||'concept');
   seg('cAfter',cfg.after);seg('cEmail',cfg.email);seg('cDni',cfg.dni);seg('cXapi',cfg.xapi);seg('cFb',cfg.fb);count()}
-function count(){const n=conceptList().length;$('#cCount').textContent=n?t('count',{n,m:Math.floor(n/2)}):''}
+function count(){const L=conceptList(),n=L.length,f=L.filter(x=>x.f.length).length,d=L.filter(x=>x.d).length;$('#cCount').textContent=n?(segVal('cMode')==='three'?t('countThree',{n}):t('count',{n,m:Math.floor(n/2)}))+(f?t('countForb',{f}):'')+(d?t('countDef',{d}):''):''}
 $('#cConcepts').oninput=count;
+let clearT=null;
+$('#cClear').onclick=()=>{const b=$('#cClear');if(!$('#cConcepts').value.trim())return;if(!b.dataset.sure){b.dataset.sure='1';b.textContent=t('cClearSure');clearTimeout(clearT);clearT=setTimeout(()=>{delete b.dataset.sure;b.textContent=t('cClear')},3000);return}
+  clearTimeout(clearT);delete b.dataset.sure;b.textContent=t('cClear');$('#cConcepts').value='';$('#cImpErr').textContent='';count();$('#cCount').textContent=t('cCleared');$('#cConcepts').focus()};
 $('#cSample').onclick=()=>{$('#cConcepts').value=I18N[lang].sample.join('\n');const ti=$('#cTitle').value.trim();if(!ti||isDefTitle(ti)||isSampleTitle(ti))$('#cTitle').value=t('sampleTitle');count()};
-$('#cImport').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('#cFile').click()}});
-const firstCol=rows=>{const out=rows.map(r=>String((r&&r[0])??'').trim()).filter(Boolean);if(out.length&&/^conceptos?$|^palabras?$|^t[ée]rminos?$|^concepts?$|^words?$|^terms?$/i.test(out[0]))out.shift();return out};
+const firstCol=rows=>{const cell=(r,i)=>String((r&&r[i])??'').replace(/\*/g,'·').trim();const out=rows.map(r=>{const a=cell(r,0);if(!a)return null;const b=cell(r,1),c=cell(r,2);return c?`${a} * ${b} * ${c}`:(b?`${a} * ${b}`:a)}).filter(Boolean);if(out.length&&/^(conceptos?|palabras?|t[ée]rminos?|concepts?|words?|terms?)\b/i.test(out[0]))out.shift();return out};
 function csvRows(t){const sep=(t.split('\n')[0].match(/;/g)||[]).length>(t.split('\n')[0].match(/,/g)||[]).length?';':',';const rows=[];let row=[],cell='',q=false;
   for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c==='"'){if(t[i+1]==='"'){cell+='"';i++}else q=false}else cell+=c}else if(c==='"')q=true;else if(c===sep||c==='\t'){row.push(cell);cell=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;row.push(cell);rows.push(row);row=[];cell=''}else cell+=c}
   if(cell||row.length){row.push(cell);rows.push(row)}return rows}
 function putConcepts(list,src){const e=$('#cImpErr');if(!list.length){e.textContent=t('noConcepts',{src});return}e.textContent='';$('#cConcepts').value=list.join('\n');count()}
-let XLSXp=null;
-function loadXLSX(){if(window.XLSX)return Promise.resolve();if(XLSXp)return XLSXp;XLSXp=new Promise((ok,ko)=>{const sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';sc.onload=ok;sc.onerror=()=>{XLSXp=null;ko()};document.head.appendChild(sc)});return XLSXp}
-$('#cFile').onchange=async()=>{const f=$('#cFile').files[0];if(!f)return;const e=$('#cImpErr');e.textContent=t('reading',{f:f.name});
-  try{if(/\.(xlsx|xls|ods)$/i.test(f.name)){await loadXLSX();const wb=XLSX.read(await f.arrayBuffer(),{type:'array'});const ws=wb.Sheets[wb.SheetNames[0]];putConcepts(firstCol(XLSX.utils.sheet_to_json(ws,{header:1,raw:false})),t('srcSheet'))}
-    else putConcepts(firstCol(csvRows((await f.text()).replace(/^﻿/,''))),t('srcFile'))}
-  catch(err){e.textContent=t('readErr')}
-  $('#cFile').value=''};
 $('#cSheetGo').onclick=async()=>{const u=$('#cSheet').value.trim(),e=$('#cImpErr');const m=u.match(/\/spreadsheets\/d\/(e\/)?([a-zA-Z0-9_-]+)/);
   if(!m){e.textContent=t('sheetBadUrl');return}
   const gid=(u.match(/[#&?]gid=(\d+)/)||[])[1];
@@ -501,11 +594,11 @@ $('#cSheetGo').onclick=async()=>{const u=$('#cSheet').value.trim(),e=$('#cImpErr
   try{const r=await fetch(url);if(!r.ok)throw new Error(r.status);const tx=await r.text();if(/^\s*</.test(tx))throw new Error('html');putConcepts(firstCol(csvRows(tx)),t('srcSheet'))}
   catch(err){e.textContent=inFrame()?t('sheetPreview'):t('sheetErr')}};
 const inFrame=()=>{try{return window.self!==window.top}catch(e){return true}};
-function updMode(m){const tm=m==='timed';$('#rowRounds').classList.toggle('hidden',!tm);$('#rowPass').classList.toggle('hidden',!tm);$('#rowAfter').classList.toggle('hidden',tm);
-  $('#cTimeL').textContent=tm?t('timeRound'):t('timeConcept');
-  $('#cModeHelp').textContent=tm?t('modeHelpTimed'):t('modeHelpConcept');
-  $('#sHelp').textContent=tm?t('moveHelpTimed'):t('moveHelpConcept')}
-function readSetup(){cfg={mode:segVal('cMode'),rounds:+$('#cRounds').value,pass:segVal('cPass'),title:$('#cTitle').value.trim()||t('gameFallback'),concepts:$('#cConcepts').value,teams:[$('#cTeamA').value.trim()||t('team',{n:1}),$('#cTeamB').value.trim()||t('team',{n:2})],time:+$('#cTime').value,after:segVal('cAfter'),per:+$('#cPer').value,email:segVal('cEmail'),dni:segVal('cDni'),xapi:segVal('cXapi'),fb:segVal('cFb')};store.set('frente_cfg',cfg)}
+function updMode(m){const tm=m==='timed',th=m==='three',tr=tm||th;$('#rowRounds').classList.toggle('hidden',!tm);$('#rowPass').classList.toggle('hidden',!tr);$('#rowAfter').classList.toggle('hidden',tr);
+  $('#cTimeL').textContent=th?t('timeTurn'):tm?t('timeRound'):t('timeConcept');
+  $('#cModeHelp').textContent=th?t('modeHelpThree'):tm?t('modeHelpTimed'):t('modeHelpConcept');
+  $('#sHelp').textContent=tr?t('moveHelpTimed'):t('moveHelpConcept');count()}
+function readSetup(){cfg={forb:segVal('cForb'),mode:segVal('cMode'),rounds:+$('#cRounds').value,pass:segVal('cPass'),title:$('#cTitle').value.trim()||t('gameFallback'),concepts:$('#cConcepts').value,teams:[$('#cTeamA').value.trim()||t('team',{n:1}),$('#cTeamB').value.trim()||t('team',{n:2})],time:+$('#cTime').value,after:segVal('cAfter'),per:+$('#cPer').value,email:segVal('cEmail'),dni:segVal('cDni'),xapi:segVal('cXapi'),fb:segVal('cFb')};store.set('frente_cfg',cfg)}
 $('#toPlayers').onclick=()=>{const n=conceptList().length;if(n<2){$('#cErr').textContent=t('errTwo');return}$('#cErr').textContent='';readSetup();fillPlayers();show('players')};
 
 /* ---------- participantes ---------- */
@@ -544,36 +637,38 @@ $('#startGame').onclick=async()=>{await askSensors();newGame(first);show('play')
 
 /* ---------- partida ---------- */
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=crypto.getRandomValues(new Uint32Array(1))[0]%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
-function newGame(start){const all=shuffle(conceptListFrom(cfg.concepts)),L=[[],[]];all.forEach((c,i)=>L[i%2].push(c));const per=cfg.per||Infinity;
-  G={mode:cfg.mode||'concept',round:[0,0],reg:uuid(),lists:[L[0].slice(0,per),L[1].slice(0,per)],pos:[0,0],next:[0,0],score:[0,0],team:start,first:start,state:'ready',cur:null,hist:[],log:[],started:new Date().toISOString()};
-  xlog('initialized',t('vInit'),null,'game/'+G.reg,cfg.title,null,{[XB+'/ext/starts']:tn(start)});save()}
-function conceptListFrom(tx){return [...new Set(String(tx).split(/\r?\n/).map(s=>s.replace(/^[\s,;"]+|[\s,;"]+$/g,'')).filter(Boolean))]}
+function newGame(start){const items=shuffle(parseConcepts(cfg.concepts)),mode=cfg.mode||'concept',per=cfg.per||Infinity;let L=[[],[]],all=[];
+  if(mode==='three'){all=items.slice(0,per===Infinity?items.length:per*2)}else{items.forEach((c,i)=>L[i%2].push(c));L=[L[0].slice(0,per),L[1].slice(0,per)]}
+  G={mode,round:[0,0],phase:0,all,pool:shuffle(all),reg:uuid(),lists:L,pos:[0,0],next:[0,0],score:[0,0],team:start,first:start,state:'ready',cur:null,hist:[],log:[],started:new Date().toISOString()};
+  xlog('initialized',t('vInit'),null,'game/'+G.reg,cfg.title,null,{[XB+'/ext/starts']:tn(start),[XB+'/ext/mode']:MODE_X[mode],[XB+'/ext/teams']:JSON.stringify([0,1].map(tm=>({team:tn(tm),players:teamPlayers(tm).map(p=>p.name)}))),[XB+'/ext/concepts']:mode==='three'?all.length:L[0].length+L[1].length,[XB+'/ext/time']:cfg.time,[XB+'/ext/forbidden-on']:cfg.forb!=='off'});save()}
+const cExt=it=>Object.assign({},it&&it.f&&it.f.length?{[XB+'/ext/forbidden']:it.f.join(', ')}:{},it&&it.d?{[XB+'/ext/definition']:it.d}:{});
+const forbHTML=(f,id)=>`<div class="forb" ${id?`id="${id}"`:''}>${cfg.forb!=='off'&&f&&f.length&&!(G.mode==='three'&&G.phase>0)?esc(t('noSay'))+' '+f.map(w=>`<span>${esc(w)}</span>`).join(''):''}</div>`;
 const save=()=>store.set('frente_game',G);
 const teamPlayers=tm=>players.filter(p=>p.team===tm);
 const nextPlayer=tm=>{const tp=teamPlayers(tm);return tp[G.next[tm]%tp.length]};
-const left=tm=>G.lists[tm].length-G.pos[tm];
+const left=tm=>G.mode==='three'?G.pool.length:G.lists[tm].length-G.pos[tm];
 let tick=null,lastSec=null,wake=null;
 async function keepAwake(){try{if('wakeLock' in navigator&&!wake){wake=await navigator.wakeLock.request('screen');wake.addEventListener('release',()=>wake=null)}}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!$('#play').classList.contains('hidden'))keepAwake()});
 
-function startTurn(){if(!G)return;if(G.mode==='timed')return startRound();if(left(G.team)<=0){if(left(1-G.team)>0)G.team=1-G.team;else return finish()}
-  const p=nextPlayer(G.team);G.cur={player:p.id,team:G.team,concept:G.lists[G.team][G.pos[G.team]],t0:Date.now()};G.state='playing';lastSec=null;save();SND.start();vib(60);keepAwake();render()}
+function startTurn(){if(!G)return;if(G.mode!=='concept')return startRound();if(left(G.team)<=0){if(left(1-G.team)>0)G.team=1-G.team;else return finish()}
+  const p=nextPlayer(G.team);const it=G.lists[G.team][G.pos[G.team]];G.cur={player:p.id,team:G.team,concept:it.c,forb:it.f,def:it.d,t0:Date.now()};G.state='playing';lastSec=null;save();SND.start();vib(60);keepAwake();render()}
 function endTurn(ok,why){if(!G||G.state!=='playing')return;const c=G.cur,p=players.find(x=>x.id===c.player)||{name:'?'},dur=(Date.now()-c.t0)/1000;
   G.pos[c.team]++;G.next[c.team]++;G.score[c.team]+=ok?1:-1;
-  G.hist.push({team:c.team,player:p.name,concept:c.concept,ok,why,dur:+dur.toFixed(1)});
-  xlog('answered',t('vAns'),p,'concept/'+encodeURIComponent(c.concept),c.concept,{success:ok,score:{raw:ok?1:-1},duration:'PT'+dur.toFixed(1)+'S',response:ok?'correct':(why==='time'?'time up':'missed')},{[XB+'/ext/team']:tn(c.team),[XB+'/ext/turn']:G.hist.length});
+  G.hist.push({team:c.team,player:p.name,concept:c.concept,def:c.def,forb:c.forb,ok,why,dur:+dur.toFixed(1)});
+  xlog('answered',t('vAns'),p,'concept/'+encodeURIComponent(c.concept),c.concept,{success:ok,score:{raw:ok?1:-1},duration:'PT'+dur.toFixed(1)+'S',response:ok?'correct':(why==='time'?'time up':'missed')},Object.assign({[XB+'/ext/team']:tn(c.team),[XB+'/ext/turn']:G.hist.length,[XB+'/ext/mode']:MODE_X.concept,[XB+'/ext/reason']:why},cExt({f:c.forb,d:c.def})));
   G.lastTeam=c.team;
   if(!ok||cfg.after==='switch')G.team=1-c.team;
   if(left(G.team)<=0&&left(1-G.team)>0)G.team=1-G.team;
   G.state=ok?'hit':'miss';G.cur=Object.assign({},c,{done:true});save();ok?(SND.hit(),vib([80,60,80])):(SND.miss(),vib(300));render();if(ok)confetti($('#play'),36)}
-function finish(){G.state='end';xlog('completed',t('vComp'),null,'game/'+G.reg,cfg.title,{completion:true,score:{raw:Math.max(...G.score)}},{[XB+'/ext/score']:`${tn(0)} ${G.score[0]} - ${G.score[1]} ${tn(1)}`});save();drawFinal();show('final')}
-const allDone=()=>left(0)<=0&&left(1)<=0;
+function finish(){G.state='end';xlog('completed',t('vComp'),null,'game/'+G.reg,cfg.title,{completion:true,score:{raw:Math.max(...G.score)}},{[XB+'/ext/score']:`${tn(0)} ${G.score[0]} - ${G.score[1]} ${tn(1)}`,[XB+'/ext/points']:JSON.stringify({[tn(0)]:G.score[0],[tn(1)]:G.score[1]}),[XB+'/ext/mode']:MODE_X[G.mode]});save();drawFinal();show('final')}
+const allDone=()=>G.mode==='three'?G.phase>2:(left(0)<=0&&left(1)<=0);
 
 function scoreHTML(){return `<div class="score"><span>${esc(tn(0))}: ${G.score[0]}</span><span>${esc(tn(1))}: ${G.score[1]}</span></div>`}
 function render(){const pv=$('#pv'),pl=$('#play');if(!G)return;clearInterval(tick);
   if(G.state==='playing'){const c=G.cur;pl.className=TEAMCLS[c.team];
     const fit=c.concept.length>22?'clamp(36px,9vw,110px)':c.concept.length>12?'clamp(46px,12vw,150px)':'clamp(60px,16vw,190px)';
-    pv.innerHTML=`<div class="timer"><i id="tbar"></i></div><div class="secs" id="secs"></div><div class="mini">${esc(tn(c.team))}<br>${G.score[0]} – ${G.score[1]}</div><div class="concept pop" style="font-size:${fit}">${esc(c.concept)}</div>${cfg.fb==='on'?`<div class="fb"><button id="fbOk">${t('fbOk')}</button><button id="fbKo">${t('fbKo')}</button></div>`:''}`;
+    pv.innerHTML=`<div class="timer"><i id="tbar"></i></div><div class="secs" id="secs"></div><div class="mini">${esc(tn(c.team))}<br>${G.score[0]} – ${G.score[1]}</div><div class="cwrap"><div class="concept pop" style="font-size:${fit}">${esc(c.concept)}</div>${forbHTML(c.forb)}</div>${cfg.fb==='on'?`<div class="fb"><button id="fbOk">${t('fbOk')}</button><button id="fbKo">${t('fbKo')}</button></div>`:''}`;
     if(cfg.fb==='on'){$('#fbOk').onclick=e=>{e.stopPropagation();endTurn(true,'button')};$('#fbKo').onclick=e=>{e.stopPropagation();endTurn(false,'button')}}
     pv.onclick=null;
     tick=setInterval(()=>{if(G.state!=='playing'){clearInterval(tick);return}const el=(Date.now()-G.cur.t0)/1000,rem=Math.max(0,cfg.time-el),s=Math.ceil(rem);
@@ -586,7 +681,7 @@ function render(){const pv=$('#pv'),pl=$('#play');if(!G)return;clearInterval(tic
   if(G.state==='round')return renderRound();
   if(G.state==='roundEnd')return renderRoundEnd();
   if(G.state==='ready'){const p=nextPlayer(G.team);pl.className=TEAMCLS[G.team];
-    pv.innerHTML=`<div class="msg"><h2>${t('readyH',{team:esc(tn(G.team))})}</h2><p>${t('phoneOn')}</p><div class="who">${esc(p.name)}</div><p>${G.mode==='timed'?t('readyTimed',{s:cfg.time}):t('readyConcept')}</p><div class="tap">${t('tapStart')}</div>${scoreHTML()}</div>`;
+    pv.innerHTML=`<div class="msg"><h2>${t('readyH',{team:esc(tn(G.team))})}</h2><p>${t('phoneOn')}</p><div class="who">${esc(p.name)}</div><p>${G.mode==='three'?t('readyThree',{n:G.phase+1,p:PH(G.phase),s:cfg.time}):G.mode==='timed'?t('readyTimed',{s:cfg.time}):t('readyConcept')}</p><div class="tap">${t('tapStart')}</div>${scoreHTML()}</div>`;
     pv.onclick=()=>startTurn();return}
   if(G.state==='hit'||G.state==='miss'){
     if(allDone()){pl.className=TEAMCLS[G.lastTeam];pv.innerHTML=`<div class="msg ${G.state==='hit'?'ok':'ko'}"><h2>${G.state==='hit'?t('correct'):t('missed')}</h2><p>${t('itWas',{c:esc(G.cur.concept)})}</p><p>${t('noneLeft')}</p><div class="tap">${t('tapFinal')}</div>${scoreHTML()}</div>`;pv.onclick=()=>finish();return}
@@ -600,13 +695,13 @@ function render(){const pv=$('#pv'),pl=$('#play');if(!G)return;clearInterval(tic
 function startRound(){if(left(G.team)<=0){if(left(1-G.team)>0)G.team=1-G.team;else return finish()}
   const p=nextPlayer(G.team);G.cur={player:p.id,team:G.team,t0:Date.now(),cs:Date.now(),hits:0,played:0,armed:false,flashUntil:0,flashOk:null,endAfter:false,from:G.hist.length};
   G.state='round';lastSec=null;save();SND.start();vib(60);keepAwake();render()}
-function curConcept(){return G.lists[G.cur.team][G.pos[G.cur.team]]}
+function curConcept(){return G.mode==='three'?G.pool[0]:G.lists[G.cur.team][G.pos[G.cur.team]]}
 function renderRound(){const c=G.cur,pv=$('#pv');$('#play').className=TEAMCLS[c.team];
-  pv.innerHTML=`<div class="timer"><i id="tbar"></i></div><div class="secs" id="secs"></div><div class="mini">${esc(tn(c.team))}<br>${t('nCorrect',{n:`<span id="rh">${c.hits}</span>`})}</div><div class="concept" id="rc"></div><div id="rf" class="msg hidden" style="position:absolute;inset:0;place-content:center"></div>${cfg.fb==='on'?`<div class="fb"><button id="fbOk">${t('fbOk')}</button><button id="fbKo">${t('fbPass')}</button></div>`:''}`;
+  pv.innerHTML=`<div class="timer"><i id="tbar"></i></div><div class="secs" id="secs"></div><div class="mini">${esc(tn(c.team))}<br>${t('nCorrect',{n:`<span id="rh">${c.hits}</span>`})}</div>${G.mode==='three'?`<div class="phase">${esc(t('phaseLbl',{n:G.phase+1,p:PH(G.phase)}))}</div>`:''}<div class="cwrap"><div class="concept" id="rc"></div>${forbHTML([],'rforb')}</div><div id="rf" class="msg hidden" style="position:absolute;inset:0;place-content:center"></div>${cfg.fb==='on'?`<div class="fb"><button id="fbOk">${t('fbOk')}</button><button id="fbKo">${t('fbPass')}</button></div>`:''}`;
   if(cfg.fb==='on'){$('#fbOk').onclick=e=>{e.stopPropagation();markRound(true,'button')};$('#fbKo').onclick=e=>{e.stopPropagation();markRound(false,'button')}}
   pv.onclick=null;showConcept();
   tick=setInterval(roundTick,80)}
-function showConcept(){const tx=curConcept()||'',rc=$('#rc');if(!rc)return;rc.style.fontSize=tx.length>22?'clamp(36px,9vw,110px)':tx.length>12?'clamp(46px,12vw,150px)':'clamp(60px,16vw,190px)';rc.textContent=tx;rc.style.visibility='visible';rc.classList.remove('pop');void rc.offsetWidth;rc.classList.add('pop')}
+function showConcept(){const it=curConcept()||{c:'',f:[]},tx=it.c,rc=$('#rc');if(!rc)return;const fb=$('#rforb');if(fb){fb.innerHTML=forbHTML(it.f).replace(/^<div class="forb" >|<\/div>$/g,'');fb.style.visibility='visible'}rc.style.fontSize=tx.length>22?'clamp(36px,9vw,110px)':tx.length>12?'clamp(46px,12vw,150px)':'clamp(60px,16vw,190px)';rc.textContent=tx;rc.style.visibility='visible';rc.classList.remove('pop');void rc.offsetWidth;rc.classList.add('pop')}
 function roundTick(){if(!G||G.state!=='round'){clearInterval(tick);return}const c=G.cur,now=Date.now(),el=(now-c.t0)/1000,rem=Math.max(0,cfg.time-el),s=Math.ceil(rem);
   const b=$('#tbar');if(b)b.style.transform=`scaleX(${rem/cfg.time})`;const se=$('#secs');if(se)se.textContent=s;
   if(s!==lastSec){lastSec=s;if(s<=5&&s>0)SND.tick();$('#play').classList.toggle('hurry',s<=5&&s>0);if(se&&s<=5){se.style.animation='none';void se.offsetWidth;se.style.animation=''}}
@@ -617,24 +712,29 @@ function roundTick(){if(!G||G.state!=='round'){clearInterval(tick);return}const 
   const held=performance.now()-lposeSince;
   if(!c.armed){if(lpose==='forehead'&&held>250)c.armed=true;return}
   if(el>0.8&&held>200&&(lpose==='down'||lpose==='up'))markRound(lpose==='down','sensor')}
-function markRound(ok,why){const c=G.cur;if(!c||G.state!=='round'||c.flashUntil)return;const concept=curConcept();if(concept==null)return;
+function markRound(ok,why){const c=G.cur;if(!c||G.state!=='round'||c.flashUntil)return;const it=curConcept();if(!it)return;const concept=it.c;
   const p=players.find(x=>x.id===c.player)||{name:'?'},dur=(Date.now()-c.cs)/1000,pts=ok?1:(cfg.pass==='si'?-1:0);
-  G.pos[c.team]++;G.score[c.team]+=pts;c.played++;if(ok)c.hits++;
-  G.hist.push({team:c.team,player:p.name,concept,ok,why,dur:+dur.toFixed(1),round:G.round[c.team]+1});
-  xlog('answered',t('vAns'),p,'concept/'+encodeURIComponent(concept),concept,{success:ok,score:{raw:pts},duration:'PT'+dur.toFixed(1)+'S',response:ok?'correct':'passed'},{[XB+'/ext/team']:tn(c.team),[XB+'/ext/round']:G.round[c.team]+1,[XB+'/ext/mode']:'time-attack'});
-  c.armed=why!=='sensor';c.flashUntil=Date.now()+(ok?650:500);c.endAfter=left(c.team)<=0;save();
+  const three=G.mode==='three',rnd=three?G.phase+1:G.round[c.team]+1;
+  if(three){if(ok)G.pool.shift();else G.pool.push(G.pool.shift())}else G.pos[c.team]++;
+  G.score[c.team]+=pts;c.played++;if(ok)c.hits++;
+  G.hist.push({team:c.team,player:p.name,concept,def:it.d,forb:it.f,ok,why,dur:+dur.toFixed(1),round:rnd});
+  xlog('answered',t('vAns'),p,'concept/'+encodeURIComponent(concept),concept,{success:ok,score:{raw:pts},duration:'PT'+dur.toFixed(1)+'S',response:ok?'correct':'passed'},Object.assign({[XB+'/ext/team']:tn(c.team),[XB+'/ext/round']:rnd,[XB+'/ext/mode']:MODE_X[G.mode],[XB+'/ext/reason']:why},three?{[XB+'/ext/phase']:PH(G.phase)}:{},cExt(it)));
+  c.armed=why!=='sensor';c.flashUntil=Date.now()+(ok?650:500);c.endAfter=three?G.pool.length===0:left(c.team)<=0;save();
   ok?(SND.hit(),vib(80)):(beep([[330,.18,'triangle',.18]]),vib(40));
-  const rf=$('#rf'),rc=$('#rc'),rh=$('#rh');if(rh)rh.textContent=c.hits;if(rc)rc.style.visibility='hidden';
+  const rf=$('#rf'),rc=$('#rc'),rh=$('#rh');if(rh)rh.textContent=c.hits;if(rc)rc.style.visibility='hidden';const fbz=$('#rforb');if(fbz)fbz.style.visibility='hidden';
   if(rf){rf.classList.remove('hidden');rf.innerHTML=ok?`<h2>${t('niceH')}</h2>`:`<h2>${t('passH',{pen:pts<0?' (−1)':''})}</h2>`}
   if(ok)confetti($('#play'),18)}
-function endRound(){const c=G.cur;clearInterval(tick);G.round[c.team]++;G.next[c.team]++;G.lastTeam=c.team;G.lastRound={hits:c.hits,from:c.from};
+function endRound(){const c=G.cur;clearInterval(tick);G.next[c.team]++;G.lastTeam=c.team;G.lastRound={hits:c.hits,from:c.from,out:c.endAfter};
+  if(G.mode==='three'){G.phaseEnded=G.pool.length===0;if(G.phaseEnded){G.phase++;if(G.phase<=2)G.pool=shuffle(G.all)}G.team=1-c.team;G.over=G.phase>2;G.state='roundEnd';save();SND.time();vib([200,100,200]);return render()}
+  G.round[c.team]++;
   const other=1-c.team,R=cfg.rounds||3;
   if(G.round[other]<R&&left(other)>0)G.team=other;else if(G.round[c.team]<R&&left(c.team)>0)G.team=c.team;
   G.over=allDone()||((G.round[0]>=R||left(0)<=0)&&(G.round[1]>=R||left(1)<=0));
   G.state='roundEnd';save();SND.time();vib([200,100,200]);render()}
 function renderRoundEnd(){const pv=$('#pv'),tm=G.lastTeam,list=G.hist.slice(G.lastRound.from);$('#play').className=TEAMCLS[tm];
   const items=list.map(h=>`${h.ok?'✓':'↷'} ${esc(h.concept)}`).join(' · ');
-  const head=`<h2>${t('roundEndH',{refCap:esc(ref(tm,true)),n:G.lastRound.hits})}</h2><p style="font-weight:400">${items||t('noConceptsPlayed')}</p>`;
+  const ph=G.mode!=='three'||G.over?'':`<p>${esc(G.phaseEnded?t('phaseEnd',{n:G.phase,m:G.phase+1,p:PH(G.phase)}):t('phaseGo',{n:G.phase+1,p:PH(G.phase).toLowerCase(),k:G.pool.length}))}</p>`;
+  const head=`<h2>${t(G.lastRound.out?'roundOutH':'roundEndH',{refCap:esc(ref(tm,true)),n:G.lastRound.hits})}</h2><p style="font-weight:400">${items||t('noConceptsPlayed')}</p>${ph}`;
   if(G.over){pv.innerHTML=`<div class="msg">${head}<div class="tap">${t('tapFinal')}</div>${scoreHTML()}</div>`;pv.onclick=()=>finish();return}
   const p=nextPlayer(G.team);
   pv.innerHTML=`<div class="msg">${head}<p>${t('nowPlays',{ref:esc(ref(G.team))})}</p><div class="who">${esc(p.name)}</div><div class="tap">${t('tapNextRound')}</div>${scoreHTML()}</div>`;
@@ -656,8 +756,8 @@ $('#pauseBtn').onclick=e=>{e.stopPropagation();const ov=document.createElement('
 /* ---------- final ---------- */
 function drawFinal(){const s=G.score,w=s[0]===s[1]?-1:(s[0]>s[1]?0:1);
   $('#finalBox').innerHTML=`<h2 class="win">${w<0?t('tie'):t('wins',{team:esc(tn(w))})}</h2><p style="margin:0">${esc(cfg.title)}</p>
-  <div class="board">${[0,1].map(tm=>`<div class="t" style="background:${TEAMC[tm]}"><span style="font-weight:700">${esc(tn(tm))}</span><b data-to="${s[tm]}">${s[tm]}</b><span>${t('statLine',{c:G.hist.filter(h=>h.team===tm&&h.ok).length,m:G.hist.filter(h=>h.team===tm&&!h.ok).length,kind:G.mode==='timed'?t('passedW'):t('failsW')})}</span></div>`).join('')}</div>
-  <div class="panel"><h3 style="font-size:22px;margin-bottom:6px">${t('played')}</h3><ol class="hist">${G.hist.map(h=>`<li>${h.ok?'✅':(G.mode==='timed'?'↷':'❌')} <b>${esc(h.concept)}</b> · ${esc(h.player)} (${esc(tn(h.team))}) · ${h.dur} s</li>`).join('')||`<li>${t('none')}</li>`}</ol></div>
+  <div class="board">${[0,1].map(tm=>`<div class="t" style="background:${TEAMC[tm]}"><span style="font-weight:700">${esc(tn(tm))}</span><b data-to="${s[tm]}">${s[tm]}</b><span>${t('statLine',{c:G.hist.filter(h=>h.team===tm&&h.ok).length,m:G.hist.filter(h=>h.team===tm&&!h.ok).length,kind:G.mode!=='concept'?t('passedW'):t('failsW')})}</span></div>`).join('')}</div>
+  <div class="panel"><h3 style="font-size:22px;margin-bottom:6px">${t('played')}</h3><ol class="hist">${G.hist.map(h=>`<li>${h.ok?'✅':(G.mode!=='concept'?'↷':'❌')}${G.mode==='three'?` R${h.round}`:''} <b>${esc(h.concept)}</b> · ${esc(h.player)} (${esc(tn(h.team))}) · ${h.dur} s</li>`).join('')||`<li>${t('none')}</li>`}</ol></div>
   ${cfg.xapi==='on'?`<button class="btn big" id="dlX">${t('dlX')}</button><p class="note" style="margin:0">${t('dlNote')}</p>`:''}
   <button class="btn big sec" id="again">${t('again')}</button>
   <button class="btn big sec" id="toHome">${t('backHome')}</button>`;
