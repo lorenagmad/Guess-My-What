@@ -1,5 +1,7 @@
 # Guess My What?!
 
+[![DOI](https://zenodo.org/badge/1441040302.svg)](https://doi.org/10.5281/zenodo.24011643)
+
 **English** · [Español](README.es.md)
 
 A team guessing game for the classroom, or for any group. One player holds the phone to their forehead without looking at it, and their team describes the word on the screen without saying it. The phone's motion sensors detect whether the player got it right.
@@ -86,7 +88,7 @@ Everything stays on the device. The settings, the players, the game in progress 
 
 ## Design and accessibility
 
-- Colours from the TELA UCA logo and a single typeface, Nunito, chosen to be read from a distance.
+- Colours from the [TELA UCA](https://lorenagmad.github.io/tela_uca/) logo and a single typeface, Nunito, chosen to be read from a distance.
 - Buttons and form fields work with the keyboard and show a visible focus.
 - If the device has "reduce motion" turned on, the animations and confetti are switched off.
 - Light and dark modes follow the device's setting.
@@ -98,6 +100,11 @@ The whole game is a single file, `index.html`, with no build step and no depende
 - **Locally:** open `index.html` in a browser. The motion sensors need HTTPS, so for a full test on a phone, publish it first.
 - **On GitHub Pages:** in the repository, go to **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save. The game will be at `https://<user>.github.io/<repository>/`.
 
-## Credits
+## Authors
 
-Created by [TELA UCA](https://lorenagmad.github.io/tela_uca/) (Technology Enhanced Learning for All), Department of Computer Engineering, Campus de Jerez, University of Cádiz.
+- Lorena Gutiérrez Madroñal
+- Rubén Baena Pérez
+- José Miguel Mota Macías
+Department of Computer Engineering, Campus de Jerez, University of Cádiz.
+
+![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue)
