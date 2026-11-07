@@ -1,5 +1,7 @@
 # Guess My What?!
 
+[![DOI](https://zenodo.org/badge/1441040302.svg)](https://doi.org/10.5281/zenodo.24011643)
+
 [English](README.md) · **Español**
 
 Un juego de adivinar por equipos para el aula o para cualquier grupo. Un jugador se pone el móvil en la frente sin mirarlo y su equipo le explica la palabra que aparece en la pantalla sin decirla. Los sensores de movimiento del móvil detectan si ha acertado.
