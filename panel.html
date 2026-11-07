@@ -18,7 +18,7 @@ h1,h2,h3{font-family:"Fredoka","Arial Rounded MT Bold",system-ui,sans-serif;line
 .wrap{max-width:1200px;margin:0 auto;padding:18px}
 header{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;justify-content:space-between;border-bottom:4px solid var(--ink);padding-bottom:12px}
 header h1{font-size:clamp(28px,4.4vw,42px)}
-header h1 span{background:var(--ink);color:var(--sun);border-radius:12px;padding:0 .18em}
+header h1 .brand{background:var(--ink);color:var(--sun);border-radius:12px;padding:0 .18em}
 header p{margin:6px 0 0;color:var(--muted);max-width:46em}
 .priv{display:flex;align-items:center;gap:10px;background:var(--card);border:3px solid var(--ink);border-radius:14px;padding:8px 12px;font-weight:700}
 .priv input{width:22px;height:22px;accent-color:var(--ok)}
@@ -61,152 +61,239 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .empty{color:var(--muted);text-align:center;padding:30px 10px}
 .note{font-size:14px;color:var(--muted)}
 footer{margin-top:30px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.top{display:flex;justify-content:flex-end;margin-bottom:8px}
+.seg{display:inline-flex;border:2px solid var(--ink);border-radius:10px;overflow:hidden}
+.seg button{font:inherit;font-weight:700;font-size:14px;border:0;background:var(--card);color:var(--ink);padding:4px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.excl{margin-top:16px;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+.excl summary{font-weight:700;cursor:pointer}
+.excl textarea{font:inherit;font-size:15px;width:100%;min-height:90px;margin-top:8px;padding:8px 10px;border:2px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+.excl .st{font-size:14px;margin-top:6px}
+.excl .st b{color:var(--ok)}.excl .st .warn{color:var(--a);font-weight:700}
+footer a{color:inherit}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="top"><div class="seg" role="group" aria-label="Idioma / Language"><button data-l="es">Español</button><button data-l="en">English</button></div></div>
   <header>
-    <div><h1>Panel de análisis · <span>Guess My What?!</span></h1>
-      <p>Carga los registros xAPI que descarga el juego al final de cada partida. Los archivos se analizan solo en este navegador: no se suben a ningún sitio.</p></div>
-    <label class="priv"><input type="checkbox" id="anon" checked><span>Ocultar datos identificativos<small>Nombres, correos y DNI se sustituyen por códigos</small></span></label>
+    <div><h1><span data-i18n="h1">Panel de análisis</span> · <span class="brand">Guess My What?!</span></h1>
+      <p data-i18n="intro">Carga los registros xAPI que descarga el juego al final de cada partida. Los archivos se analizan solo en este navegador: no se suben a ningún sitio.</p></div>
+    <label class="priv"><input type="checkbox" id="anon" checked><span><span data-i18n="anon">Ocultar datos identificativos</span><small data-i18n="anonSm">Nombres, correos y DNI se sustituyen por códigos</small></span></label>
   </header>
 
   <div class="drop" id="drop">
-    <b>Arrastra aquí los registros de las partidas</b>
-    <small>Archivos <code>guess-my-what_…json</code>. Puedes cargar los de varios grupos y días: se unen y se quitan duplicados.</small>
-    <div class="row"><button class="btn" id="pick">Elegir archivos</button><button class="btn sec" id="clear" disabled>Vaciar</button></div>
+    <b data-i18n="dropT">Arrastra aquí los registros de las partidas</b>
+    <small data-i18n="dropSm">Archivos guess-my-what_….json. Puedes cargar los de varios grupos y días: se unen y se quitan duplicados.</small>
+    <div class="row"><button class="btn" id="pick" data-i18n="pick">Elegir archivos</button><button class="btn sec" id="clear" disabled data-i18n="clear">Vaciar</button></div>
     <input type="file" id="fileIn" multiple accept=".json,application/json" hidden>
     <div class="files" id="files"></div>
   </div>
 
-  <div id="out"><p class="empty">Todavía no hay datos.</p></div>
-  <footer><a href="./">Volver al juego</a> · Uso personal y de investigación. Con «Ocultar datos identificativos» activado, las tablas y las exportaciones usan códigos (J-01, J-02…) en lugar de nombres, correos o DNI.</footer>
+  <details class="excl" id="exclBox">
+    <summary data-i18n="exT">Excluir participantes</summary>
+    <p class="note" data-i18n="exHelp">Escribe, uno por línea, el nombre o código con el que jugó cada participante que no debe contarse (por ejemplo, quien no ha dado su consentimiento para un estudio). También vale su correo o su DNI. Sus conceptos desaparecen de todas las tablas y exportaciones, y no hace falta desactivar la ocultación: el panel nunca muestra a quién corresponde cada línea.</p>
+    <textarea id="exIn" spellcheck="false" autocomplete="off" aria-label="Excluir participantes / Exclude players"></textarea>
+    <div class="st" id="exSt" aria-live="polite"></div>
+  </details>
+
+  <div id="out"><p class="empty" data-i18n="empty">Todavía no hay datos.</p></div>
+  <footer><a href="./" data-i18n="back">Volver al juego</a> · <span id="foot"></span></footer>
 </div>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const XB='https://guessmywhat.app/xapi',X=k=>XB+'/ext/'+k;
-const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let EV=new Map(),FILES=[],F={title:'all',mode:'all'},LAST=null,sortState={};
+const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- idiomas ---------- */
+const I18N={
+es:{title:'Panel de análisis · Guess My What?!',h1:'Panel de análisis',intro:'Carga los registros xAPI que descarga el juego al final de cada partida. Los archivos se analizan solo en este navegador: no se suben a ningún sitio.',
+  anon:'Ocultar datos identificativos',anonSm:'Nombres, correos y DNI se sustituyen por códigos',dropT:'Arrastra aquí los registros de las partidas',dropSm:'Archivos guess-my-what_….json. Puedes cargar los de varios grupos y días: se unen y se quitan duplicados.',
+  pick:'Elegir archivos',clear:'Vaciar',empty:'Todavía no hay datos.',back:'Volver al juego',
+  foot:'Uso personal y de investigación. Con «Ocultar datos identificativos» activado, las tablas y las exportaciones usan códigos (J-01, J-02…) en lugar de nombres, correos o DNI.',
+  exT:'Excluir participantes',exHelp:'Escribe, uno por línea, el nombre o código con el que jugó cada participante que no debe contarse (por ejemplo, quien no ha dado su consentimiento para un estudio). También vale su correo o su DNI. Sus conceptos desaparecen de todas las tablas y exportaciones, y no hace falta desactivar la ocultación: el panel nunca muestra a quién corresponde cada línea.',
+  exNone:'No se excluye a nadie.',exOk:'{n} participante(s) excluido(s): {c} concepto(s) jugado(s) fuera del análisis.',exMiss:'{n} línea(s) no coinciden con ningún participante de los registros cargados. Revisa cómo están escritas.',exNoData:'Carga primero los registros.',
+  fileN:'Archivo {n}',newAct:'{n} acciones nuevas',dupFile:'ya estaba cargado',fEmpty:'vacío',fBad:'no es un registro de Guess My What?!',
+  fGame:'Partida o asignatura',fMode:'Modalidad',all:'Todas',noTitle:'(sin título)',
+  kGames:'partidas',kPlayers:'jugadores',kConcepts:'conceptos jugados',kOk:'acertados',kMed:'tiempo mediano para acertar',kHard:'conceptos con algún fallo',kExcl:'excluidos',
+  revT:'Repaso',revSub:'Los conceptos que más han costado, con su definición y sus palabras prohibidas, para comentarlos en clase.',revMeta:'acertado {r} · {f} de {n} veces sin acertar',revPass:'{n} pasado(s)',revTime:'{n} por tiempo',noDef:'Sin definición en la lista de conceptos.',forb:'Palabras prohibidas:',noSay:'No decir:',
+  revDl:'Descargar el repaso (CSV)',revCp:'Copiar el repaso',copied:'✔ Copiado',noCopy:'No se ha podido copiar',allOk:'Todos los conceptos se han acertado siempre.',
+  phT:'Tres rondas',phSub:'Cómo cambia el acierto según la forma de dar pistas.',phRound:'Ronda {n}',phStat:'{ok} de {n} acertados · mediana {m}',phNames:['Explicar libremente','Una sola palabra','Solo mímica'],
+  cT:'Conceptos',sortHint:'Pulsa una columna para ordenar.',cConcept:'Concepto',cTimes:'Veces',cOk:'Acertado',cMiss:'No acertado',cPass:'Pasado',cMed:'Tiempo mediano',cGames:'Partidas',cDef:'Definición',
+  gT:'Partidas',gDate:'Fecha',gGame:'Partida',gMode:'Modalidad',gScore:'Marcador',gConcepts:'Conceptos',gOk:'Acertados',gDur:'Duración',unfinished:'sin terminar',
+  pT:'Jugadores',pHidden:'Datos identificativos ocultos.',pShown:'Datos identificativos visibles.',pSub:'Cuenta los conceptos en los que el jugador tenía el móvil en la frente.',pPlayer:'Jugador',pTeam:'Equipo',pConcepts:'Conceptos',pOk:'Acertados',pRate:'Acierto',
+  xT:'Exportar',xHidden:'Las exportaciones usan códigos en lugar de datos identificativos.',xShown:'Atención: las exportaciones de jugadores y eventos incluirán nombres, correos y DNI.',xExclNote:'Los participantes excluidos no aparecen en ninguna exportación.',xC:'Conceptos (CSV)',xP:'Jugadores (CSV)',xE:'Eventos (CSV)',
+  modes:{'one-concept':'un turno, un concepto','time-attack':'contrarreloj','three-rounds':'tres rondas'},resp:{correct:'acertado',passed:'pasado','time up':'tiempo agotado',missed:'no acertado'},guessed:'acertó',notGuessed:'no acertó',
+  csvRev:['concepto','veces','acertado','sin_acertar','definicion','palabras_prohibidas'],
+  csvC:['concepto','veces','acertados','no_acertados','pasados','por_tiempo','acierto','tiempo_mediano_s','partidas','definicion','palabras_prohibidas'],
+  csvPid:['nombre','correo','dni'],csvP:['codigo','equipos','conceptos','acertados','acierto','tiempo_mediano_s','partidas'],
+  csvE:['case_id','actividad','timestamp'],csvE2:['jugador','equipo','partida','modalidad','ronda','fase','concepto','exito','respuesta','duracion_s','motivo'],
+  fRev:'repaso',fC:'conceptos',fP:'jugadores',fE:'eventos',locale:'es-ES'},
+en:{title:'Analysis panel · Guess My What?!',h1:'Analysis panel',intro:'Load the xAPI logs the game downloads at the end of each game. The files are analysed in this browser only: they are not uploaded anywhere.',
+  anon:'Hide identifying data',anonSm:'Names, emails and ID numbers are replaced by codes',dropT:'Drop the game logs here',dropSm:'guess-my-what_….json files. You can load logs from several groups and days: they are merged and duplicates are removed.',
+  pick:'Choose files',clear:'Clear',empty:'No data yet.',back:'Back to the game',
+  foot:'For personal and research use. With “Hide identifying data” ticked, the tables and exports use codes (J-01, J-02…) instead of names, emails or ID numbers.',
+  exT:'Exclude players',exHelp:'Write, one per line, the name or code each player used in the game who must not be counted (for example, someone who has not given consent for a study). Their email or ID number also works. Their concepts disappear from every table and export, and you do not need to untick the hiding: the panel never shows who each line belongs to.',
+  exNone:'Nobody is excluded.',exOk:'{n} player(s) excluded: {c} concept(s) played left out of the analysis.',exMiss:'{n} line(s) do not match any player in the loaded logs. Check how they are written.',exNoData:'Load the logs first.',
+  fileN:'File {n}',newAct:'{n} new actions',dupFile:'already loaded',fEmpty:'empty',fBad:'not a Guess My What?! log',
+  fGame:'Game or subject',fMode:'Mode',all:'All',noTitle:'(untitled)',
+  kGames:'games',kPlayers:'players',kConcepts:'concepts played',kOk:'guessed',kMed:'median time to guess',kHard:'concepts missed at least once',kExcl:'excluded',
+  revT:'Review',revSub:'The concepts that cost the most, with their definition and forbidden words, to go over in class.',revMeta:'guessed {r} · {f} of {n} times not guessed',revPass:'{n} passed',revTime:'{n} on time',noDef:'No definition in the concept list.',forb:'Forbidden words:',noSay:'Don’t say:',
+  revDl:'Download the review (CSV)',revCp:'Copy the review',copied:'✔ Copied',noCopy:'Could not copy',allOk:'Every concept has always been guessed.',
+  phT:'Three rounds',phSub:'How the success rate changes with the way clues are given.',phRound:'Round {n}',phStat:'{ok} of {n} guessed · median {m}',phNames:['Describe freely','One word only','Mime only'],
+  cT:'Concepts',sortHint:'Click a column to sort.',cConcept:'Concept',cTimes:'Times',cOk:'Guessed',cMiss:'Missed',cPass:'Passed',cMed:'Median time',cGames:'Games',cDef:'Definition',
+  gT:'Games',gDate:'Date',gGame:'Game',gMode:'Mode',gScore:'Score',gConcepts:'Concepts',gOk:'Guessed',gDur:'Duration',unfinished:'unfinished',
+  pT:'Players',pHidden:'Identifying data hidden.',pShown:'Identifying data visible.',pSub:'Counts the concepts in which the player had the phone on their forehead.',pPlayer:'Player',pTeam:'Team',pConcepts:'Concepts',pOk:'Guessed',pRate:'Success',
+  xT:'Export',xHidden:'Exports use codes instead of identifying data.',xShown:'Warning: the player and event exports will include names, emails and ID numbers.',xExclNote:'Excluded players do not appear in any export.',xC:'Concepts (CSV)',xP:'Players (CSV)',xE:'Events (CSV)',
+  modes:{'one-concept':'turns','time-attack':'time attack','three-rounds':'three rounds'},resp:{correct:'guessed',passed:'passed','time up':'time up',missed:'missed'},guessed:'guessed',notGuessed:'not guessed',
+  csvRev:['concept','times','success_rate','not_guessed','definition','forbidden_words'],
+  csvC:['concept','times','guessed','missed','passed','time_up','success_rate','median_time_s','games','definition','forbidden_words'],
+  csvPid:['name','email','id_number'],csvP:['code','teams','concepts','guessed','success_rate','median_time_s','games'],
+  csvE:['case_id','activity','timestamp'],csvE2:['player','team','game','mode','round','phase','concept','success','response','duration_s','reason'],
+  fRev:'review',fC:'concepts',fP:'players',fE:'events',locale:'en-GB'}};
+// mismo almacenamiento que el juego, para que el panel abra en el idioma elegido allí
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let lang=store.get('frente_lang',null);if(!I18N[lang])lang=/^es\b/i.test(navigator.language||'')?'es':'en';
+const t=(k,v)=>{let s=I18N[lang][k];if(typeof s!=='string')return s;if(v)for(const x in v)s=s.split('{'+x+'}').join(v[x]);return s};
+function applyLang(){document.documentElement.lang=lang;document.title=t('title');$$('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));
+  $('#foot').textContent=t('foot');$$('.seg button[data-l]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang))}
+$$('.seg button[data-l]').forEach(b=>b.onclick=()=>{if(b.dataset.l===lang)return;lang=b.dataset.l;store.set('frente_lang',lang);applyLang();render()});
+
+/* ---------- lectura de registros ---------- */
+let EV=new Map(),FILES=[],F={title:'all',mode:'all'},LAST=null,sortState={},EXCL=[];
 const anonOn=()=>$('#anon').checked;
 const durS=d=>{if(!d)return null;const m=String(d).match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:([\d.]+)S)?/);return m?(+(m[1]||0))*3600+(+(m[2]||0))*60+(+(m[3]||0)):null};
-const MODE_ES={'one-concept':'un turno, un concepto','time-attack':'contrarreloj','three-rounds':'tres rondas'};
-const RESP_ES={correct:'acertado',passed:'pasado','time up':'tiempo agotado',missed:'no acertado'};
 function norm(s){if(!s||!s.verb||!s.object||!s.context)return null;const cx=s.context.extensions||{},r=s.result||{},a=s.actor||{};
   const g=(...k)=>{for(const x of k){const v=cx[X(x)];if(v!==undefined&&v!=='')return v}return ''};
   const pid=a.objectType==='Group'?null:((a.mbox||'').replace('mailto:','')||(a.account&&a.account.name)||a.name||'?');
   const nm=s.object.definition&&s.object.definition.name?Object.values(s.object.definition.name)[0]:'';
-  const mode=g('mode');
   return {id:s.id||[s.timestamp,s.verb.id,s.object.id,pid].join('|'),game:s.context.registration||'?',verb:s.verb.id.split('/').pop(),ts:Date.parse(s.timestamp),
     pid,name:a.name||'',email:(a.mbox||'').replace('mailto:',''),dni:g('id'),concept:nm||'',
-    title:g('game'),team:g('team'),mode:MODE_ES[mode]||mode,round:g('round')||null,phase:g('phase'),why:g('reason'),
-    forb:g('forbidden'),def:g('definition'),success:r.success===undefined?null:!!r.success,dur:durS(r.duration),resp:RESP_ES[r.response]||r.response||'',pts:r.score?r.score.raw:null,
-    teams:g('teams'),marcador:g('score'),puntos:g('points'),start:g('starts')}}
+    title:g('game'),team:g('team'),mode:g('mode'),round:g('round')||null,phase:g('phase'),why:g('reason'),
+    forb:g('forbidden'),def:g('definition'),success:r.success===undefined?null:!!r.success,dur:durS(r.duration),resp:r.response||'',
+    marcador:g('score')}}
 async function addFiles(list){for(const f of list){let n=0,err='';
   try{const j=JSON.parse(await f.text());const arr=Array.isArray(j)?j:(j&&(j.log||j.statements));if(!arr)throw 0;
-    for(const s of arr){const e=norm(s);if(!e||isNaN(e.ts))continue;if(!EV.has(e.id)){EV.set(e.id,e);n++}}if(!arr.length)err='vacío'}
-  catch(e){err='no es un registro de Guess My What?!'}FILES.push({name:f.name,n,err})}render()}
+    for(const s of arr){const e=norm(s);if(!e||isNaN(e.ts))continue;if(!EV.has(e.id)){EV.set(e.id,e);n++}}if(!arr.length)err='fEmpty'}
+  catch(e){err='fBad'}FILES.push({name:f.name,n,err})}render()}
 
+/* ---------- exclusión de participantes ---------- */
+const key=v=>String(v||'').trim().toLowerCase();
+const keysOf=e=>[e.pid,e.name,e.email,e.dni].map(key).filter(Boolean);
+const isExcl=e=>EXCL.length>0&&!!e.pid&&keysOf(e).some(k=>EXCL.includes(k));
+$('#exIn').addEventListener('input',()=>{EXCL=[...new Set($('#exIn').value.split(/\r?\n/).map(key).filter(Boolean))];render()});
+function exclStatus(){const st=$('#exSt');if(!EXCL.length){st.textContent=t('exNone');return}
+  if(!EV.size){st.textContent=t('exNoData');return}
+  const ans=[...EV.values()].filter(e=>e.verb==='answered'&&e.pid);
+  const hit=new Set(),pids=new Set();let c=0;
+  for(const e of ans){const ks=keysOf(e);const m=EXCL.filter(x=>ks.includes(x));if(m.length){c++;pids.add(e.pid);m.forEach(x=>hit.add(x))}}
+  const miss=EXCL.filter(x=>!hit.has(x)).length;
+  st.innerHTML=`<b>${esc(t('exOk',{n:pids.size,c}))}</b>${miss?`<br><span class="warn">${esc(t('exMiss',{n:miss}))}</span>`:''}`}
+
+/* ---------- cálculos ---------- */
 const med=a=>{a=a.filter(x=>x!=null);if(!a.length)return null;const b=[...a].sort((x,y)=>x-y),m=b.length>>1;return b.length%2?b[m]:(b[m-1]+b[m])/2};
 const pct=v=>v==null?'—':Math.round(v*100)+' %';
-const tf=s=>s==null?'—':(s<60?s.toFixed(1).replace('.',',')+' s':Math.floor(s/60)+' min '+Math.round(s%60)+' s');
+const tf=s=>s==null?'—':(s<60?(lang==='es'?s.toFixed(1).replace('.',','):s.toFixed(1))+' s':Math.floor(s/60)+' min '+Math.round(s%60)+' s');
 const meter=v=>{if(v==null)return '—';const cls=v<.5?'bad':v<.75?'mid':'';return `<span class="m"><i class="${cls}" style="width:${Math.max(3,Math.round(v*70))}px"></i><span>${Math.round(v*100)} %</span></span>`};
-const fmtD=t=>new Date(t).toLocaleString('es-ES',{dateStyle:'short',timeStyle:'short'});
+const fmtD=ts=>new Date(ts).toLocaleString(t('locale'),{dateStyle:'short',timeStyle:'short'});
+const modeL=m=>m?(t('modes')[m]||m):'—';
+const respL=r=>t('resp')[r]||r||'';
 
 function analyse(){
-  const all=[...EV.values()].sort((a,b)=>a.ts-b.ts);
-  // partidas
+  const all=[...EV.values()].filter(e=>!isExcl(e)).sort((a,b)=>a.ts-b.ts);
   const G=new Map();
-  for(const e of all){let g=G.get(e.game);if(!g){g={id:e.game,title:'',mode:'',start:null,end:null,teams:'',marcador:'',puntos:'',ans:[],first:e.ts,last:e.ts};G.set(e.game,g)}
+  for(const e of all){let g=G.get(e.game);if(!g){g={id:e.game,title:'',mode:'',start:null,end:null,marcador:'',ans:[],first:e.ts,last:e.ts};G.set(e.game,g)}
     g.last=Math.max(g.last,e.ts);if(e.title)g.title=e.title;
-    if(e.verb==='initialized'){g.start=e.ts;g.mode=e.mode||g.mode;g.teams=e.teams;g.starter=e.start}
-    if(e.verb==='completed'){g.end=e.ts;g.marcador=e.marcador;g.puntos=e.puntos;g.mode=e.mode||g.mode}
+    if(e.verb==='initialized'){g.start=e.ts;g.mode=e.mode||g.mode}
+    if(e.verb==='completed'){g.end=e.ts;g.marcador=e.marcador;g.mode=e.mode||g.mode}
     if(e.verb==='answered'){g.ans.push(e);if(!g.mode)g.mode=e.mode}}
   const games=[...G.values()];
-  const titles=[...new Set(games.map(g=>g.title||'(sin título)'))].sort(),modes=[...new Set(games.map(g=>g.mode||'—'))].sort();
-  const sel=games.filter(g=>(F.title==='all'||(g.title||'(sin título)')===F.title)&&(F.mode==='all'||(g.mode||'—')===F.mode));
+  const tl=g=>g.title||t('noTitle');
+  const titles=[...new Set(games.map(tl))].sort(),modes=[...new Set(games.map(g=>g.mode||''))].sort();
+  const sel=games.filter(g=>(F.title==='all'||tl(g)===F.title)&&(F.mode==='all'||(g.mode||'')===F.mode));
   const ans=sel.flatMap(g=>g.ans);
-  // códigos anónimos estables
-  const pids=[...new Set(all.filter(e=>e.pid).map(e=>e.pid))].sort(),code=new Map(pids.map((p,i)=>[p,'J-'+String(i+1).padStart(2,'0')]));
-  // conceptos
+  // códigos anónimos: solo para quienes quedan tras la exclusión
+  const pids=[...new Set(all.filter(e=>e.pid&&e.verb==='answered').map(e=>e.pid))].sort(),code=new Map(pids.map((p,i)=>[p,'J-'+String(i+1).padStart(2,'0')]));
   const C=new Map();
-  for(const e of ans){const k=e.concept.toLowerCase();let c=C.get(k);if(!c){c={concept:e.concept,n:0,ok:0,miss:0,pass:0,time:0,okT:[],def:'',forb:'',games:new Set(),phases:{}};C.set(k,c)}
+  for(const e of ans){const k=e.concept.toLowerCase();let c=C.get(k);if(!c){c={concept:e.concept,n:0,ok:0,miss:0,pass:0,time:0,okT:[],def:'',forb:'',games:new Set()};C.set(k,c)}
     c.n++;c.games.add(e.game);if(e.def)c.def=e.def;if(e.forb)c.forb=e.forb;
-    if(e.success){c.ok++;if(e.dur!=null)c.okT.push(e.dur)}else if(e.resp==='pasado')c.pass++;else if(e.resp==='tiempo agotado'){c.time++;c.miss++}else c.miss++;
-    if(e.phase){const p=c.phases[e.phase]=c.phases[e.phase]||{n:0,ok:0};p.n++;if(e.success)p.ok++}}
+    if(e.success){c.ok++;if(e.dur!=null)c.okT.push(e.dur)}else if(e.resp==='passed')c.pass++;else if(e.resp==='time up'){c.time++;c.miss++}else c.miss++}
   const concepts=[...C.values()].map(c=>({...c,rate:c.n?c.ok/c.n:null,med:med(c.okT),fails:c.n-c.ok,nGames:c.games.size}));
-  // jugadores
   const P=new Map();
   for(const e of ans){if(!e.pid)continue;let p=P.get(e.pid);if(!p){p={pid:e.pid,name:e.name,email:e.email,dni:e.dni,teams:new Set(),n:0,ok:0,okT:[],games:new Set()};P.set(e.pid,p)}
     p.n++;if(e.success){p.ok++;if(e.dur!=null)p.okT.push(e.dur)}if(e.team)p.teams.add(e.team);p.games.add(e.game);if(e.dni)p.dni=e.dni;if(e.email)p.email=e.email}
-  const playersA=[...P.values()].map(p=>({...p,code:code.get(p.pid),rate:p.n?p.ok/p.n:null,med:med(p.okT),nGames:p.games.size}));
-  // fases (tres rondas)
-  const PHN=['Explicar libremente','Una sola palabra','Solo mímica'];const PH={};for(const e of ans)if(e.phase&&e.round){const k='R'+e.round;const p=PH[k]=PH[k]||{phase:PHN[e.round-1]||e.phase,round:+e.round,n:0,ok:0,okT:[]};p.n++;if(e.success){p.ok++;if(e.dur!=null)p.okT.push(e.dur)}}
-  return {all,games,sel,ans,concepts,players:playersA,phases:Object.values(PH).sort((a,b)=>(a.round||0)-(b.round||0)),titles,modes,code}}
+  const players=[...P.values()].map(p=>({...p,code:code.get(p.pid),rate:p.n?p.ok/p.n:null,med:med(p.okT),nGames:p.games.size}));
+  const PH={};for(const e of ans)if(e.phase&&e.round){const k='R'+e.round;const p=PH[k]=PH[k]||{round:+e.round,n:0,ok:0,okT:[]};p.n++;if(e.success){p.ok++;if(e.dur!=null)p.okT.push(e.dur)}}
+  return {games,sel,ans,concepts,players,phases:Object.values(PH).sort((a,b)=>a.round-b.round),titles,modes,code,tl}}
 
+/* ---------- vista ---------- */
 function who(p){return anonOn()?`<b>${esc(p.code)}</b>`:`<b>${esc(p.name)}</b>${p.email||p.dni?`<br><span class="note">${esc([p.email,p.dni].filter(Boolean).join(' · '))}</span>`:''}`}
 function render(){
-  $('#files').innerHTML=FILES.map((f,i)=>`<span class="fchip ${f.err?'err':''}">${anonOn()?'Archivo '+(i+1):esc(f.name)} · ${f.err||(f.n?f.n+' acciones nuevas':'ya estaba cargado')}</span>`).join('');
-  $('#clear').disabled=!FILES.length;
-  if(!EV.size){$('#out').innerHTML='<p class="empty">Todavía no hay datos.</p>';return}
+  $('#files').innerHTML=FILES.map((f,i)=>`<span class="fchip ${f.err?'err':''}">${anonOn()?esc(t('fileN',{n:i+1})):esc(f.name)} · ${esc(f.err?t(f.err):(f.n?t('newAct',{n:f.n}):t('dupFile')))}</span>`).join('');
+  $('#clear').disabled=!FILES.length;exclStatus();
+  if(!EV.size){$('#out').innerHTML=`<p class="empty">${esc(t('empty'))}</p>`;return}
   const A=LAST=analyse(),ans=A.ans,ok=ans.filter(e=>e.success).length;
   const hard=[...A.concepts].filter(c=>c.fails>0).sort((a,b)=>(a.rate-b.rate)||(b.fails-a.fails)||(b.n-a.n));
+  const nEx=EXCL.length?new Set([...EV.values()].filter(isExcl).map(e=>e.pid)).size:0;
   $('#out').innerHTML=`
   <div class="filters">
-    <label>Partida o asignatura <select id="fT"><option value="all">Todas</option>${A.titles.map(t=>`<option ${F.title===t?'selected':''}>${esc(t)}</option>`).join('')}</select></label>
-    <label>Modalidad <select id="fM"><option value="all">Todas</option>${A.modes.map(t=>`<option ${F.mode===t?'selected':''}>${esc(t)}</option>`).join('')}</select></label>
+    <label>${esc(t('fGame'))} <select id="fT"><option value="all">${esc(t('all'))}</option>${A.titles.map(x=>`<option value="${esc(x)}" ${F.title===x?'selected':''}>${esc(x)}</option>`).join('')}</select></label>
+    <label>${esc(t('fMode'))} <select id="fM"><option value="all">${esc(t('all'))}</option>${A.modes.map(x=>`<option value="${esc(x)}" ${F.mode===x?'selected':''}>${esc(modeL(x))}</option>`).join('')}</select></label>
   </div>
   <div class="kpis">
-    <div class="kpi"><div class="v">${A.sel.length}</div><div class="l">partidas</div></div>
-    <div class="kpi"><div class="v">${new Set(ans.map(e=>e.pid)).size}</div><div class="l">jugadores</div></div>
-    <div class="kpi"><div class="v">${ans.length}</div><div class="l">conceptos jugados</div></div>
-    <div class="kpi"><div class="v">${pct(ans.length?ok/ans.length:null)}</div><div class="l">acertados</div></div>
-    <div class="kpi"><div class="v">${tf(med(ans.filter(e=>e.success).map(e=>e.dur)))}</div><div class="l">tiempo mediano para acertar</div></div>
-    <div class="kpi"><div class="v">${hard.length}</div><div class="l">conceptos con algún fallo</div></div>
+    <div class="kpi"><div class="v">${A.sel.length}</div><div class="l">${esc(t('kGames'))}</div></div>
+    <div class="kpi"><div class="v">${new Set(ans.filter(e=>e.pid).map(e=>e.pid)).size}</div><div class="l">${esc(t('kPlayers'))}</div></div>
+    <div class="kpi"><div class="v">${ans.length}</div><div class="l">${esc(t('kConcepts'))}</div></div>
+    <div class="kpi"><div class="v">${pct(ans.length?ok/ans.length:null)}</div><div class="l">${esc(t('kOk'))}</div></div>
+    <div class="kpi"><div class="v">${tf(med(ans.filter(e=>e.success).map(e=>e.dur)))}</div><div class="l">${esc(t('kMed'))}</div></div>
+    <div class="kpi"><div class="v">${hard.length}</div><div class="l">${esc(t('kHard'))}</div></div>
+    ${nEx?`<div class="kpi"><div class="v">${nEx}</div><div class="l">${esc(t('kExcl'))}</div></div>`:''}
   </div>
 
-  <section><h2>Repaso</h2><p class="sub">Los conceptos que más han costado, con su definición y sus palabras prohibidas, para comentarlos en clase.</p>
-  ${hard.length?`<div class="rev">${hard.slice(0,12).map(c=>`<div class="it"><b>${esc(c.concept)}</b> <span class="meta">· acertado ${pct(c.rate)} · ${c.fails} de ${c.n} veces sin acertar${c.pass?` (${c.pass} pasado${c.pass>1?'s':''})`:''}${c.time?` · ${c.time} por tiempo`:''}</span>${c.def?`<p>${esc(c.def)}</p>`:'<p class="note">Sin definición en la lista de conceptos.</p>'}${c.forb?`<p class="forb">Palabras prohibidas: ${esc(c.forb)}</p>`:''}</div>`).join('')}</div>
-  <div class="row" style="justify-content:flex-start"><button class="btn" id="xRev">Descargar el repaso (CSV)</button><button class="btn sec" id="cRev">Copiar el repaso</button><span class="note" id="cRevOk"></span></div>`:'<p class="note">Todos los conceptos se han acertado siempre.</p>'}</section>
+  <section><h2>${esc(t('revT'))}</h2><p class="sub">${esc(t('revSub'))}</p>
+  ${hard.length?`<div class="rev">${hard.slice(0,12).map(c=>`<div class="it"><b>${esc(c.concept)}</b> <span class="meta">· ${esc(t('revMeta',{r:pct(c.rate),f:c.fails,n:c.n}))}${c.pass?` (${esc(t('revPass',{n:c.pass}))})`:''}${c.time?` · ${esc(t('revTime',{n:c.time}))}`:''}</span>${c.def?`<p>${esc(c.def)}</p>`:`<p class="note">${esc(t('noDef'))}</p>`}${c.forb?`<p class="forb">${esc(t('forb'))} ${esc(c.forb)}</p>`:''}</div>`).join('')}</div>
+  <div class="row" style="justify-content:flex-start"><button class="btn" id="xRev">${esc(t('revDl'))}</button><button class="btn sec" id="cRev">${esc(t('revCp'))}</button><span class="note" id="cRevOk"></span></div>`:`<p class="note">${esc(t('allOk'))}</p>`}</section>
 
-  ${A.phases.length?`<section><h2>Tres rondas</h2><p class="sub">Cómo cambia el acierto según la forma de dar pistas.</p><div class="phases">${A.phases.map(p=>`<div class="ph"><span class="note">Ronda ${p.round||''} · ${esc(p.phase)}</span><b>${pct(p.n?p.ok/p.n:null)}</b><span class="note">${p.ok} de ${p.n} acertados · mediana ${tf(med(p.okT))}</span></div>`).join('')}</div></section>`:''}
+  ${A.phases.length?`<section><h2>${esc(t('phT'))}</h2><p class="sub">${esc(t('phSub'))}</p><div class="phases">${A.phases.map(p=>`<div class="ph"><span class="note">${esc(t('phRound',{n:p.round}))} · ${esc(t('phNames')[p.round-1]||'')}</span><b>${pct(p.n?p.ok/p.n:null)}</b><span class="note">${esc(t('phStat',{ok:p.ok,n:p.n,m:tf(med(p.okT))}))}</span></div>`).join('')}</div></section>`:''}
 
-  <section><h2>Conceptos</h2><p class="sub">Pulsa una columna para ordenar.</p>
-  <div class="tbl"><table id="tC"><thead><tr><th data-k="concept">Concepto</th><th data-k="n">Veces</th><th data-k="rate">Acertado</th><th data-k="miss">No acertado</th><th data-k="pass">Pasado</th><th data-k="med">Tiempo mediano</th><th data-k="nGames">Partidas</th><th>Definición</th></tr></thead><tbody></tbody></table></div></section>
+  <section><h2>${esc(t('cT'))}</h2><p class="sub">${esc(t('sortHint'))}</p>
+  <div class="tbl"><table id="tC"><thead><tr><th data-k="concept">${esc(t('cConcept'))}</th><th data-k="n">${esc(t('cTimes'))}</th><th data-k="rate">${esc(t('cOk'))}</th><th data-k="miss">${esc(t('cMiss'))}</th><th data-k="pass">${esc(t('cPass'))}</th><th data-k="med">${esc(t('cMed'))}</th><th data-k="nGames">${esc(t('cGames'))}</th><th>${esc(t('cDef'))}</th></tr></thead><tbody></tbody></table></div></section>
 
-  <section><h2>Partidas</h2>
-  <div class="tbl"><table id="tG"><thead><tr><th data-k="first">Fecha</th><th data-k="title">Partida</th><th data-k="mode">Modalidad</th><th>Marcador</th><th data-k="nAns">Conceptos</th><th data-k="okR">Acertados</th><th data-k="durG">Duración</th></tr></thead><tbody></tbody></table></div></section>
+  <section><h2>${esc(t('gT'))}</h2>
+  <div class="tbl"><table id="tG"><thead><tr><th data-k="first">${esc(t('gDate'))}</th><th data-k="title">${esc(t('gGame'))}</th><th data-k="mode">${esc(t('gMode'))}</th><th>${esc(t('gScore'))}</th><th data-k="nAns">${esc(t('gConcepts'))}</th><th data-k="okR">${esc(t('gOk'))}</th><th data-k="durG">${esc(t('gDur'))}</th></tr></thead><tbody></tbody></table></div></section>
 
-  <section><h2>Jugadores</h2><p class="sub">${anonOn()?'Datos identificativos ocultos.':'Datos identificativos visibles.'} Cuenta los conceptos en los que el jugador tenía el móvil en la frente.</p>
-  <div class="tbl"><table id="tP"><thead><tr><th data-k="code">Jugador</th><th>Equipo</th><th data-k="n">Conceptos</th><th data-k="ok">Acertados</th><th data-k="rate">Acierto</th><th data-k="med">Tiempo mediano</th><th data-k="nGames">Partidas</th></tr></thead><tbody></tbody></table></div></section>
+  <section><h2>${esc(t('pT'))}</h2><p class="sub">${esc(anonOn()?t('pHidden'):t('pShown'))} ${esc(t('pSub'))}</p>
+  <div class="tbl"><table id="tP"><thead><tr><th data-k="code">${esc(t('pPlayer'))}</th><th>${esc(t('pTeam'))}</th><th data-k="n">${esc(t('pConcepts'))}</th><th data-k="ok">${esc(t('pOk'))}</th><th data-k="rate">${esc(t('pRate'))}</th><th data-k="med">${esc(t('cMed'))}</th><th data-k="nGames">${esc(t('cGames'))}</th></tr></thead><tbody></tbody></table></div></section>
 
-  <section><h2>Exportar</h2><p class="sub">${anonOn()?'Las exportaciones usan códigos en lugar de datos identificativos.':'Atención: las exportaciones de jugadores y eventos incluirán nombres, correos y DNI.'}</p>
-  <div class="row" style="justify-content:flex-start"><button class="btn" id="xC">Conceptos (CSV)</button><button class="btn sec" id="xP">Jugadores (CSV)</button><button class="btn sec" id="xE">Eventos (CSV)</button></div></section>`;
+  <section><h2>${esc(t('xT'))}</h2><p class="sub">${esc(anonOn()?t('xHidden'):t('xShown'))}${nEx?' '+esc(t('xExclNote')):''}</p>
+  <div class="row" style="justify-content:flex-start"><button class="btn" id="xC">${esc(t('xC'))}</button><button class="btn sec" id="xP">${esc(t('xP'))}</button><button class="btn sec" id="xE">${esc(t('xE'))}</button></div></section>`;
   $('#fT').onchange=e=>{F.title=e.target.value;render()};$('#fM').onchange=e=>{F.mode=e.target.value;render()};
   fillC();fillG();fillP();wire();
-  const xr=$('#xRev');if(xr){xr.onclick=()=>save('guess-my-what_repaso.csv',csv([['concepto','veces','acertado','sin_acertar','definicion','palabras_prohibidas'],...hard.map(c=>[c.concept,c.n,c.rate==null?'':c.rate.toFixed(3),c.fails,c.def,c.forb])]));
-    $('#cRev').onclick=async()=>{const t=hard.map(c=>`• ${c.concept}${c.def?': '+c.def:''}`).join('\n');try{await navigator.clipboard.writeText(t);$('#cRevOk').textContent='✔ Copiado'}catch(e){$('#cRevOk').textContent='No se ha podido copiar'}}}
-  $('#xC').onclick=()=>save('guess-my-what_conceptos.csv',csv([['concepto','veces','acertados','no_acertados','pasados','por_tiempo','acierto','tiempo_mediano_s','partidas','definicion','palabras_prohibidas'],...A.concepts.map(c=>[c.concept,c.n,c.ok,c.miss,c.pass,c.time,c.rate==null?'':c.rate.toFixed(3),c.med==null?'':c.med.toFixed(1),c.nGames,c.def,c.forb])]));
-  $('#xP').onclick=()=>{const id=!anonOn();save('guess-my-what_jugadores.csv',csv([[...(id?['nombre','correo','dni']:[]),'codigo','equipos','conceptos','acertados','acierto','tiempo_mediano_s','partidas'],...A.players.map(p=>[...(id?[p.name,p.email,p.dni]:[]),p.code,[...p.teams].join(' | '),p.n,p.ok,p.rate==null?'':p.rate.toFixed(3),p.med==null?'':p.med.toFixed(1),p.nGames])]))};
-  $('#xE').onclick=()=>{const id=!anonOn();save('guess-my-what_eventos.csv',csv([['case_id','activity','timestamp',...(id?['nombre','correo','dni']:[]),'jugador','equipo','partida','modalidad','ronda','fase','concepto','exito','respuesta','duracion_s','motivo'],...A.sel.flatMap(g=>g.ans).map(e=>[e.game,e.success?'acertó':(e.resp||'no acertó'),new Date(e.ts).toISOString(),...(id?[e.name,e.email,e.dni]:[]),A.code.get(e.pid)||'',e.team,e.title,e.mode,e.round||'',e.phase,e.concept,e.success==null?'':e.success,e.resp,e.dur==null?'':e.dur,e.why])]))}}
-const cmp=(k,dir)=>(a,b)=>{const x=a[k],y=b[k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return(typeof x==='string'?x.localeCompare(y,'es'):(x<y?-1:x>y?1:0))*dir};
+  const fn=k=>`guess-my-what_${t(k)}.csv`,f3=v=>v==null?'':v.toFixed(3),f1=v=>v==null?'':v.toFixed(1);
+  const xr=$('#xRev');if(xr){xr.onclick=()=>save(fn('fRev'),csv([t('csvRev'),...hard.map(c=>[c.concept,c.n,f3(c.rate),c.fails,c.def,c.forb])]));
+    $('#cRev').onclick=async()=>{const s=hard.map(c=>`• ${c.concept}${c.def?': '+c.def:''}`).join('\n');try{await navigator.clipboard.writeText(s);$('#cRevOk').textContent=t('copied')}catch(e){$('#cRevOk').textContent=t('noCopy')}}}
+  $('#xC').onclick=()=>save(fn('fC'),csv([t('csvC'),...A.concepts.map(c=>[c.concept,c.n,c.ok,c.miss,c.pass,c.time,f3(c.rate),f1(c.med),c.nGames,c.def,c.forb])]));
+  $('#xP').onclick=()=>{const id=!anonOn();save(fn('fP'),csv([[...(id?t('csvPid'):[]),...t('csvP')],...A.players.map(p=>[...(id?[p.name,p.email,p.dni]:[]),p.code,[...p.teams].join(' | '),p.n,p.ok,f3(p.rate),f1(p.med),p.nGames])]))};
+  $('#xE').onclick=()=>{const id=!anonOn();save(fn('fE'),csv([[...t('csvE'),...(id?t('csvPid'):[]),...t('csvE2')],...A.ans.map(e=>[e.game,e.success?t('guessed'):(respL(e.resp)||t('notGuessed')),new Date(e.ts).toISOString(),...(id?[e.name,e.email,e.dni]:[]),A.code.get(e.pid)||'',e.team,A.tl(e),modeL(e.mode),e.round||'',e.phase,e.concept,e.success==null?'':e.success,respL(e.resp),e.dur==null?'':e.dur,e.why])]))}}
+const cmp=(k,dir)=>(a,b)=>{const x=a[k],y=b[k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return(typeof x==='string'?x.localeCompare(y,lang):(x<y?-1:x>y?1:0))*dir};
 function sorted(id,rows,def){const st=sortState[id];return rows.sort(st?cmp(st.k,st.dir):def)}
-function fillC(){$('#tC tbody').innerHTML=sorted('tC',[...LAST.concepts],cmp('rate',1)).map(c=>`<tr><td><b>${esc(c.concept)}</b>${c.forb?`<div class="forb">No decir: ${esc(c.forb)}</div>`:''}</td><td class="n">${c.n}</td><td>${meter(c.rate)}</td><td class="n">${c.miss||''}</td><td class="n">${c.pass||''}</td><td class="n">${tf(c.med)}</td><td class="n">${c.nGames}</td><td class="note">${esc(c.def)}</td></tr>`).join('')}
-function fillG(){const rows=LAST.sel.map(g=>({...g,nAns:g.ans.length,okR:g.ans.length?g.ans.filter(e=>e.success).length/g.ans.length:null,durG:(g.end||g.last)-(g.start||g.first)}));
-  $('#tG tbody').innerHTML=sorted('tG',rows,cmp('first',-1)).map(g=>`<tr><td class="n">${fmtD(g.first)}</td><td>${esc(g.title||'(sin título)')}</td><td>${esc(g.mode||'—')}</td><td>${esc(g.marcador||'sin terminar')}</td><td class="n">${g.nAns}</td><td>${meter(g.okR)}</td><td class="n">${tf(g.durG/1000)}</td></tr>`).join('')}
-function fillP(){$('#tP tbody').innerHTML=sorted('tP',[...LAST.players],cmp('code',1)).map(p=>`<tr><td>${who(p)}</td><td>${[...p.teams].map(t=>`<span class="team">${esc(t)}</span>`).join(' ')}</td><td class="n">${p.n}</td><td class="n">${p.ok}</td><td>${meter(p.rate)}</td><td class="n">${tf(p.med)}</td><td class="n">${p.nGames}</td></tr>`).join('')}
-function wire(){$$('th[data-k]').forEach(th=>th.onclick=()=>{const t=th.closest('table').id,k=th.dataset.k,c=sortState[t];const dir=c&&c.k===k?-c.dir:(['concept','title','mode','code'].includes(k)?1:-1);sortState[t]={k,dir};
-  $$('#'+t+' th').forEach(h=>h.removeAttribute('aria-sort'));th.setAttribute('aria-sort',dir>0?'ascending':'descending');({tC:fillC,tG:fillG,tP:fillP})[t]()})}
-const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"',csv=r=>'\ufeff'+r.map(x=>x.map(q).join(';')).join('\n');
-function save(filename,data){
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'text/csv'}));a.download=filename;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+function fillC(){$('#tC tbody').innerHTML=sorted('tC',[...LAST.concepts],cmp('rate',1)).map(c=>`<tr><td><b>${esc(c.concept)}</b>${c.forb?`<div class="forb">${esc(t('noSay'))} ${esc(c.forb)}</div>`:''}</td><td class="n">${c.n}</td><td>${meter(c.rate)}</td><td class="n">${c.miss||''}</td><td class="n">${c.pass||''}</td><td class="n">${tf(c.med)}</td><td class="n">${c.nGames}</td><td class="note">${esc(c.def)}</td></tr>`).join('')}
+function fillG(){const rows=LAST.sel.map(g=>({...g,title:LAST.tl(g),mode:modeL(g.mode),nAns:g.ans.length,okR:g.ans.length?g.ans.filter(e=>e.success).length/g.ans.length:null,durG:(g.end||g.last)-(g.start||g.first)}));
+  $('#tG tbody').innerHTML=sorted('tG',rows,cmp('first',-1)).map(g=>`<tr><td class="n">${fmtD(g.first)}</td><td>${esc(g.title)}</td><td>${esc(g.mode)}</td><td>${esc(g.marcador||t('unfinished'))}</td><td class="n">${g.nAns}</td><td>${meter(g.okR)}</td><td class="n">${tf(g.durG/1000)}</td></tr>`).join('')}
+function fillP(){$('#tP tbody').innerHTML=sorted('tP',[...LAST.players],cmp('code',1)).map(p=>`<tr><td>${who(p)}</td><td>${[...p.teams].map(x=>`<span class="team">${esc(x)}</span>`).join(' ')}</td><td class="n">${p.n}</td><td class="n">${p.ok}</td><td>${meter(p.rate)}</td><td class="n">${tf(p.med)}</td><td class="n">${p.nGames}</td></tr>`).join('')}
+function wire(){$$('th[data-k]').forEach(th=>th.onclick=()=>{const id=th.closest('table').id,k=th.dataset.k,c=sortState[id];const dir=c&&c.k===k?-c.dir:(['concept','title','mode','code'].includes(k)?1:-1);sortState[id]={k,dir};
+  $$('#'+id+' th').forEach(h=>h.removeAttribute('aria-sort'));th.setAttribute('aria-sort',dir>0?'ascending':'descending');({tC:fillC,tG:fillG,tP:fillP})[id]()})}
+const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"',csv=r=>'﻿'+r.map(x=>x.map(q).join(';')).join('\n');
+function save(filename,data){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'text/csv'}));a.download=filename;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 const drop=$('#drop');
 $('#pick').onclick=()=>{$('#fileIn').value='';$('#fileIn').click()};
 $('#fileIn').onchange=()=>addFiles([...$('#fileIn').files]);
 $('#clear').onclick=()=>{EV=new Map();FILES=[];F={title:'all',mode:'all'};sortState={};render()};
-['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over')}));
-['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over')}));
+['dragenter','dragover'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.remove('over')}));
 drop.addEventListener('drop',e=>addFiles([...e.dataTransfer.files]));
 $('#anon').onchange=render;
+applyLang();render();
 </script>
 </body>
 </html>

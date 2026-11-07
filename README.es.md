@@ -83,7 +83,7 @@ El panel de análisis convierte los registros de actividad en un resumen de cóm
 
 **Abrirlo:** https://lorenagmad.github.io/Guess-My-What/panel.html
 
-De momento el panel está en español. Lee los registros de partidas jugadas en cualquiera de los dos idiomas.
+El panel está en **español** y en **inglés**, con los mismos botones **Español / English** que el juego, y se abre en el idioma que elegiste en el juego. Lee los registros de partidas jugadas en cualquiera de los dos idiomas.
 
 ### Paso a paso
 
@@ -91,8 +91,9 @@ De momento el panel está en español. Lee los registros de partidas jugadas en 
 2. **Jugad la partida** como siempre.
 3. **Descarga el registro** desde la pantalla final con **Descargar el registro (xAPI)**. Hazlo antes de empezar otra partida: el registro solo se guarda en el dispositivo hasta entonces. Obtendrás un archivo llamado `guess-my-what_….json`.
 4. **Abre el panel** y arrastra los archivos al recuadro de líneas discontinuas, o pulsa **Elegir archivos**. Puedes cargar varios a la vez, de distintos grupos y días: se unen y se quitan los duplicados.
-5. **Consulta los resultados.** Con los filtros de arriba puedes ver una sola partida (o asignatura) o una sola modalidad.
-6. **Exporta** lo que necesites en archivos CSV, que se abren con Excel o LibreOffice.
+5. **Deja fuera a quien no deba contarse (opcional).** Abre **Excluir participantes** y escribe, uno por línea, el nombre o código con el que jugó cada uno (también vale su correo o su DNI). Consulta [Excluir participantes](#excluir-participantes).
+6. **Consulta los resultados.** Con los filtros de arriba puedes ver una sola partida (o asignatura) o una sola modalidad.
+7. **Exporta** lo que necesites en archivos CSV, que se abren con Excel o LibreOffice.
 
 Para empezar de nuevo con otros archivos, pulsa **Vaciar**.
 
@@ -117,6 +118,16 @@ Ten en cuenta que:
 - La ocultación solo afecta al panel. **Los archivos `.json` descargados siguen conteniendo lo que escribieron los participantes** (nombre o apodo y, si los pediste, correo y DNI). Guárdalos como cualquier otro dato de tus estudiantes, por ejemplo en el almacenamiento de tu institución, y bórralos cuando ya no los necesites.
 - Para recoger los mínimos datos personales posibles, pide a los participantes que usen un apodo o un código en lugar de su nombre real, y deja el correo y el DNI en **No pedir**.
 - Si vas a usar los datos para investigar, necesitas el consentimiento informado de los participantes y la aprobación que exija tu institución. Publica solo resultados agregados.
+
+### Excluir participantes
+
+Usa **Excluir participantes** cuando haya participantes que no deban contarse, por ejemplo estudiantes que no han dado su consentimiento para un estudio.
+
+- Escribe un participante por línea: el nombre o código con el que jugó, o su correo o su DNI. Da igual usar mayúsculas o dejar espacios de más.
+- Sus conceptos desaparecen del resumen, de todas las tablas y de todas las exportaciones. El panel indica cuántos participantes y conceptos se han dejado fuera, y avisa si alguna línea no coincide con nadie de los registros cargados.
+- Puedes mantener marcada **Ocultar datos identificativos** todo el tiempo: el panel nunca muestra a quién corresponde cada línea.
+- Los códigos (J-01, J-02…) se asignan solo a los participantes que quedan.
+- La lista no se guarda. Si recargas la página, vuelve a escribirla.
 
 ## Privacidad
 

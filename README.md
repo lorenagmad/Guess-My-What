@@ -85,33 +85,34 @@ The analysis panel turns the activity logs into a summary of how your class play
 
 **Open it:** https://lorenagmad.github.io/Guess-My-What/panel.html
 
-The panel is in Spanish for now. It reads logs from games played in either language.
+The panel is in **English** and **Spanish**, with the same **Español / English** buttons as the game, and it opens in the language you chose in the game. It reads logs from games played in either language.
 
 ### Step by step
 
 1. **Before playing, turn on the log.** On the setup screen, set **Activity log (xAPI)** to **Keep a log**. Choose whether to ask for the email and the ID number (*Don't ask* is enough for the panel; the player's name or a nickname is always asked for).
 2. **Play the game** as usual.
 3. **Download the log** from the final screen with **Download the log (xAPI)**. Do it before you start another game: the log is kept on the device only until then. You get a file called `guess-my-what_….json`.
-4. **Open the panel** and drag the files onto the dashed box, or press **Elegir archivos** (*Choose files*). You can load several files at once, from different groups and days: they are merged and duplicates are removed.
-5. **Read the results.** Use the filters at the top to see one game (or subject) or one mode.
-6. **Export** what you need as CSV files, which open in Excel or LibreOffice.
+4. **Open the panel** and drag the files onto the dashed box, or press **Choose files**. You can load several files at once, from different groups and days: they are merged and duplicates are removed.
+5. **Leave out anyone who should not be counted (optional).** Open **Exclude players** and write, one per line, the name or code each of them used in the game (their email or ID number also works). See [Excluding players](#excluding-players).
+6. **Read the results.** Use the filters at the top to see one game (or subject) or one mode.
+7. **Export** what you need as CSV files, which open in Excel or LibreOffice.
 
-To start again with other files, press **Vaciar** (*Clear*).
+To start again with other files, press **Clear**.
 
 ### What you see
 
 | Section | What it shows |
 | --- | --- |
 | Summary | Number of games, players and concepts played, percentage guessed, median time to guess and how many concepts were missed at least once. |
-| **Repaso** (*Review*) | The concepts that cost the most, with their definition and forbidden words, ready to go over in class. You can download it as CSV or copy it. |
-| **Tres rondas** (*Three rounds*) | Only for *Three rounds* games: how the success rate changes from describing freely, to one word, to mime. |
-| **Conceptos** (*Concepts*) | Each concept: times played, guessed, missed, passed and median time. Click a column to sort. |
-| **Partidas** (*Games*) | Each game: date, name, mode, final score, concepts played, success rate and duration. |
-| **Jugadores** (*Players*) | Each player: team, concepts played with the phone on their forehead, success rate and median time. |
+| **Review** | The concepts that cost the most, with their definition and forbidden words, ready to go over in class. You can download it as CSV or copy it. |
+| **Three rounds** | Only for *Three rounds* games: how the success rate changes from describing freely, to one word, to mime. |
+| **Concepts** | Each concept: times played, guessed, missed, passed and median time. Click a column to sort. |
+| **Games** | Each game: date, name, mode, final score, concepts played, success rate and duration. |
+| **Players** | Each player: team, concepts played with the phone on their forehead, success rate and median time. |
 
 ### Hiding personal data
 
-The **Ocultar datos identificativos** (*Hide identifying data*) box at the top is **ticked by default**. While it is ticked, names, emails and ID numbers are replaced by codes (J-01, J-02…) on screen and in every export, and the names of the loaded files are hidden. Untick it only if you need to see who is who, for example to give feedback to a student.
+The **Hide identifying data** box at the top is **ticked by default**. While it is ticked, names, emails and ID numbers are replaced by codes (J-01, J-02…) on screen and in every export, and the names of the loaded files are hidden. Untick it only if you need to see who is who, for example to give feedback to a student.
 
 Keep in mind:
 
@@ -119,6 +120,16 @@ Keep in mind:
 - Hiding only affects the panel. **The `.json` files you downloaded still contain whatever the players typed** (name or nickname and, if you asked for them, email and ID number). Store them as you would any other student data, for example on your institution's storage, and delete them when you no longer need them.
 - To collect as little personal data as possible, ask players to use a nickname or a code instead of their real name, and set the email and the ID number to *Don't ask*.
 - If you use the data for research, you need the participants' informed consent and the approval your institution requires. Publish only aggregated results.
+
+### Excluding players
+
+Use **Exclude players** when some players must not be counted, for example students who have not given consent for a study.
+
+- Write one player per line: the name or code they used in the game, or their email or ID number. Capital letters and extra spaces don't matter.
+- Their concepts disappear from the summary, every table and every export. The panel shows how many players and concepts were left out, and warns you if a line doesn't match anyone in the loaded logs.
+- You can keep **Hide identifying data** ticked the whole time: the panel never shows who each line belongs to.
+- The codes (J-01, J-02…) are given only to the players who remain.
+- The list is not saved. If you reload the page, write it again.
 
 ## Privacy
 
