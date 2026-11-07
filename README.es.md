@@ -72,16 +72,57 @@ Para usarlo en clase, el juego puede guardar un registro de actividad en formato
 - **Qué guarda:** el inicio de la partida (modalidad, equipos y sus participantes, número de conceptos, tiempo y si se muestran las palabras prohibidas), cada concepto jugado (quién, de qué equipo, si se acertó, cuánto tardó, cómo se marcó: sensor, botón o tiempo, la ronda, y sus palabras prohibidas y definición) y la puntuación final.
 - **Identificación:** el nombre del participante siempre se pide. El correo y un DNI o documento pueden ser «No pedir», «Opcional» u «Obligatorio».
 - **Consentimiento:** con el registro activado, el juego pide confirmar que los participantes saben que se guarda su actividad antes de poder empezar.
-- **Descarga:** el registro se descarga como archivo `.json` desde la pantalla final, listo para importarlo en un Learning Record Store (LRS) o para analizarlo.
+- **Descarga:** el registro se descarga como archivo `.json` desde la pantalla final, listo para abrirlo en el [panel de análisis](#panel-de-análisis) o para importarlo en un Learning Record Store (LRS).
 - **Formato:** los nombres de los campos y los valores de las respuestas son iguales en los dos idiomas, para poder analizar juntos registros de partidas en español y en inglés. Los nombres de los verbos y de las actividades se escriben en el idioma de la partida y se marcan con él (`es-ES` o `en-US`).
 
 Para usar el juego fuera del aula, pide solo el nombre y deja el registro desactivado.
 
+## Panel de análisis
+
+El panel de análisis convierte los registros de actividad en un resumen de cómo ha jugado tu clase: qué conceptos han costado más, cómo ha ido cada partida y cómo le ha ido a cada participante. Es una página aparte que funciona entera en tu navegador: los archivos que cargas **no se suben a ningún sitio**.
+
+**Abrirlo:** https://lorenagmad.github.io/Guess-My-What/panel.html
+
+De momento el panel está en español. Lee los registros de partidas jugadas en cualquiera de los dos idiomas.
+
+### Paso a paso
+
+1. **Antes de jugar, activa el registro.** En la pantalla de preparación, pon **Registro de actividad (xAPI)** en **Con registro**. Elige si se pide el correo y el DNI (con **No pedir** basta para el panel; el nombre o un apodo se pide siempre).
+2. **Jugad la partida** como siempre.
+3. **Descarga el registro** desde la pantalla final con **Descargar el registro (xAPI)**. Hazlo antes de empezar otra partida: el registro solo se guarda en el dispositivo hasta entonces. Obtendrás un archivo llamado `guess-my-what_….json`.
+4. **Abre el panel** y arrastra los archivos al recuadro de líneas discontinuas, o pulsa **Elegir archivos**. Puedes cargar varios a la vez, de distintos grupos y días: se unen y se quitan los duplicados.
+5. **Consulta los resultados.** Con los filtros de arriba puedes ver una sola partida (o asignatura) o una sola modalidad.
+6. **Exporta** lo que necesites en archivos CSV, que se abren con Excel o LibreOffice.
+
+Para empezar de nuevo con otros archivos, pulsa **Vaciar**.
+
+### Qué muestra
+
+| Sección | Qué muestra |
+| --- | --- |
+| Resumen | Número de partidas, participantes y conceptos jugados, porcentaje de aciertos, tiempo mediano para acertar y cuántos conceptos se han fallado alguna vez. |
+| **Repaso** | Los conceptos que más han costado, con su definición y sus palabras prohibidas, listos para comentarlos en clase. Se puede descargar en CSV o copiar. |
+| **Tres rondas** | Solo en partidas de *Tres rondas*: cómo cambia el acierto al pasar de explicar libremente a una sola palabra y a la mímica. |
+| **Conceptos** | Cada concepto: veces jugado, acertado, no acertado, pasado y tiempo mediano. Pulsa una columna para ordenar. |
+| **Partidas** | Cada partida: fecha, nombre, modalidad, marcador final, conceptos jugados, acierto y duración. |
+| **Jugadores** | Cada participante: equipo, conceptos que jugó con el móvil en la frente, acierto y tiempo mediano. |
+
+### Ocultar los datos personales
+
+La casilla **Ocultar datos identificativos** de la parte superior está **marcada por defecto**. Mientras lo esté, los nombres, correos y DNI se sustituyen por códigos (J-01, J-02…) en pantalla y en todas las exportaciones, y se ocultan los nombres de los archivos cargados. Desmárcala solo si necesitas saber quién es quién, por ejemplo para comentar sus resultados con un estudiante.
+
+Ten en cuenta que:
+
+- Los códigos se asignan cada vez que cargas archivos, por orden alfabético de los participantes. Si cargas otro conjunto de archivos, la misma persona puede recibir otro código.
+- La ocultación solo afecta al panel. **Los archivos `.json` descargados siguen conteniendo lo que escribieron los participantes** (nombre o apodo y, si los pediste, correo y DNI). Guárdalos como cualquier otro dato de tus estudiantes, por ejemplo en el almacenamiento de tu institución, y bórralos cuando ya no los necesites.
+- Para recoger los mínimos datos personales posibles, pide a los participantes que usen un apodo o un código en lugar de su nombre real, y deja el correo y el DNI en **No pedir**.
+- Si vas a usar los datos para investigar, necesitas el consentimiento informado de los participantes y la aprobación que exija tu institución. Publica solo resultados agregados.
+
 ## Privacidad
 
-Todo se queda en el dispositivo. La configuración, los participantes, la partida en curso y el registro de actividad se guardan en el navegador (`localStorage`) y nunca se envían a un servidor. El juego solo se conecta a internet para:
+Todo se queda en el dispositivo. La configuración, los participantes, la partida en curso y el registro de actividad se guardan en el navegador (`localStorage`) y nunca se envían a un servidor. El panel de análisis lee en tu navegador los archivos que cargas y tampoco los envía a ningún sitio. El juego y el panel solo se conectan a internet para:
 
-- cargar su tipografía (Nunito) desde Google Fonts,
+- cargar sus tipografías desde Google Fonts (no se envía ningún dato de las partidas),
 - leer una hoja de Google, solo cuando la cargas.
 
 ## Diseño y accesibilidad
@@ -93,10 +134,10 @@ Todo se queda en el dispositivo. La configuración, los participantes, la partid
 
 ## Publicarlo tú
 
-Todo el juego es un único archivo, `index.html`, sin compilación ni dependencias que instalar.
+Todo el juego es un único archivo, `index.html`, y el panel de análisis es otro, `panel.html`. No hay compilación ni dependencias que instalar.
 
 - **En tu ordenador:** abre `index.html` en un navegador. Los sensores de movimiento necesitan HTTPS, así que para probarlo del todo en un móvil, publícalo primero.
-- **En GitHub Pages:** en el repositorio, ve a **Settings → Pages**, elige **Deploy from a branch**, selecciona `main` y `/ (root)`, y guarda. El juego estará en `https://<usuario>.github.io/<repositorio>/`.
+- **En GitHub Pages:** en el repositorio, ve a **Settings → Pages**, elige **Deploy from a branch**, selecciona `main` y `/ (root)`, y guarda. El juego estará en `https://<usuario>.github.io/<repositorio>/` y el panel en `https://<usuario>.github.io/<repositorio>/panel.html`.
 
 ## Créditos
 
