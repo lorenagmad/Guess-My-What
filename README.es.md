@@ -48,7 +48,7 @@ Paraguas * lluvia, mojarse, abrir * Objeto que se abre para protegerse de la llu
 
 Otras formas de llenar la lista:
 
-- **Desde una hoja de Google:** comparte la hoja como «Cualquier persona con el enlace» y pega su dirección. La columna A es el concepto, la B las palabras prohibidas (separadas por comas) y la C la definición. Se salta una cabecera como «Conceptos».
+- **Desde una hoja de Google:** comparte la hoja como «Cualquier persona con el enlace» y pega su dirección. La columna A es el concepto, la B las palabras prohibidas (separadas por comas) y la C la definición. Se salta una cabecera como «Conceptos». Si subes un Excel a Drive, guárdalo antes como hoja de cálculo de Google.
 - **Usar ejemplo:** 20 conceptos cotidianos, con palabras prohibidas y definiciones, en el idioma que hayas elegido.
 - **Borrar la lista:** quita todos los conceptos. Tócalo dos veces para confirmar.
 
@@ -72,7 +72,7 @@ Para usarlo en clase, el juego puede guardar un registro de actividad en formato
 - **Qué guarda:** el inicio de la partida (modalidad, equipos y sus participantes, número de conceptos, tiempo y si se muestran las palabras prohibidas), cada concepto jugado (quién, de qué equipo, si se acertó, cuánto tardó, cómo se marcó: sensor, botón o tiempo, la ronda, y sus palabras prohibidas y definición) y la puntuación final.
 - **Identificación:** el nombre del participante siempre se pide. El correo y un DNI o documento pueden ser «No pedir», «Opcional» u «Obligatorio».
 - **Consentimiento:** con el registro activado, el juego pide confirmar que los participantes saben que se guarda su actividad antes de poder empezar.
-- **Descarga:** el registro se descarga como archivo `.json` desde la pantalla final, listo para importarlo en un Learning Record Store (LRS) o para analizarlo.
+- **Descarga:** el registro se descarga como archivo `.json` desde la pantalla final, listo para importarlo en un Learning Record Store (LRS) o para analizarlo. En iPhone se abre el menú Compartir para elegir «Guardar en Archivos». Si el juego está abierto dentro de otra aplicación (la del campus, una red social…), avisa de que hay que abrirlo en Safari o Chrome. Como último recurso, **Copiar el registro** lo copia como texto.
 - **Formato:** los nombres de los campos y los valores de las respuestas son iguales en los dos idiomas, para poder analizar juntos registros de partidas en español y en inglés. Los nombres de los verbos y de las actividades se escriben en el idioma de la partida y se marcan con él (`es-ES` o `en-US`).
 
 Para usar el juego fuera del aula, pide solo el nombre y deja el registro desactivado.

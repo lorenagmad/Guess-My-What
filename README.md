@@ -48,7 +48,8 @@ Umbrella * rain, wet, open * Object you open to keep the rain off
 
 Other ways to fill the list:
 
-- **From a Google Sheet:** share the sheet as "Anyone with the link" and paste its address. Column A is the concept, column B the forbidden words (separated by commas) and column C the definition. A header such as "Concepts" is skipped.
+- **From a Google Sheet:** share the sheet as "Anyone with the link" and paste its address. Column A is the concept, column B the forbidden words (separated by commas) and column C the definition. A header such as "Concepts" is skipped. A Google Drive link works too. If you upload an Excel file to Drive, save it as a Google Sheet first.
+- **Link for the class:** after loading the sheet, the **Copy link for the class** button creates a game address that includes the sheet (`?sheet=…`, and optionally `&title=…`). When opened, the game loads the concepts by itself, with nothing to paste; this is the link to post on the virtual campus.
 - **Use the example:** 20 everyday concepts, with forbidden words and definitions, in the language you have chosen.
 - **Clear the list:** removes every concept. Tap it twice to confirm.
 
@@ -72,7 +73,7 @@ For classroom use, the game can keep an activity log in [xAPI](https://xapi.com/
 - **What it records:** the start of the game (mode, teams and their players, number of concepts, time limit, whether forbidden words are shown), every concept played (who, which team, whether it was guessed, how long it took, how it was marked: sensor, button or time, the round, and its forbidden words and definition) and the final score.
 - **Identification:** the player's name is always asked for. The email and an ID number can each be "Don't ask", "Optional" or "Required".
 - **Consent:** when the log is on, the game asks you to confirm that the players know their activity is being recorded before you can start.
-- **Download:** the log is downloaded as a `.json` file from the final screen, ready to import into a Learning Record Store (LRS) or to analyse.
+- **Download:** the log is downloaded as a `.json` file from the final screen, ready to import into a Learning Record Store (LRS) or to analyse. On iPhone the Share menu opens so you can choose "Save to Files". If the game is open inside another app (the campus app, a social network…), it warns that it must be opened in Safari or Chrome. As a last resort, **Copy the log** copies it as text.
 - **Format:** the field names and response values are the same in both languages, so logs from Spanish and English games can be analysed together. The verb and activity names are written in the game's language and tagged with it (`es-ES` or `en-US`).
 
 To use the game outside the classroom, ask only for the name and leave the log off.

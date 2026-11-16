@@ -300,6 +300,7 @@ textarea{font-weight:600;font-size:16px;line-height:1.6;white-space:pre;overflow
     <div class="stack">
       <button class="btn big" id="goSetup" data-i18n="goSetup">Preparar partida</button>
       <button class="btn big sec hidden" id="goResume" data-i18n="goResume">Continuar la partida guardada</button>
+      <p class="note hidden" id="homeMsg" role="status" style="margin:0"></p>
     </div>
   </div>
 </section>
@@ -314,6 +315,7 @@ textarea{font-weight:600;font-size:16px;line-height:1.6;white-space:pre;overflow
       <label class="f"><span data-i18n="lblSheet">Desde una hoja de Google</span><small data-i18n="smSheet">Comparte la hoja como «Cualquier persona con el enlace» y pega aquí su dirección. Columna A: concepto · B: palabras prohibidas, separadas por comas · C: definición.</small>
         <div class="row" style="flex-wrap:nowrap"><input type="text" id="cSheet" inputmode="url" placeholder="https://docs.google.com/spreadsheets/d/…" style="flex:1"><button class="btn sec" id="cSheetGo" data-i18n="cSheetGo">Cargar</button></div></label>
       <p class="err" id="cImpErr"></p>
+      <div class="row hidden" id="cShareRow"><button class="btn sec" id="cShare" data-i18n="cShare">Copiar enlace para la clase</button><span class="note" id="cShareMsg" style="user-select:all;-webkit-user-select:all;word-break:break-all"></span></div>
     </div>
     <div class="panel stack">
       <div class="teams">
@@ -432,9 +434,9 @@ modeThree:'Tres rondas',modeHelpThree:'Los mismos conceptos se juegan tres veces
   sensPreview:'Esta vista previa no deja usar los sensores. Funcionarán al abrir el juego desde su propia dirección (por ejemplo, GitHub Pages).',
   sensNoData:'No llegan datos de movimiento. En Chrome, revisa Configuración › Configuración de sitios › Sensores de movimiento. Mientras, usa los botones de respaldo.',sensWaiting:'Esperando datos…',
   noConcepts:'No he encontrado conceptos en la columna A de {src}.',srcSheet:'la hoja',
-  sheetBadUrl:'Pega la dirección completa de la hoja de Google (empieza por https://docs.google.com/spreadsheets/…).',sheetLoading:'Cargando la hoja…',
+  sheetBadUrl:'No reconozco esa dirección. Abre la hoja de Google y copia la dirección que aparece en el navegador (empieza por https://docs.google.com/spreadsheets/…). Si la copiaste del campus virtual, puede que sea un enlace al campus y no a la hoja.',sheetLoading:'Cargando la hoja…',
   sheetPreview:'Desde esta vista previa no se puede acceder a Google. Funcionará cuando el juego esté publicado en su propia dirección (por ejemplo, GitHub Pages). Mientras, copia la columna de la hoja y pégala en la lista.',
-  sheetErr:'No he podido abrir la hoja. Comprueba que está compartida como «Cualquier persona con el enlace».',errTwo:'Escribe al menos dos conceptos, uno por línea.',
+  sheetErr:'No he podido abrir la hoja. Comprueba que está compartida como «Cualquier persona con el enlace». Si subiste un Excel a Drive, ábrelo, elige Archivo › Guardar como hoja de cálculo de Google y comparte esa copia.',cShare:'Copiar enlace para la clase',shareCopied:'Enlace copiado. Publícalo en el campus: al abrirlo, el juego carga esta hoja sin que haya que pegar nada.',shareShow:'Copia este enlace y publícalo en el campus: {u}',homeLoading:'Cargando los conceptos de la hoja…',homeSheet:'Conceptos cargados desde la hoja: {n}. Pulsa «Preparar partida» para empezar.',homeSheetErr:'No se han podido cargar los conceptos del enlace. Comprueba la conexión a Internet y vuelve a abrir el enlace.',errTwo:'Escribe al menos dos conceptos, uno por línea.',
   remove:'Quitar a {n}',noPlayers:'Sin participantes',errName:'Escribe el nombre.',errDup:'Ya hay un participante con ese nombre. Añade una inicial.',errEmail:'Escribe el correo.',errEmailBad:'El correo no parece válido.',errDni:'Escribe el DNI o documento.',
   errTeams:'Cada equipo necesita al menos un participante.',errConsent:'Marca la casilla del registro de actividad para continuar.',
   fbOk:'Acertado',fbKo:'No acertado',fbPass:'Pasar',readyH:'Empieza {team}',phoneOn:'Se pone el móvil en la frente:',readyTimed:'Ronda de {s} s: inclina hacia abajo si aciertas y hacia arriba para pasar.',readyConcept:'Con la pantalla hacia su equipo, en horizontal.',
@@ -444,7 +446,7 @@ modeThree:'Tres rondas',modeHelpThree:'Los mismos conceptos se juegan tres veces
   roundEndH:'¡Tiempo! {refCap} ha acertado {n}',noConceptsPlayed:'Ningún concepto',nowPlays:'Ahora juega {ref}. Se pone el móvil en la frente:',tapNextRound:'Haz clic para la siguiente partida',faceUp:'Pon el móvil boca arriba en la mesa.',
   paused:'Pausa',leftN:'Quedan {a} y {b} conceptos.',resume:'Seguir jugando',endNow:'Terminar la partida ahora',toHome:'Salir a la portada',
   tie:'¡Empate!',wins:'¡Gana {team}!',statLine:'{c} aciertos · {m} {kind}',passedW:'pasados',failsW:'fallos',played:'Conceptos jugados',none:'Ninguno',
-  dlX:'Descargar el registro (xAPI)',dlNote:'Se guarda en este dispositivo hasta que empieces otra partida.',again:'Revancha con los mismos equipos',backHome:'Volver a la portada',fileBase:'guess-my-what',
+  dlX:'Descargar el registro (xAPI)',dlNote:'Se guarda en este dispositivo hasta que empieces otra partida.',dlNoteIOS:'En iPhone se abre el menú Compartir: elige «Guardar en Archivos» y súbelo después al campus desde la app Archivos.',dlInApp:'Estás dentro de otra aplicación (por ejemplo, la del campus o una red social) y aquí no suele poder descargarse. Abre el juego en Safari o Chrome para descargar el registro.',dlCopy:'Copiar el registro',dlCopied:'Registro copiado. Pégalo en un documento de texto o en un correo.',dlCopyErr:'No se ha podido copiar el registro.',again:'Revancha con los mismos equipos',backHome:'Volver a la portada',fileBase:'guess-my-what',
   vInit:'empezó',vAns:'respondió',vComp:'completó',xLang:'es-ES',
   words:['¿?¿?','juego','adivinar','equipos','turnos','rondas','mímica','¿?'],
   sample:['Playa * arena, mar, verano * Orilla del mar cubierta de arena donde la gente se baña y toma el sol', 'Bicicleta * pedales, ruedas, montar * Vehículo de dos ruedas que se mueve pedaleando', 'Cumpleaños * tarta, velas, fiesta * Día en que se celebra que alguien cumple un año más', 'Paraguas * lluvia, mojarse, abrir * Objeto que se abre para protegerse de la lluvia', 'Pizza * Italia, queso, horno * Masa redonda con tomate, queso y otros ingredientes, cocinada al horno', 'Volcán * lava, montaña, erupción * Montaña por la que puede salir lava del interior de la Tierra', 'Guitarra * cuerdas, tocar, música * Instrumento musical de seis cuerdas que se toca con los dedos', 'Biblioteca * libros, leer, silencio * Lugar donde se guardan libros para leerlos o llevarlos prestados', 'Astronauta * espacio, cohete, Luna * Persona que viaja al espacio', 'Arcoíris * colores, lluvia, cielo * Arco de colores que aparece en el cielo cuando sale el sol tras la lluvia', 'Fútbol * balón, gol, portería * Deporte en el que dos equipos intentan meter un balón en la portería contraria con los pies', 'Reloj * hora, minutos, muñeca * Objeto que sirve para saber la hora', 'Dinosaurio * extinto, reptil, fósil * Reptil gigante que vivió hace millones de años', 'Elefante * trompa, grande, colmillos * Animal terrestre muy grande con trompa y grandes orejas', 'Helado * frío, cucurucho, verano * Postre dulce y congelado', 'Avión * volar, alas, aeropuerto * Vehículo con alas que vuela y transporta personas', 'Médico * hospital, enfermo, receta * Persona que cura a los enfermos', 'Nieve * frío, blanco, invierno * Agua helada que cae del cielo en copos blancos', 'Cine * película, pantalla, palomitas * Sala donde se proyectan películas', 'Hormiga * pequeña, insecto, hormiguero * Insecto muy pequeño que vive en colonias y trabaja en equipo']},
@@ -477,9 +479,9 @@ modeThree:'Three rounds',modeHelpThree:'The same concepts are played three times
   sensPreview:'This preview cannot use the motion sensors. They will work when you open the game from its own address (for example, GitHub Pages).',
   sensNoData:'No motion data is arriving. In Chrome, check Settings › Site settings › Motion sensors. Meanwhile, use the backup buttons.',sensWaiting:'Waiting for data…',
   noConcepts:'No concepts found in column A of {src}.',srcSheet:'the sheet',
-  sheetBadUrl:'Paste the full address of the Google Sheet (it starts with https://docs.google.com/spreadsheets/…).',sheetLoading:'Loading the sheet…',
+  sheetBadUrl:'That address is not recognised. Open the Google Sheet and copy the address shown in the browser (it starts with https://docs.google.com/spreadsheets/…). If you copied it from the virtual campus, it may be a link to the campus rather than to the sheet.',sheetLoading:'Loading the sheet…',
   sheetPreview:'This preview cannot reach Google. It will work once the game is published at its own address (for example, GitHub Pages). Meanwhile, copy the column from the sheet and paste it into the list.',
-  sheetErr:'The sheet could not be opened. Check that it is shared as “Anyone with the link”.',errTwo:'Write at least two concepts, one per line.',
+  sheetErr:'The sheet could not be opened. Check that it is shared as “Anyone with the link”. If you uploaded an Excel file to Drive, open it, choose File › Save as Google Sheets and share that copy.',cShare:'Copy link for the class',shareCopied:'Link copied. Post it on the campus: when opened, the game loads this sheet without pasting anything.',shareShow:'Copy this link and post it on the campus: {u}',homeLoading:'Loading the concepts from the sheet…',homeSheet:'Concepts loaded from the sheet: {n}. Tap “Set up a game” to start.',homeSheetErr:'The concepts from the link could not be loaded. Check your Internet connection and open the link again.',errTwo:'Write at least two concepts, one per line.',
   remove:'Remove {n}',noPlayers:'No players yet',errName:'Write the name.',errDup:'There is already a player with that name. Add an initial.',errEmail:'Write the email.',errEmailBad:'The email does not look valid.',errDni:'Write the ID number.',
   errTeams:'Each team needs at least one player.',errConsent:'Tick the activity log box to continue.',
   fbOk:'Correct',fbKo:'Missed',fbPass:'Pass',readyH:'{team} starts',phoneOn:'Phone on the forehead:',readyTimed:'{s}-second round: tilt down when you get it, tilt up to pass.',readyConcept:'Screen facing the team, held sideways.',
@@ -489,7 +491,7 @@ modeThree:'Three rounds',modeHelpThree:'The same concepts are played three times
   roundEndH:'Time! {refCap} got {n} right',noConceptsPlayed:'No concepts',nowPlays:'Now {ref} plays. Phone on the forehead:',tapNextRound:'Tap for the next round',faceUp:'Put the phone face up on the table.',
   paused:'Paused',leftN:'{a} and {b} concepts left.',resume:'Keep playing',endNow:'End the game now',toHome:'Back to the home screen',
   tie:'It’s a tie!',wins:'{team} wins!',statLine:'{c} correct · {m} {kind}',passedW:'passed',failsW:'missed',played:'Concepts played',none:'None',
-  dlX:'Download the log (xAPI)',dlNote:'It stays on this device until you start another game.',again:'Rematch with the same teams',backHome:'Back to the home screen',fileBase:'guess-my-what',
+  dlX:'Download the log (xAPI)',dlNote:'It stays on this device until you start another game.',dlNoteIOS:'On iPhone the Share menu opens: choose “Save to Files” and then upload it to the campus from the Files app.',dlInApp:'You are inside another app (for example, the campus app or a social network), where downloads usually fail. Open the game in Safari or Chrome to download the log.',dlCopy:'Copy the log',dlCopied:'Log copied. Paste it into a text document or an email.',dlCopyErr:'The log could not be copied.',again:'Rematch with the same teams',backHome:'Back to the home screen',fileBase:'guess-my-what',
   vInit:'initialized',vAns:'answered',vComp:'completed',xLang:'en-US',
   words:['???','game','guess','teams','turns','rounds','mime','?!'],
   sample:['Beach * sand, sea, summer * Strip of sand by the sea where people swim and sunbathe', 'Bicycle * pedals, wheels, ride * Two-wheeled vehicle you move by pedalling', 'Birthday * cake, candles, party * Day when someone celebrates being one year older', 'Umbrella * rain, wet, open * Object you open to keep the rain off', 'Pizza * Italy, cheese, oven * Round dough with tomato, cheese and toppings, baked in an oven', 'Volcano * lava, mountain, eruption * Mountain from which lava can come out of the Earth', 'Guitar * strings, play, music * Six-stringed musical instrument played with the fingers', 'Library * books, read, quiet * Place where books are kept to read or borrow', 'Astronaut * space, rocket, Moon * Person who travels into space', 'Rainbow * colours, rain, sky * Arc of colours in the sky when the sun comes out after rain', 'Football * ball, goal, team * Sport where two teams try to kick a ball into the other team’s goal', 'Watch * time, minutes, wrist * Object used to tell the time', 'Dinosaur * extinct, reptile, fossil * Giant reptile that lived millions of years ago', 'Elephant * trunk, big, tusks * Very large land animal with a trunk and big ears', 'Ice cream * cold, cone, summer * Sweet frozen dessert', 'Aeroplane * fly, wings, airport * Vehicle with wings that flies and carries people', 'Doctor * hospital, ill, prescription * Person who treats sick people', 'Snow * cold, white, winter * Frozen water that falls from the sky in white flakes', 'Cinema * film, screen, popcorn * Place where films are shown', 'Ant * small, insect, anthill * Tiny insect that lives in colonies and works as a team']}};
@@ -587,13 +589,26 @@ function csvRows(t){const sep=(t.split('\n')[0].match(/;/g)||[]).length>(t.split
   for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c==='"'){if(t[i+1]==='"'){cell+='"';i++}else q=false}else cell+=c}else if(c==='"')q=true;else if(c===sep||c==='\t'){row.push(cell);cell=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;row.push(cell);rows.push(row);row=[];cell=''}else cell+=c}
   if(cell||row.length){row.push(cell);rows.push(row)}return rows}
 function putConcepts(list,src){const e=$('#cImpErr');if(!list.length){e.textContent=t('noConcepts',{src});return}e.textContent='';$('#cConcepts').value=list.join('\n');count()}
-$('#cSheetGo').onclick=async()=>{const u=$('#cSheet').value.trim(),e=$('#cImpErr');const m=u.match(/\/spreadsheets\/d\/(e\/)?([a-zA-Z0-9_-]+)/);
-  if(!m){e.textContent=t('sheetBadUrl');return}
-  const gid=(u.match(/[#&?]gid=(\d+)/)||[])[1];
-  const url=m[1]?`https://docs.google.com/spreadsheets/d/e/${m[2]}/pub?output=csv${gid?'&gid='+gid:''}`:`https://docs.google.com/spreadsheets/d/${m[2]}/gviz/tq?tqx=out:csv${gid?'&gid='+gid:''}`;
+// Reconoce la hoja en varias formas de enlace: docs.google.com/spreadsheets/d/…, …/d/e/… (publicada), drive.google.com/file/d/…, ?id=… o solo el identificador
+function sheetSrc(u){u=String(u||'').trim();if(!u)return null;const gid=(u.match(/[#&?]gid=(\d+)/)||[])[1];let m,id,pub=false;
+  if(m=u.match(/\/spreadsheets\/d\/(e\/)?([\w-]{10,})/)){pub=!!m[1];id=m[2]}
+  else if(m=u.match(/drive\.google\.com\/file\/d\/([\w-]{10,})/))id=m[1];
+  else if(/google\.com/.test(u)&&(m=u.match(/[?&]id=([\w-]{10,})/)))id=m[1];
+  else if(m=u.match(/^(e\/)?([\w-]{20,})(?:[#&?]gid=\d+)?$/)){pub=!!m[1];id=m[2]}
+  if(!id)return null;if(/^2PACX-/.test(id))pub=true;return {id,pub,gid,raw:(pub&&!/^2PACX-/.test(id)?'e/':'')+id}}
+const sheetCsv=s=>s.pub?`https://docs.google.com/spreadsheets/d/e/${s.id}/pub?output=csv${s.gid?'&gid='+s.gid:''}`:`https://docs.google.com/spreadsheets/d/${s.id}/gviz/tq?tqx=out:csv${s.gid?'&gid='+s.gid:''}`;
+async function loadSheet(s){const r=await fetch(sheetCsv(s));if(!r.ok)throw new Error(r.status);const tx=await r.text();if(/^\s*</.test(tx))throw new Error('html');return firstCol(csvRows(tx))}
+let lastSheet=null;
+function showShare(){$('#cShareRow').classList.toggle('hidden',!lastSheet);$('#cShareMsg').textContent=''}
+$('#cSheetGo').onclick=async()=>{const s=sheetSrc($('#cSheet').value),e=$('#cImpErr');lastSheet=null;showShare();
+  if(!s){e.textContent=t('sheetBadUrl');return}
   e.textContent=t('sheetLoading');
-  try{const r=await fetch(url);if(!r.ok)throw new Error(r.status);const tx=await r.text();if(/^\s*</.test(tx))throw new Error('html');putConcepts(firstCol(csvRows(tx)),t('srcSheet'))}
+  try{const L=await loadSheet(s);putConcepts(L,t('srcSheet'));if(L.length){lastSheet=s;showShare()}}
   catch(err){e.textContent=inFrame()?t('sheetPreview'):t('sheetErr')}};
+// Enlace al juego con la hoja ya indicada (?hoja=…): el alumnado solo tiene que abrirlo
+$('#cShare').onclick=async()=>{if(!lastSheet)return;const es=lang==='es',ti=$('#cTitle').value.trim();
+  const u=location.origin+location.pathname+'?'+(es?'hoja':'sheet')+'='+encodeURIComponent(lastSheet.raw)+(lastSheet.gid?'&gid='+lastSheet.gid:'')+(ti&&!isDefTitle(ti)?'&'+(es?'titulo':'title')+'='+encodeURIComponent(ti):'');
+  const m=$('#cShareMsg');try{await Promise.race([navigator.clipboard.writeText(u),new Promise((_,no)=>setTimeout(no,1500))]);m.textContent=t('shareCopied')}catch(e){m.textContent=t('shareShow',{u})}};
 const inFrame=()=>{try{return window.self!==window.top}catch(e){return true}};
 function updMode(m){const tm=m==='timed',th=m==='three',tr=tm||th;$('#rowRounds').classList.toggle('hidden',!tm);$('#rowPass').classList.toggle('hidden',!tr);$('#rowAfter').classList.toggle('hidden',tr);
   $('#cTimeL').textContent=th?t('timeTurn'):tm?t('timeRound'):t('timeConcept');
@@ -759,17 +774,34 @@ function drawFinal(){const s=G.score,w=s[0]===s[1]?-1:(s[0]>s[1]?0:1);
   $('#finalBox').innerHTML=`<h2 class="win">${w<0?t('tie'):t('wins',{team:esc(tn(w))})}</h2><p style="margin:0">${esc(cfg.title)}</p>
   <div class="board">${[0,1].map(tm=>`<div class="t" style="background:${TEAMC[tm]}"><span style="font-weight:700">${esc(tn(tm))}</span><b data-to="${s[tm]}">${s[tm]}</b><span>${t('statLine',{c:G.hist.filter(h=>h.team===tm&&h.ok).length,m:G.hist.filter(h=>h.team===tm&&!h.ok).length,kind:G.mode!=='concept'?t('passedW'):t('failsW')})}</span></div>`).join('')}</div>
   <div class="panel"><h3 style="font-size:22px;margin-bottom:6px">${t('played')}</h3><ol class="hist">${G.hist.map(h=>`<li>${h.ok?'✅':(G.mode!=='concept'?'↷':'❌')}${G.mode==='three'?` R${h.round}`:''} <b>${esc(h.concept)}</b> · ${esc(h.player)} (${esc(tn(h.team))}) · ${h.dur} s</li>`).join('')||`<li>${t('none')}</li>`}</ol></div>
-  ${cfg.xapi==='on'?`<button class="btn big" id="dlX">${t('dlX')}</button><p class="note" style="margin:0">${t('dlNote')}</p>`:''}
+  ${cfg.xapi==='on'?`${inApp()?`<p class="err">${t('dlInApp')}</p>`:''}<button class="btn big" id="dlX">${t('dlX')}</button><p class="note" style="margin:0" id="dlMsg">${isIOS()?t('dlNoteIOS')+' ':''}${t('dlNote')}</p><button class="btn sec" id="cpX">${t('dlCopy')}</button>`:''}
   <button class="btn big sec" id="again">${t('again')}</button>
   <button class="btn big sec" id="toHome">${t('backHome')}</button>`;
   const d=$('#dlX');if(d)d.onclick=()=>download(`${t('fileBase')}_${(cfg.title||t('gameFallback')).toLowerCase().replace(/[^a-z0-9áéíóúñ]+/gi,'-')}_${new Date().toISOString().slice(0,16).replace(/[:T]/g,'-')}.json`,JSON.stringify(G.log,null,1));
+  const cp=$('#cpX');if(cp)cp.onclick=async()=>{const m=$('#dlMsg');try{await navigator.clipboard.writeText(JSON.stringify(G.log,null,1));m.textContent=t('dlCopied')}catch(e){m.textContent=t('dlCopyErr')}};
   $('#again').onclick=()=>{prepToss();show('toss')};$('#toHome').onclick=home;
   setTimeout(()=>{$$('#finalBox .board b').forEach(b=>countUp(b,+b.dataset.to));if(w>=0)confetti($('#final'),50)},250)}
+// iPhone/iPad: Safari no siempre descarga ficheros creados en la página; se usa el menú Compartir («Guardar en Archivos»)
+const isIOS=()=>/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+// Navegadores integrados en otras apps (campus, redes sociales…), donde las descargas suelen fallar sin avisar
+const inApp=()=>/FBAN|FBAV|FB_IAB|Instagram|Line\/|MoodleMobile|Twitter|LinkedInApp|musical_ly|TikTok|Snapchat|GSA\//i.test(navigator.userAgent);
 async function download(filename,data){try{const dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;if(dl){await dl.save({filename,data});return}}catch(e){if(e&&e.code==='declined')return}
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download=filename;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+  if(isIOS()&&navigator.share&&window.File){for(const type of ['application/json','text/plain']){let f;try{f=new File([data],filename,{type})}catch(e){break}
+    if(navigator.canShare&&!navigator.canShare({files:[f]}))continue;try{await navigator.share({files:[f]});return}catch(e){if(e&&e.name==='AbortError')return;break}}}
+  // El fichero se mantiene un minuto: Safari puede tardar en preparar la descarga o pedir confirmación
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download=filename;a.rel='noopener';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},60000)}
+
+async function sheetFromLink(){let q;try{q=new URLSearchParams(location.search)}catch(e){return}const v=q.get('hoja')||q.get('sheet');if(!v)return;
+  const g=q.get('gid'),s=sheetSrc(v+(g?'#gid='+g:'')),m=$('#homeMsg'),say=(k,o,bad)=>{m.textContent=t(k,o);m.className=bad?'err':'note';m.style.margin='0'};
+  if(!s){say('homeSheetErr',null,true);return}
+  say('homeLoading');
+  try{const L=await loadSheet(s);if(!L.length)throw new Error('empty');cfg.concepts=L.join('\n');const ti=q.get('titulo')||q.get('title');if(ti)cfg.title=ti.slice(0,80);store.set('frente_cfg',cfg);
+    lastSheet=s;$('#cSheet').value=v;showShare();if(!$('#setup').classList.contains('hidden'))fillSetup();say('homeSheet',{n:L.length})}
+  catch(e){say('homeSheetErr',null,true)}}
 
 applyLang();
 home();
+sheetFromLink();
 </script>
 </body>
 </html>
