@@ -300,7 +300,6 @@ textarea{font-weight:600;font-size:16px;line-height:1.6;white-space:pre;overflow
     <div class="stack">
       <button class="btn big" id="goSetup" data-i18n="goSetup">Preparar partida</button>
       <button class="btn big sec hidden" id="goResume" data-i18n="goResume">Continuar la partida guardada</button>
-      <p class="note hidden" id="homeMsg" role="status" style="margin:0"></p>
     </div>
   </div>
 </section>
@@ -315,7 +314,6 @@ textarea{font-weight:600;font-size:16px;line-height:1.6;white-space:pre;overflow
       <label class="f"><span data-i18n="lblSheet">Desde una hoja de Google</span><small data-i18n="smSheet">Comparte la hoja como «Cualquier persona con el enlace» y pega aquí su dirección. Columna A: concepto · B: palabras prohibidas, separadas por comas · C: definición.</small>
         <div class="row" style="flex-wrap:nowrap"><input type="text" id="cSheet" inputmode="url" placeholder="https://docs.google.com/spreadsheets/d/…" style="flex:1"><button class="btn sec" id="cSheetGo" data-i18n="cSheetGo">Cargar</button></div></label>
       <p class="err" id="cImpErr"></p>
-      <div class="row hidden" id="cShareRow"><button class="btn sec" id="cShare" data-i18n="cShare">Copiar enlace para la clase</button><span class="note" id="cShareMsg" style="user-select:all;-webkit-user-select:all;word-break:break-all"></span></div>
     </div>
     <div class="panel stack">
       <div class="teams">
@@ -434,9 +432,9 @@ modeThree:'Tres rondas',modeHelpThree:'Los mismos conceptos se juegan tres veces
   sensPreview:'Esta vista previa no deja usar los sensores. Funcionarán al abrir el juego desde su propia dirección (por ejemplo, GitHub Pages).',
   sensNoData:'No llegan datos de movimiento. En Chrome, revisa Configuración › Configuración de sitios › Sensores de movimiento. Mientras, usa los botones de respaldo.',sensWaiting:'Esperando datos…',
   noConcepts:'No he encontrado conceptos en la columna A de {src}.',srcSheet:'la hoja',
-  sheetBadUrl:'No reconozco esa dirección. Abre la hoja de Google y copia la dirección que aparece en el navegador (empieza por https://docs.google.com/spreadsheets/…). Si la copiaste del campus virtual, puede que sea un enlace al campus y no a la hoja.',sheetLoading:'Cargando la hoja…',
+  sheetBadUrl:'Eso no es un enlace a una hoja de Google. Abre la hoja y copia la dirección que aparece en el navegador: tiene que empezar por https://docs.google.com/spreadsheets/…',sheetLoading:'Cargando la hoja…',
   sheetPreview:'Desde esta vista previa no se puede acceder a Google. Funcionará cuando el juego esté publicado en su propia dirección (por ejemplo, GitHub Pages). Mientras, copia la columna de la hoja y pégala en la lista.',
-  sheetErr:'No he podido abrir la hoja. Comprueba que está compartida como «Cualquier persona con el enlace». Si subiste un Excel a Drive, ábrelo, elige Archivo › Guardar como hoja de cálculo de Google y comparte esa copia.',cShare:'Copiar enlace para la clase',shareCopied:'Enlace copiado. Publícalo en el campus: al abrirlo, el juego carga esta hoja sin que haya que pegar nada.',shareShow:'Copia este enlace y publícalo en el campus: {u}',homeLoading:'Cargando los conceptos de la hoja…',homeSheet:'Conceptos cargados desde la hoja: {n}. Pulsa «Preparar partida» para empezar.',homeSheetErr:'No se han podido cargar los conceptos del enlace. Comprueba la conexión a Internet y vuelve a abrir el enlace.',errTwo:'Escribe al menos dos conceptos, uno por línea.',
+  sheetErr:'No he podido abrir la hoja. Comprueba que está compartida como «Cualquier persona con el enlace». Si subiste un Excel a Drive, ábrelo, elige Archivo › Guardar como hoja de cálculo de Google y comparte esa copia.',errTwo:'Escribe al menos dos conceptos, uno por línea.',
   remove:'Quitar a {n}',noPlayers:'Sin participantes',errName:'Escribe el nombre.',errDup:'Ya hay un participante con ese nombre. Añade una inicial.',errEmail:'Escribe el correo.',errEmailBad:'El correo no parece válido.',errDni:'Escribe el DNI o documento.',
   errTeams:'Cada equipo necesita al menos un participante.',errConsent:'Marca la casilla del registro de actividad para continuar.',
   fbOk:'Acertado',fbKo:'No acertado',fbPass:'Pasar',readyH:'Empieza {team}',phoneOn:'Se pone el móvil en la frente:',readyTimed:'Ronda de {s} s: inclina hacia abajo si aciertas y hacia arriba para pasar.',readyConcept:'Con la pantalla hacia su equipo, en horizontal.',
@@ -479,9 +477,9 @@ modeThree:'Three rounds',modeHelpThree:'The same concepts are played three times
   sensPreview:'This preview cannot use the motion sensors. They will work when you open the game from its own address (for example, GitHub Pages).',
   sensNoData:'No motion data is arriving. In Chrome, check Settings › Site settings › Motion sensors. Meanwhile, use the backup buttons.',sensWaiting:'Waiting for data…',
   noConcepts:'No concepts found in column A of {src}.',srcSheet:'the sheet',
-  sheetBadUrl:'That address is not recognised. Open the Google Sheet and copy the address shown in the browser (it starts with https://docs.google.com/spreadsheets/…). If you copied it from the virtual campus, it may be a link to the campus rather than to the sheet.',sheetLoading:'Loading the sheet…',
+  sheetBadUrl:'That is not a link to a Google Sheet. Open the sheet and copy the address shown in the browser: it must start with https://docs.google.com/spreadsheets/…',sheetLoading:'Loading the sheet…',
   sheetPreview:'This preview cannot reach Google. It will work once the game is published at its own address (for example, GitHub Pages). Meanwhile, copy the column from the sheet and paste it into the list.',
-  sheetErr:'The sheet could not be opened. Check that it is shared as “Anyone with the link”. If you uploaded an Excel file to Drive, open it, choose File › Save as Google Sheets and share that copy.',cShare:'Copy link for the class',shareCopied:'Link copied. Post it on the campus: when opened, the game loads this sheet without pasting anything.',shareShow:'Copy this link and post it on the campus: {u}',homeLoading:'Loading the concepts from the sheet…',homeSheet:'Concepts loaded from the sheet: {n}. Tap “Set up a game” to start.',homeSheetErr:'The concepts from the link could not be loaded. Check your Internet connection and open the link again.',errTwo:'Write at least two concepts, one per line.',
+  sheetErr:'The sheet could not be opened. Check that it is shared as “Anyone with the link”. If you uploaded an Excel file to Drive, open it, choose File › Save as Google Sheets and share that copy.',errTwo:'Write at least two concepts, one per line.',
   remove:'Remove {n}',noPlayers:'No players yet',errName:'Write the name.',errDup:'There is already a player with that name. Add an initial.',errEmail:'Write the email.',errEmailBad:'The email does not look valid.',errDni:'Write the ID number.',
   errTeams:'Each team needs at least one player.',errConsent:'Tick the activity log box to continue.',
   fbOk:'Correct',fbKo:'Missed',fbPass:'Pass',readyH:'{team} starts',phoneOn:'Phone on the forehead:',readyTimed:'{s}-second round: tilt down when you get it, tilt up to pass.',readyConcept:'Screen facing the team, held sideways.',
@@ -589,26 +587,13 @@ function csvRows(t){const sep=(t.split('\n')[0].match(/;/g)||[]).length>(t.split
   for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c==='"'){if(t[i+1]==='"'){cell+='"';i++}else q=false}else cell+=c}else if(c==='"')q=true;else if(c===sep||c==='\t'){row.push(cell);cell=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;row.push(cell);rows.push(row);row=[];cell=''}else cell+=c}
   if(cell||row.length){row.push(cell);rows.push(row)}return rows}
 function putConcepts(list,src){const e=$('#cImpErr');if(!list.length){e.textContent=t('noConcepts',{src});return}e.textContent='';$('#cConcepts').value=list.join('\n');count()}
-// Reconoce la hoja en varias formas de enlace: docs.google.com/spreadsheets/d/…, …/d/e/… (publicada), drive.google.com/file/d/…, ?id=… o solo el identificador
-function sheetSrc(u){u=String(u||'').trim();if(!u)return null;const gid=(u.match(/[#&?]gid=(\d+)/)||[])[1];let m,id,pub=false;
-  if(m=u.match(/\/spreadsheets\/d\/(e\/)?([\w-]{10,})/)){pub=!!m[1];id=m[2]}
-  else if(m=u.match(/drive\.google\.com\/file\/d\/([\w-]{10,})/))id=m[1];
-  else if(/google\.com/.test(u)&&(m=u.match(/[?&]id=([\w-]{10,})/)))id=m[1];
-  else if(m=u.match(/^(e\/)?([\w-]{20,})(?:[#&?]gid=\d+)?$/)){pub=!!m[1];id=m[2]}
-  if(!id)return null;if(/^2PACX-/.test(id))pub=true;return {id,pub,gid,raw:(pub&&!/^2PACX-/.test(id)?'e/':'')+id}}
-const sheetCsv=s=>s.pub?`https://docs.google.com/spreadsheets/d/e/${s.id}/pub?output=csv${s.gid?'&gid='+s.gid:''}`:`https://docs.google.com/spreadsheets/d/${s.id}/gviz/tq?tqx=out:csv${s.gid?'&gid='+s.gid:''}`;
-async function loadSheet(s){const r=await fetch(sheetCsv(s));if(!r.ok)throw new Error(r.status);const tx=await r.text();if(/^\s*</.test(tx))throw new Error('html');return firstCol(csvRows(tx))}
-let lastSheet=null;
-function showShare(){$('#cShareRow').classList.toggle('hidden',!lastSheet);$('#cShareMsg').textContent=''}
-$('#cSheetGo').onclick=async()=>{const s=sheetSrc($('#cSheet').value),e=$('#cImpErr');lastSheet=null;showShare();
-  if(!s){e.textContent=t('sheetBadUrl');return}
+$('#cSheetGo').onclick=async()=>{const u=$('#cSheet').value.trim(),e=$('#cImpErr');const m=u.match(/\/spreadsheets\/d\/(e\/)?([a-zA-Z0-9_-]+)/);
+  if(!m){e.textContent=t('sheetBadUrl');return}
+  const gid=(u.match(/[#&?]gid=(\d+)/)||[])[1];
+  const url=m[1]?`https://docs.google.com/spreadsheets/d/e/${m[2]}/pub?output=csv${gid?'&gid='+gid:''}`:`https://docs.google.com/spreadsheets/d/${m[2]}/gviz/tq?tqx=out:csv${gid?'&gid='+gid:''}`;
   e.textContent=t('sheetLoading');
-  try{const L=await loadSheet(s);putConcepts(L,t('srcSheet'));if(L.length){lastSheet=s;showShare()}}
+  try{const r=await fetch(url);if(!r.ok)throw new Error(r.status);const tx=await r.text();if(/^\s*</.test(tx))throw new Error('html');putConcepts(firstCol(csvRows(tx)),t('srcSheet'))}
   catch(err){e.textContent=inFrame()?t('sheetPreview'):t('sheetErr')}};
-// Enlace al juego con la hoja ya indicada (?hoja=…): el alumnado solo tiene que abrirlo
-$('#cShare').onclick=async()=>{if(!lastSheet)return;const es=lang==='es',ti=$('#cTitle').value.trim();
-  const u=location.origin+location.pathname+'?'+(es?'hoja':'sheet')+'='+encodeURIComponent(lastSheet.raw)+(lastSheet.gid?'&gid='+lastSheet.gid:'')+(ti&&!isDefTitle(ti)?'&'+(es?'titulo':'title')+'='+encodeURIComponent(ti):'');
-  const m=$('#cShareMsg');try{await Promise.race([navigator.clipboard.writeText(u),new Promise((_,no)=>setTimeout(no,1500))]);m.textContent=t('shareCopied')}catch(e){m.textContent=t('shareShow',{u})}};
 const inFrame=()=>{try{return window.self!==window.top}catch(e){return true}};
 function updMode(m){const tm=m==='timed',th=m==='three',tr=tm||th;$('#rowRounds').classList.toggle('hidden',!tm);$('#rowPass').classList.toggle('hidden',!tr);$('#rowAfter').classList.toggle('hidden',tr);
   $('#cTimeL').textContent=th?t('timeTurn'):tm?t('timeRound'):t('timeConcept');
@@ -791,17 +776,9 @@ async function download(filename,data){try{const dl=window.claude&&window.claude
   // El fichero se mantiene un minuto: Safari puede tardar en preparar la descarga o pedir confirmación
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download=filename;a.rel='noopener';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},60000)}
 
-async function sheetFromLink(){let q;try{q=new URLSearchParams(location.search)}catch(e){return}const v=q.get('hoja')||q.get('sheet');if(!v)return;
-  const g=q.get('gid'),s=sheetSrc(v+(g?'#gid='+g:'')),m=$('#homeMsg'),say=(k,o,bad)=>{m.textContent=t(k,o);m.className=bad?'err':'note';m.style.margin='0'};
-  if(!s){say('homeSheetErr',null,true);return}
-  say('homeLoading');
-  try{const L=await loadSheet(s);if(!L.length)throw new Error('empty');cfg.concepts=L.join('\n');const ti=q.get('titulo')||q.get('title');if(ti)cfg.title=ti.slice(0,80);store.set('frente_cfg',cfg);
-    lastSheet=s;$('#cSheet').value=v;showShare();if(!$('#setup').classList.contains('hidden'))fillSetup();say('homeSheet',{n:L.length})}
-  catch(e){say('homeSheetErr',null,true)}}
 
 applyLang();
 home();
-sheetFromLink();
 </script>
 </body>
 </html>

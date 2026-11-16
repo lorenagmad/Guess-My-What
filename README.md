@@ -50,8 +50,7 @@ Umbrella * rain, wet, open * Object you open to keep the rain off
 
 Other ways to fill the list:
 
-- **From a Google Sheet:** share the sheet as "Anyone with the link" and paste its address. Column A is the concept, column B the forbidden words (separated by commas) and column C the definition. A header such as "Concepts" is skipped. A Google Drive link works too. If you upload an Excel file to Drive, save it as a Google Sheet first.
-- **Link for the class:** after loading the sheet, the **Copy link for the class** button creates a game address that includes the sheet (`?sheet=…`, and optionally `&title=…`). When opened, the game loads the concepts by itself, with nothing to paste; this is the link to post on the virtual campus.
+- **From a Google Sheet:** share the sheet as "Anyone with the link" and paste its address. Column A is the concept, column B the forbidden words (separated by commas) and column C the definition. A header such as "Concepts" is skipped. If you upload an Excel file to Drive, save it as a Google Sheet first.
 - **Use the example:** 20 everyday concepts, with forbidden words and definitions, in the language you have chosen.
 - **Clear the list:** removes every concept. Tap it twice to confirm.
 
