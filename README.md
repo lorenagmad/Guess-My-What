@@ -1,5 +1,7 @@
 # Guess My What?!
 
+[![DOI](https://zenodo.org/badge/1441040302.svg)](https://doi.org/10.5281/zenodo.24011643)
+
 **English** · [Español](README.es.md)
 
 A team guessing game for the classroom, or for any group. One player holds the phone to their forehead without looking at it, and their team describes the word on the screen without saying it. The phone's motion sensors detect whether the player got it right.
@@ -73,32 +75,93 @@ For classroom use, the game can keep an activity log in [xAPI](https://xapi.com/
 - **What it records:** the start of the game (mode, teams and their players, number of concepts, time limit, whether forbidden words are shown), every concept played (who, which team, whether it was guessed, how long it took, how it was marked: sensor, button or time, the round, and its forbidden words and definition) and the final score.
 - **Identification:** the player's name is always asked for. The email and an ID number can each be "Don't ask", "Optional" or "Required".
 - **Consent:** when the log is on, the game asks you to confirm that the players know their activity is being recorded before you can start.
+<<<<<<< HEAD
 - **Download:** the log is downloaded as a `.json` file from the final screen, ready to import into a Learning Record Store (LRS) or to analyse. On iPhone the Share menu opens so you can choose "Save to Files". If the game is open inside another app (the campus app, a social network…), it warns that it must be opened in Safari or Chrome. As a last resort, **Copy the log** copies it as text.
+=======
+- **Download:** the log is downloaded as a `.json` file from the final screen, ready to open in the [analysis panel](#analysis-panel) or to import into a Learning Record Store (LRS).
+>>>>>>> 7b58d2af6603d96719c9af96547ff28ffa9c00dd
 - **Format:** the field names and response values are the same in both languages, so logs from Spanish and English games can be analysed together. The verb and activity names are written in the game's language and tagged with it (`es-ES` or `en-US`).
 
 To use the game outside the classroom, ask only for the name and leave the log off.
 
+## Analysis panel
+
+The analysis panel turns the activity logs into a summary of how your class played: which concepts were hardest, how each game went and how each player did. It is a separate page that runs entirely in your browser: the files you load are **not uploaded anywhere**.
+
+**Open it:** https://lorenagmad.github.io/Guess-My-What/panel.html
+
+The panel is in **English** and **Spanish**, with the same **Español / English** buttons as the game, and it opens in the language you chose in the game. It reads logs from games played in either language.
+
+### Step by step
+
+1. **Before playing, turn on the log.** On the setup screen, set **Activity log (xAPI)** to **Keep a log**. Choose whether to ask for the email and the ID number (*Don't ask* is enough for the panel; the player's name or a nickname is always asked for).
+2. **Play the game** as usual.
+3. **Download the log** from the final screen with **Download the log (xAPI)**. Do it before you start another game: the log is kept on the device only until then. You get a file called `guess-my-what_….json`.
+4. **Open the panel** and drag the files onto the dashed box, or press **Choose files**. You can load several files at once, from different groups and days: they are merged and duplicates are removed.
+5. **Leave out anyone who should not be counted (optional).** Open **Exclude players** and write, one per line, the name or code each of them used in the game (their email or ID number also works). See [Excluding players](#excluding-players).
+6. **Read the results.** Use the filters at the top to see one game (or subject) or one mode.
+7. **Export** what you need as CSV files, which open in Excel or LibreOffice.
+
+To start again with other files, press **Clear**.
+
+### What you see
+
+| Section | What it shows |
+| --- | --- |
+| Summary | Number of games, players and concepts played, percentage guessed, median time to guess and how many concepts were missed at least once. |
+| **Review** | The concepts that cost the most, with their definition and forbidden words, ready to go over in class. You can download it as CSV or copy it. |
+| **Three rounds** | Only for *Three rounds* games: how the success rate changes from describing freely, to one word, to mime. |
+| **Concepts** | Each concept: times played, guessed, missed, passed and median time. Click a column to sort. |
+| **Games** | Each game: date, name, mode, final score, concepts played, success rate and duration. |
+| **Players** | Each player: team, concepts played with the phone on their forehead, success rate and median time. |
+
+### Hiding personal data
+
+The **Hide identifying data** box at the top is **ticked by default**. While it is ticked, names, emails and ID numbers are replaced by codes (J-01, J-02…) on screen and in every export, and the names of the loaded files are hidden. Untick it only if you need to see who is who, for example to give feedback to a student.
+
+Keep in mind:
+
+- The codes are assigned each time you load files, in alphabetical order of the players. If you load a different set of files, the same person may get a different code.
+- Hiding only affects the panel. **The `.json` files you downloaded still contain whatever the players typed** (name or nickname and, if you asked for them, email and ID number). Store them as you would any other student data, for example on your institution's storage, and delete them when you no longer need them.
+- To collect as little personal data as possible, ask players to use a nickname or a code instead of their real name, and set the email and the ID number to *Don't ask*.
+- If you use the data for research, you need the participants' informed consent and the approval your institution requires. Publish only aggregated results.
+
+### Excluding players
+
+Use **Exclude players** when some players must not be counted, for example students who have not given consent for a study.
+
+- Write one player per line: the name or code they used in the game, or their email or ID number. Capital letters and extra spaces don't matter.
+- Their concepts disappear from the summary, every table and every export. The panel shows how many players and concepts were left out, and warns you if a line doesn't match anyone in the loaded logs.
+- You can keep **Hide identifying data** ticked the whole time: the panel never shows who each line belongs to.
+- The codes (J-01, J-02…) are given only to the players who remain.
+- The list is not saved. If you reload the page, write it again.
+
 ## Privacy
 
-Everything stays on the device. The settings, the players, the game in progress and the activity log are stored in the browser (`localStorage`) and are never sent to a server. The game only connects to the internet to:
+Everything stays on the device. The settings, the players, the game in progress and the activity log are stored in the browser (`localStorage`) and are never sent to a server. The analysis panel reads the files you load in your browser and does not send them anywhere either. The game and the panel only connect to the internet to:
 
-- load its typeface (Nunito) from Google Fonts,
+- load their typefaces from Google Fonts (no game data is sent),
 - read a Google Sheet, only when you load one.
 
 ## Design and accessibility
 
-- Colours from the TELA UCA logo and a single typeface, Nunito, chosen to be read from a distance.
+- Colours from the [TELA UCA](https://lorenagmad.github.io/tela_uca/) logo and a single typeface, Nunito, chosen to be read from a distance.
 - Buttons and form fields work with the keyboard and show a visible focus.
 - If the device has "reduce motion" turned on, the animations and confetti are switched off.
 - Light and dark modes follow the device's setting.
 
 ## Running it yourself
 
-The whole game is a single file, `index.html`, with no build step and no dependencies to install.
+The whole game is a single file, `index.html`, and the analysis panel is another, `panel.html`. There is no build step and no dependencies to install.
 
 - **Locally:** open `index.html` in a browser. The motion sensors need HTTPS, so for a full test on a phone, publish it first.
-- **On GitHub Pages:** in the repository, go to **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save. The game will be at `https://<user>.github.io/<repository>/`.
+- **On GitHub Pages:** in the repository, go to **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save. The game will be at `https://<user>.github.io/<repository>/` and the panel at `https://<user>.github.io/<repository>/panel.html`.
 
-## Credits
+## Authors
 
-Created by [TELA UCA](https://lorenagmad.github.io/tela_uca/) (Technology Enhanced Learning for All), Department of Computer Engineering, Campus de Jerez, University of Cádiz.
+- Lorena Gutiérrez Madroñal
+- Rubén Baena Pérez
+- José Miguel Mota Macías
+Department of Computer Engineering, Campus de Jerez, University of Cádiz.
+
+![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue)
